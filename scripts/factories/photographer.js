@@ -4,7 +4,7 @@
  * @returns 
  */
 
-function photographerFactory(data) {
+export function photographerFactory(data) {
     const { name, portrait, country, city, tagline, price, id } = data;
 
 
@@ -58,6 +58,6 @@ function photographerFactory(data) {
 }
 
 
-function test(){
-    console.log("allo")
+function test1(){
+    console.log('cracra')
 }

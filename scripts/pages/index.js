@@ -1,5 +1,6 @@
+import {photographerFactory } from "../factories/photographer.js"
 
-async function getPhotographers() {
+export async function getPhotographers() {
     // récupère le data des photographers avec les deux clés: photographers / media
     const data = await fetch("./../../data/photographers.json");
     const photographers = await data.json();
@@ -11,7 +12,8 @@ async function getPhotographers() {
  * @param {object} photographers 
  */
 async function displayData(photographers) {
-    const photographersSection = document.querySelector(".photographer_section");
+    const photographersSection = document.querySelector(".photographer_section")
+    console.log("photographersSection :" + photographersSection)
     photographers.forEach((photographer) => {
         const photographerModel = photographerFactory(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
@@ -34,4 +36,3 @@ async function init() {
 
 init();
 
-test()

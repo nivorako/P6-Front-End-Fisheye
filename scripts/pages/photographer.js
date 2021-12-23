@@ -1,9 +1,4 @@
-async function getPhotographers(){
-    // récupère le data des photographers avec les deux clés: photographers / media
-    const data = await fetch("./../../data/photographers.json")
-    const photographers = await data.json()
-    return photographers
-}
+import {getPhotographers} from "./index.js"
 
 /**
  * 
@@ -23,7 +18,12 @@ async function getPhotographer() {
     return photographer
 }
 
-
+/**
+ * this function allows us to display photographer's id and image in header
+ * 
+ * return object with two keys : photographerIdSection, photographerImgSection
+ * @returns {object} 
+ */
 
 async function photographerIdFactory(){
     let photographer  = await getPhotographer()
@@ -55,9 +55,15 @@ async function photographerIdFactory(){
     return {photographerIdSection, photographerImgSection}
 }
 
+
+/**
+ * return the photogarph which id matches with photographerId
+ * @returns {object}
+ */
 async function getPhotographerMedia(){
-    // on recupere id de la page courante
+    // collect current id  ?359
     let queryString_url_id = window.location.search
+    //  slice the ? and collect the id
     let photographerId = queryString_url_id.slice(1)
 
     let photographers = await getPhotographers()
@@ -66,78 +72,105 @@ async function getPhotographerMedia(){
     return photographerMedia
 }
 
+/**
+ * 
+ * @param {object} photographer 
+ * @returns {string} photographer's first name
+ */
+function photographerName(photographer){
+    let name = ""
+    let avatar = photographer.name.split(" ")[0]
+    if(avatar.split("-").length === 1) name = avatar
+    else name = avatar.split("-")[0] + " " + avatar.split("-")[1]
+    return name
+}
+
+function fixPhotographerPath(photographe){ 
+    let path = ""   
+    // si photographe contient image  alors path = image
+    if (photographe.hasOwnProperty('image')) path = "photographe.image" 
+    // sinon path = video
+    else path = "photographe.video"
+    // return path
+}
+
+
+
+/**
+ * 
+ * @returns {object}
+ */
+
 async function photographerMediaFactory(){
     let photographerMediaSection = document.querySelector('.photographer-media')
 
     let photographer = await getPhotographer()
     let photographerMedia = await getPhotographerMedia()
 
-    let photographerName = function(photographer){
-        let name = ""
-        let avatar = photographer.name.split(" ")[0]
-        if(avatar.split("-").length === 1) name = avatar
-        else name = avatar.split("-")[0] + " " + avatar.split("-")[1]
-        return name
-    }
-
-    console.log(photographerName(photographer))
-    console.log(photographerMedia)
-
     photographerMedia.map((photographe) =>{
-        // creation div pour chaque photographer
+        // create div for each photographer
         let photographerSection = document.createElement('div')
         photographerSection.classList.add('photographer-section')
 
-        // creation div pour les détails photographer
+        // create div for photographer's details
         let photographerDetails = document.createElement('div')
         photographerDetails.classList.add('photographer-details')
 
-        // creation div pour likes
+        // create div for likes
         let photographerLikes = document.createElement('div')
         photographerLikes.classList.add('photographer-likes')
 
-        // creation paragraphe pour title
+        // create paragraphe for title
         let photographerTitle = document.createElement('p')
         photographerTitle.textContent = photographe.title
 
-        // creation span pour likes
+        // create span for number of likes
         let photographerNumberOfLikes = document.createElement('span')
         photographerNumberOfLikes.textContent = photographe.likes
 
-        // creation i pour icone font awesome
+        // create i for icon font awesome
         let photographerIcon = document.createElement('i')
         photographerIcon.textContent =""
         photographerIcon.classList.add('fa-heart')
         photographerIcon.classList.add('fa')
 
-        // creation img pour image
+        // create img for image
         let photographerImg = document.createElement('img')
         photographerImg.setAttribute("src", `./assets/Sample Photos/${photographerName(photographer)}/${photographe.image}`)
 
-        // integration title dans Details
+        // integration title in Details
         photographerDetails.appendChild(photographerTitle)
 
-        // integration de nbre de like dans like
+        // integration nber of like in likes elt
         photographerLikes.appendChild(photographerNumberOfLikes)
 
-        // integration icon dans like
+        // integration icon in like
         photographerLikes.appendChild(photographerIcon)
 
-        // integration de like dans Details
+        // integration of like in Details
         photographerDetails.appendChild(photographerLikes)
 
-        // integration de image dans photographerSection
+        // integration of image in photographerSection
         photographerSection.appendChild(photographerImg)
 
-        // integration de Details dans photographerSection
+        // integration of Details in photographerSection
         photographerSection.appendChild(photographerDetails)
 
-        // integration de photographerSection dans .photographer-media
+        // integration of photographerSection in .photographer-media
         photographerMediaSection.appendChild(photographerSection)
     })
 
+    return { photographerMediaSection }
 }
 
+async function displayPhotographName(){
+    let name = document.querySelector(".name")
+    let photographer  = await getPhotographer()
+    name.textContent = photographer.name
+}
+
+displayPhotographName()
 photographerIdFactory()
 photographerMediaFactory()
 // getPhotographerMedia()
+

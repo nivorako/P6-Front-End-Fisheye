@@ -1,6 +1,7 @@
-#contact_modal {
-    display: none;
+body{
+    position: relative;
 }
+
 
 .photographer-header {
     display: flex;
@@ -71,15 +72,20 @@
 }
 
 .modal {
+    position: absolute;
+    left: 20%;
+    top: 100px;
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    width: calc(100vw - 40%);
     padding: 35px;
     margin: auto;
+    opacity: 0;
+    z-index: -1;
 }
 
 .modal header {
@@ -95,6 +101,30 @@
     font-size: 64px;
     font-weight: normal;
     text-align: center;
+}
+.comment{
+    width: 100%;
+}
+
+.comment-message{
+    width: 100%;
+}
+
+.hidden{
+    opacity: 0;
+    transition: all 1s;
+    z-index: -1;
+}
+
+.opacity{
+    opacity: 0.3;
+    transition: all 1s;
+}
+
+.show{
+    opacity: 1;
+    transition: all 1s;
+    z-index: 1;
 }
 
 form {
@@ -118,8 +148,13 @@ form div {
 }
 
 form input {
+    font-size: 36px;
     width: 100%;
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+.name{
+    font-size: 64px;
 }
