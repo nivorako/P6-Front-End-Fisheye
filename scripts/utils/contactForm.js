@@ -4,6 +4,8 @@ function displayModal() {
     const modal = document.getElementById("modal")
 
 	modal.classList.add('show')
+    mainPage.classList.remove('show')
+    headerPage.classList.remove('show')
     mainPage.classList.add('opacity')
     headerPage.classList.add('opacity')
 }
@@ -15,9 +17,7 @@ function closeModal() {
 
     modal.classList.remove('show')
     modal.classList.add('hidden')
-    mainPage.classList.remove('opacity')
-    headerPage.classList.remove('opacity')
-    mainPage.classList.add('show')
-    headerPage.classList.add('show')
+    mainPage.classList.replace('opacity', 'show')
+    headerPage.classList.replace('opacity', 'show')
 }
 

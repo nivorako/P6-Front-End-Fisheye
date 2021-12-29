@@ -29,6 +29,7 @@ export function photographerFactory(data) {
         // create 'img' element
         const img = document.createElement( 'img' )
         img.setAttribute("src", picture)
+        img.setAttribute('alt', `Une photo de ${name}`)
 
         // create 'homeland' element
         const homeland = document.createElement('p')

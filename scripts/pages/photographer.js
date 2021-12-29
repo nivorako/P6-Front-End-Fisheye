@@ -38,14 +38,14 @@ async function photographerIdFactory(){
     let home = document.createElement('p')
     home.textContent = photographer.country + ", " + photographer.city
 
-     // create 'tag line text' element
-     let tagText = document.createElement('span')
-     tagText.textContent = photographer.tagline
+    // create 'tag line text' element
+    let tagText = document.createElement('span')
+    tagText.textContent = photographer.tagline
 
-      // create 'img' element
-      let imgPhotograph = document.createElement( 'img' )
-      imgPhotograph.setAttribute("src", picturePhotograph)
-
+    // create 'img' element
+    let imgPhotograph = document.createElement( 'img' )
+    imgPhotograph.setAttribute("src", picturePhotograph)
+    imgPhotograph.setAttribute("alt", photographer.name)
 
     photographerIdSection.appendChild(title)
     photographerIdSection.appendChild(home)
@@ -85,17 +85,6 @@ function photographerName(photographer){
     return name
 }
 
-function fixPhotographerPath(photographe){ 
-    let path = ""   
-    // si photographe contient image  alors path = image
-    if (photographe.hasOwnProperty('image')) path = "photographe.image" 
-    // sinon path = video
-    else path = "photographe.video"
-    // return path
-}
-
-
-
 /**
  * 
  * @returns {object}
@@ -104,6 +93,7 @@ function fixPhotographerPath(photographe){
 async function photographerMediaFactory(){
     let photographerMediaSection = document.querySelector('.photographer-media')
 
+    
     let photographer = await getPhotographer()
     let photographerMedia = await getPhotographerMedia()
 
@@ -120,6 +110,7 @@ async function photographerMediaFactory(){
         let photographerLikes = document.createElement('div')
         photographerLikes.classList.add('photographer-likes')
 
+
         // create paragraphe for title
         let photographerTitle = document.createElement('p')
         photographerTitle.textContent = photographe.title
@@ -134,30 +125,59 @@ async function photographerMediaFactory(){
         photographerIcon.classList.add('fa-heart')
         photographerIcon.classList.add('fa')
 
-        // create img for image
+        // create img for image / video
+        let photographerVideo = document.createElement('video')
         let photographerImg = document.createElement('img')
-        photographerImg.setAttribute("src", `./assets/Sample Photos/${photographerName(photographer)}/${photographe.image}`)
 
-        // integration title in Details
-        photographerDetails.appendChild(photographerTitle)
+        if(photographe.hasOwnProperty('video')){
+            
+            photographerVideo.setAttribute('type', "video/mp4")
+            photographerVideo.setAttribute("controls", "controls")
+            photographerVideo.setAttribute("src", `./assets/Sample Photos/${photographerName(photographer)}/${photographe.video}`)
+            photographerVideo.setAttribute("title", "")
 
-        // integration nber of like in likes elt
-        photographerLikes.appendChild(photographerNumberOfLikes)
+            photographerSection.appendChild(photographerVideo)
+            
+            // integration title in Details
+            photographerDetails.appendChild(photographerTitle)
 
-        // integration icon in like
-        photographerLikes.appendChild(photographerIcon)
+            // integration nber of like in likes elt
+            photographerLikes.appendChild(photographerNumberOfLikes)
 
-        // integration of like in Details
-        photographerDetails.appendChild(photographerLikes)
+            // integration icon in like
+            photographerLikes.appendChild(photographerIcon)
 
-        // integration of image in photographerSection
-        photographerSection.appendChild(photographerImg)
+            // integration of like in Details
+            photographerDetails.appendChild(photographerLikes)
 
-        // integration of Details in photographerSection
-        photographerSection.appendChild(photographerDetails)
+            // integration of Details in photographerSection
+            photographerSection.appendChild(photographerDetails)
 
-        // integration of photographerSection in .photographer-media
-        photographerMediaSection.appendChild(photographerSection)
+            // integration of photographerSection in .photographer-media
+            photographerMediaSection.appendChild(photographerSection)
+        }else{
+            photographerImg.setAttribute("src", `./assets/Sample Photos/${photographerName(photographer)}/${photographe.image}`)
+            photographerImg.setAttribute("alt", photographe.title)
+            // integration of image in photographerSection
+            photographerSection.appendChild(photographerImg)
+            // integration title in Details
+            photographerDetails.appendChild(photographerTitle)
+
+            // integration nber of like in likes elt
+            photographerLikes.appendChild(photographerNumberOfLikes)
+
+            // integration icon in like
+            photographerLikes.appendChild(photographerIcon)
+
+            // integration of like in Details
+            photographerDetails.appendChild(photographerLikes)
+
+            // integration of Details in photographerSection
+            photographerSection.appendChild(photographerDetails)
+
+            // integration of photographerSection in .photographer-media
+            photographerMediaSection.appendChild(photographerSection)
+        }
     })
 
     return { photographerMediaSection }

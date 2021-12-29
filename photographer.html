@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -14,7 +14,7 @@
 <body>
 
     <header id="header" class="header">
-        <img src="assets/images/logo.png" class="logo" />
+        <img src="assets/images/logo.png" class="logo" alt="logo" />
     </header>
 
     <main id="main">
@@ -24,7 +24,16 @@
             <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
             <div class="photographer-img"></div>
         </div>
-
+        <div class="sort">
+            <div class="sort__button">trier par</div>
+            <div class="sort__section">
+                <ul>
+                    <li>Popularité</li>
+                    <li>Date</li>
+                    <li>Titre</li>
+                </ul>
+            </div>
+        </div>
         <div class="photographer-media"></div>
 
     </main>
@@ -33,7 +42,7 @@
         <header class="modal-header">
             <div class="header">
                 <h2>Contactez-moi</h2>
-                <img src="assets/icons/close.svg" onclick="closeModal()" />
+                <img src="assets/icons/close.svg" onclick="closeModal()" aria-label="Fermer"  />
             </div>
             <div class="name"></div>
         </header>
