@@ -1,7 +1,8 @@
 /**
  * 
- * @param {object} data -les infos pour chaque photographe
- * @returns 
+ * fonction qui retourne les infos pour chaque photographe
+ * @param {object} data 
+ * @returns infos photographe
  */
 
 export function photographerFactory(data) {
@@ -58,7 +59,3 @@ export function photographerFactory(data) {
     return { name, picture, tagline, country, city, price, getUserCardDOM}
 }
 
-
-function test1(){
-    console.log('cracra')
-}

@@ -1,6 +1,6 @@
-body{
+/* body{
     position: relative;
-}
+} */
 
 
 .photographer-header {
@@ -46,7 +46,7 @@ body{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin: 0 100px;
+    margin: 150px 100px;
     color: #901C1C;
 }
 
@@ -78,9 +78,11 @@ body{
 }
 
 .sort{
+    position: absolute;
     display: flex;
     margin-top: 50px;
     margin-left: 100px;
+
 }
 
 .sort ul{

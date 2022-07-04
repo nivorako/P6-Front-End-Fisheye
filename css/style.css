@@ -5,6 +5,7 @@
 }
 
 body {
+    position: relative;
     font-family: "DM Sans", sans-serif;
     margin: 0;
 }

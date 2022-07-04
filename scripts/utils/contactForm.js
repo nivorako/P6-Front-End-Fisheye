@@ -1,4 +1,4 @@
-function displayModal() {
+    function displayModal() {
     const headerPage = document.getElementById('header')
     const mainPage = document.getElementById('main')
     const modal = document.getElementById("modal")
@@ -10,7 +10,7 @@ function displayModal() {
     headerPage.classList.add('opacity')
 }
 
-function closeModal() {
+    function closeModal() {
     const headerPage = document.getElementById('header')
     const mainPage = document.getElementById('main')
     const modal = document.getElementById("modal")
