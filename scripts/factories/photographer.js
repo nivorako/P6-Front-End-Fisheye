@@ -1,5 +1,5 @@
 export function photographerFactory(data) {
-    const { name, portrait, city, country, tagline } = data;
+    const { name, portrait, city, country, tagline, price } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
@@ -13,22 +13,34 @@ export function photographerFactory(data) {
         img.setAttribute('alt', `photographie de ${name}`)
 
         const cityElt = document.createElement('p');
-        cityElt.textContent = `${city}, ${country}`;
+        cityElt.innerHTML = `${country}: ${city}`;
 
         const tag = document.createElement('p');
         tag.innerHTML = tagline;
+        tag.classList.add('photographer_section-tag');
+
+        const priceElt = document.createElement('span');
+        priceElt.innerHTML = price
         
         const h2 = document.createElement( 'h2' );
-        h2.textContent = name;
+        h2.innerHTML = name;
+
+        const label = document.createElement('div')
+        label.classList.add('photographer_section-label')
 
         const article = document.createElement( 'article' );
 
-        article.appendChild(img);
-        article.appendChild(h2);
-        article.appendChild(cityElt);
-        article.appendChild(tag)
-        link.appendChild(article);
-        return (link);
+        link.appendChild(img);
+        link.appendChild(h2);
+
+        label.appendChild(cityElt);
+        label.appendChild(tag);
+        label.appendChild(priceElt);
+        
+        
+        article.appendChild(link);
+        article.appendChild(label)
+        return (article);
     }
-    return { name, picture,city ,country ,tagline, getUserCardDOM }
+    return { name, picture,city ,country ,tagline, price, getUserCardDOM }
 }
