@@ -1,72 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html>
+  <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <!-- <link href="css/reset.css" rel="stylesheet" type="text/css" /> -->
+    <link href="css/photographer.css" rel="stylesheet" type="text/css"/>
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/4ed0ec6e4e.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
-</head>
-
-<body>
-
-    <header id="header" class="header">
-        <img src="assets/images/logo.png" class="logo" alt="logo" />
+  </head>
+  <body>
+    <header>
+      <img src="assets/images/logo.png" class="logo" />
     </header>
-
     <main id="main">
-
-        <div class="photographer-header">
-            <div class="photographer-id"></div>
-            <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-            <div class="photographer-img"></div>
-        </div>
-        <!-- <div class="sort">
-            <div class="sort__button">trier par</div>
-            <div class="sort__section">
-                <ul>
-                    <li>Popularité</li>
-                    <li>Date</li>
-                    <li>Titre</li>
-                </ul>
-            </div>
-        </div> -->
-        
-        <div class="photographer-media"></div>
-
+      <div class="photographer-header">
+        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      </div>
     </main>
-
-    <div id="modal" class="modal">
-        <header class="modal-header">
-            <div class="header">
-                <h2>Contactez-moi</h2>
-                <img src="assets/icons/close.svg" onclick="closeModal()" aria-label="Fermer"  />
-            </div>
-            <div class="name"></div>
+    <div id="contact_modal">
+			<div class="modal">
+				<header>
+          <h2>Contactez-moi</h2>
+          <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-        <form>
-            <div>
-                <label for="lastName">Prénom</label>
-                <input  type="text" name="lastname" id="lastName"/>
-                <label for="firstName">Nom</label>
-                <input  type="text" name="firstName" id="firstName"/>
-                <label for="email">email</label>
-                <input  type="email" name="email" id="email"/>
-                <div class="comment">
-                    <label for="message">Votre message</label>
-                    <textarea  type="text" name="message" id="message" class="comment-message"></textarea>
-                </div>
-               
-            </div>
-            <button class="contact_button">Envoyer</button>
-        </form>
-    </div>
-   
-    <script type="module" src="/scripts/pages/photographer.js"></script>
+				<form>
+					<div>
+						<label>Prénom</label>
+						<input />
+					</div>
+          <button class="contact_button">Envoyer</button>
+				</form>
+			</div>
+		</div>
+    <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
-</body>
-
+  </body>
 </html>
