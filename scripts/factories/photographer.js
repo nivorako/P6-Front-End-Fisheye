@@ -1,46 +1,48 @@
-export function photographerFactory(data) {
-    const { name, portrait, city, country, tagline, price } = data;
+export function getPhotographer(photographer){
 
-    const picture = `assets/photographers/${portrait}`;
-
-    function getUserCardDOM() {
-
-        const link = document.createElement('a');
-        link.setAttribute("href", "photographer.html");
-
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        img.setAttribute('alt', `photographie de ${name}`)
-
-        const cityElt = document.createElement('p');
-        cityElt.innerHTML = `${country}: ${city}`;
-
-        const tag = document.createElement('p');
-        tag.innerHTML = tagline;
-        tag.classList.add('photographer_section-tag');
-
-        const priceElt = document.createElement('span');
-        priceElt.innerHTML = price
-        
-        const h2 = document.createElement( 'h2' );
-        h2.innerHTML = name;
-
-        const label = document.createElement('div')
-        label.classList.add('photographer_section-label')
-
-        const article = document.createElement( 'article' );
-
-        link.appendChild(img);
-        link.appendChild(h2);
-
-        label.appendChild(cityElt);
-        label.appendChild(tag);
-        label.appendChild(priceElt);
-        
-        
-        article.appendChild(link);
-        article.appendChild(label)
-        return (article);
+    const { name, portrait, city, country, tagline } = photographer
+        const header = document.querySelector('.photographer-header');
+        const photograph = `
+            <div class="photographer-id"> 
+                <h1>${name}</h1>
+                <p> ${city}: ${country} </p>
+                <span> ${tagline} </span>
+            </div>
+            <div class="photographer-btn">
+                <button class="contact_button" >Contactez-moi</button>
+            </div>
+            <div>
+                <img src="assets/photographers/${portrait}" class="photographer-img"/>
+            </div>
+        `
+    
+        header.innerHTML = photograph
+    
+        return header
     }
-    return { name, picture,city ,country ,tagline, price, getUserCardDOM }
+
+function photographerName(photographer){
+    let name = ""
+    let avatar = photographer.name.split(" ")[0]
+    if(avatar.split("-").length === 1) name = avatar
+    else name = avatar.split("-")[0] + " " + avatar.split("-")[1]
+    return name
+}
+    
+export function getPhotographerMedia( media, photographer){
+    const wrapper = document.createElement('div');
+    const name = photographerName(photographer);
+    const { title, likes , image} = media
+    const photographerMedia = `
+        <img src="/assets/Sample Photos/${name}/${image}" class="photographerImg"/>
+        <div class="comment" > 
+            <p>${title}</p>
+            <p>${likes}</p>
+            <i class="fa fa-heart"></i>
+        </div>
+    `
+    wrapper.classList.add('photographer-work')
+    wrapper.innerHTML = photographerMedia;
+
+    return wrapper
 }

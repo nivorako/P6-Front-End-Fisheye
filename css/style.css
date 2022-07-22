@@ -31,7 +31,7 @@ h1 {
     margin-left: 100px;
 }
 
-.photographer_section a{
+.photographers_section a{
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -39,27 +39,27 @@ h1 {
     flex-direction: column;
 }
 
-.photographer_section {
+.photographers_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
 }
 
-.photographer_section article {
+.photographers_section article {
     width: 100%;
     text-decoration: none;
     justify-self: center;
 }
 
-.photographer_section-label{
+.photographers_section-label{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.photographer_section h2 {  
+.photographers_section h2 {  
     margin-bottom: 0;
     font-size: 36px;
     font-weight: 100;
@@ -67,7 +67,7 @@ h1 {
     text-align: center;
 }
 
-.photographer_section article img {
+.photographers_section article img {
     object-fit: cover;
     height: 200px;
     width: 200px;
@@ -75,19 +75,19 @@ h1 {
     margin: 0;
 }
 
-.photographer_section-label p:nth-child(1) {
+.photographers_section-label p:nth-child(1) {
     color: var(--secondary);
     font-size: 10px;
     line-height: .1rem;
 }
 
-.photographer_section-tag{
+.photographers_section-tag{
     color: black;
     font-size: 10px;
     line-height: .1rem;
 }
 
-.photographer_section article span {
+.photographers_section article span {
     color: #757575;
     font-size: 10px;
 }

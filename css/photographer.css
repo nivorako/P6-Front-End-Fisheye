@@ -13,7 +13,13 @@
     margin: 0 100px;
 }
 
-.photographer-id h2{
+.photographer-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photographer-id h1{
     font-size: 34px;
     color: #D3573C;
 }
@@ -22,7 +28,7 @@
     color: #901C1C;;
 }
 
-.photographer-img img{
+.photographer-img{
     object-fit: cover;
     height: 200px;
     width: 200px;
@@ -50,16 +56,16 @@
     color: #901C1C;
 }
 
-/* .photographer-section{
+.photographer-work{
     width: 30%;
     margin-bottom: 30px;
 }
 
-.photographer-section img{
+.photographerImg{
     object-fit: cover;
     width: 100%;
     height: 350px;
-} */
+} 
 
 .photographer-section video{
     object-fit: cover;
