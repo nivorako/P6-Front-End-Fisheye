@@ -20,13 +20,13 @@ export function photographersFactory(data) {
         tag.classList.add('photographers_section-tag');
 
         const priceElt = document.createElement('span');
-        priceElt.innerHTML = price
+        priceElt.innerHTML = `${price}€/jour`
         
         const h2 = document.createElement( 'h2' );
         h2.innerHTML = name;
 
-        const label = document.createElement('div')
-        label.classList.add('photographers_section-label')
+        const label = document.createElement('div');
+        label.classList.add('photographers_section-label');
 
         const article = document.createElement( 'article' );
 

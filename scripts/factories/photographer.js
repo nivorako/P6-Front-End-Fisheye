@@ -12,7 +12,7 @@ export function getPhotographer(photographer){
                 <button class="contact_button" >Contactez-moi</button>
             </div>
             <div>
-                <img src="assets/photographers/${portrait}" class="photographer-img"/>
+                <img src="assets/photographers/${portrait}" class="photographer-img" alt="photographie de ${name}"/>
             </div>
         `
     
@@ -32,17 +32,48 @@ function photographerName(photographer){
 export function getPhotographerMedia( media, photographer){
     const wrapper = document.createElement('div');
     const name = photographerName(photographer);
-    const { title, likes , image} = media
-    const photographerMedia = `
-        <img src="/assets/Sample Photos/${name}/${image}" class="photographerImg"/>
-        <div class="comment" > 
+    const { title, likes , image, video } = media
+    const videoTitle = () => {
+        const title = String(video).split('.')[0].split("_").join(' ')
+        return title
+    }
+
+    const photographerPhoto = `
+        <img src="/assets/Sample Photos/${name}/${image}" class="photographerImg" alt="une image qui représente le ${title}"/>
+        <div class="photographer-comment" > 
             <p>${title}</p>
-            <p>${likes}</p>
-            <i class="fa fa-heart"></i>
+            <div class="photographer-details">
+                <span>${likes}</span>
+                <i class="fa fa-heart"></i>
+            </div>
+        </div> 
+    `
+   
+    const photographerVideo = `
+        <video 
+            type="video/mp4"
+            controls="controls"
+            title=""
+            alt="hum hum"
+            class="photographer-video"
+        >
+            <source src="/assets/Sample Photos/${name}/${video}">  
+        </video>
+        <div class="photographer-comment" > 
+            <p>${videoTitle()}</p>
+            <div class="photographer-details">
+                <span>${likes}</span>
+                <i class="fa fa-heart"></i>
+            </div>
         </div>
     `
-    wrapper.classList.add('photographer-work')
-    wrapper.innerHTML = photographerMedia;
+    if(media.hasOwnProperty('video')){
+        wrapper.classList.add('photographer-work')
+        wrapper.innerHTML = photographerVideo;
+    }else{
+        wrapper.classList.add('photographer-work')
+        wrapper.innerHTML = photographerPhoto;
+    }
 
     return wrapper
 }
