@@ -1,3 +1,5 @@
+
+
 export function getPhotographer(photographer){
 
     const { name, portrait, city, country, tagline } = photographer
@@ -9,7 +11,7 @@ export function getPhotographer(photographer){
                 <span> ${tagline} </span>
             </div>
             <div class="photographer-btn">
-                <button class="contact_button" >Contactez-moi</button>
+                <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
             </div>
             <div>
                 <img src="assets/photographers/${portrait}" class="photographer-img" alt="photographie de ${name}"/>
@@ -54,7 +56,7 @@ export function getPhotographerMedia( media, photographer){
             type="video/mp4"
             controls="controls"
             title=""
-            alt="hum hum"
+            alt=" ${videoTitle()}"
             class="photographer-video"
         >
             <source src="/assets/Sample Photos/${name}/${video}">  

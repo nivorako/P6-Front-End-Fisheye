@@ -1,5 +1,6 @@
 import { photographersFactory } from "../factories/photographers.js";
 import { getPhotographer, getPhotographerMedia } from "../factories/photographer.js";
+import { modal } from '../factories/modal.js';
 
 async function getPhotographers() {
    const photographersApi = await fetch("/data/photographers.json")
@@ -41,18 +42,20 @@ async function init() {
         const foundPhotographers =photographers.filter(x => x.id=== parseInt(photographerId, 10));
         const foundPhotographer = foundPhotographers[0]
         getPhotographer(foundPhotographer);
-        
+        modal();
         const foundPhotographerMedia = media.filter(x => x.photographerId=== parseInt(photographerId, 10));
         console.log('foundPhotographerMedia: ', foundPhotographerMedia)
         
         foundPhotographerMedia.forEach(media =>{
             const template = getPhotographerMedia(media, foundPhotographer);
-            mediaWrapper.appendChild(template)
+            mediaWrapper.appendChild(template);
         })
         
+    }else{
+        displayPhotographerData(photographers);
     }
 
-    displayPhotographerData(photographers);
+    
    
 };
 
