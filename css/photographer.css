@@ -138,14 +138,7 @@
 .modal-header {
     display: flex;
     justify-content: space-between;
-    
     width: 100%;
-}
-
-.modal-function{
-    /* display: flex;
-    justify-content: space-between;
-    align-items: center; */
 }
 
 .modal header img {

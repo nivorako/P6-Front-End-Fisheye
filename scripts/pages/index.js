@@ -3,7 +3,7 @@ import { getPhotographer, getPhotographerMedia } from "../factories/photographer
 import { modal } from '../factories/modal.js';
 
 async function getPhotographers() {
-   const photographersApi = await fetch("/data/photographers.json")
+   const photographersApi = await fetch("./data/photographers.json")
                                 .then(res => res.json())
                                 .then(function(res) {
                                     let photographers = res.photographers

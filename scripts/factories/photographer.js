@@ -11,7 +11,7 @@ export function getPhotographer(photographer){
                 <span> ${tagline} </span>
             </div>
             <div class="photographer-btn">
-                <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+                <button class="contact_button" onclick="displayModal()" tabindex="2">Contactez-moi</button>
             </div>
             <div>
                 <img src="assets/photographers/${portrait}" class="photographer-img" alt="photographie de ${name}"/>
@@ -41,7 +41,7 @@ export function getPhotographerMedia( media, photographer){
     }
 
     const photographerPhoto = `
-        <img src="/assets/Sample Photos/${name}/${image}" class="photographerImg" alt="une image qui représente le ${title}"/>
+        <img src="/assets/Sample Photos/${name}/${image}" class="photographerImg" alt="une image qui représente le ${title}" tabindex=""   />
         <div class="photographer-comment" > 
             <p>${title}</p>
             <div class="photographer-details">
