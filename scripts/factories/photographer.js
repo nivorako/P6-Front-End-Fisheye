@@ -41,7 +41,7 @@ export function getPhotographerMedia( media, photographer){
     }
 
     const photographerPhoto = `
-        <img src="/assets/Sample Photos/${name}/${image}" class="photographerImg" alt="une image qui représente le ${title}" tabindex=""   />
+        <img src="./assets/Sample Photos/${name}/${image}" class="photographerImg" alt="une image qui représente le ${title}" tabindex=""   />
         <div class="photographer-comment" > 
             <p>${title}</p>
             <div class="photographer-details">
@@ -59,7 +59,7 @@ export function getPhotographerMedia( media, photographer){
             alt=" ${videoTitle()}"
             class="photographer-video"
         >
-            <source src="/assets/Sample Photos/${name}/${video}">  
+            <source src="./assets/Sample Photos/${name}/${video}">  
         </video>
         <div class="photographer-comment" > 
             <p>${videoTitle()}</p>
