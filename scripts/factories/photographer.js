@@ -1,26 +1,26 @@
 
-
 export function getPhotographer(photographer){
 
-    const { name, portrait, city, country, tagline } = photographer
-        const header = document.querySelector('.photographer-header');
-        const photograph = `
-            <div class="photographer-id"> 
-                <h1>${name}</h1>
-                <p> ${city}: ${country} </p>
-                <span> ${tagline} </span>
-            </div>
-            <div class="photographer-btn">
-                <button class="contact_button" onclick="displayModal()" tabindex="2">Contactez-moi</button>
-            </div>
-            <div>
-                <img src="assets/photographers/${portrait}" class="photographer-img" alt="photographie de ${name}"/>
-            </div>
-        `
-    
-        header.innerHTML = photograph
-    
-        return header
+    const { name, portrait, city, country, tagline } = photographer;
+    const header = document.querySelector('.photographerHeader');
+ 
+    const photograph = /*html*/`
+        <div class="photographerHeader__id"> 
+            <h1>${name}</h1>
+            <p> ${city}: ${country} </p>
+            <span> ${tagline} </span>
+        </div>
+        <div class="photographerHeader__btn">
+            <button class="photographerHeader__btn btn" tabindex="2">Contactez-moi</button>
+        </div>
+        <div>
+            <img src="assets/photographers/${portrait}" class="photographerHeader__img" alt="photographie de ${name}"/>
+        </div>
+    `;
+
+    header.innerHTML = photograph;
+
+    return header;
     }
 
 function photographerName(photographer){
@@ -34,46 +34,46 @@ function photographerName(photographer){
 export function getPhotographerMedia( media, photographer){
     const wrapper = document.createElement('div');
     const name = photographerName(photographer);
-    const { title, likes , image, video } = media
+    const { title, likes , image, video } = media;
     const videoTitle = () => {
-        const title = String(video).split('.')[0].split("_").join(' ')
-        return title
+        const title = String(video).split('.')[0].split("_").join(' ');
+        return title;
     }
 
-    const photographerPhoto = `
-        <img src="./assets/Sample Photos/${name}/${image}" class="photographerImg" alt="une image qui représente le ${title}" tabindex=""   />
-        <div class="photographer-comment" > 
+    const photographerPhoto = /*html*/`
+        <img src="./assets/Sample Photos/${name}/${image}" class="photographerMedia__img" alt="une image qui représente le ${title}" tabindex="3"   />
+        <div class="photographerMedia__comment" > 
             <p>${title}</p>
-            <div class="photographer-details">
+            <div class="photographerMedia__details">
                 <span>${likes}</span>
                 <i class="fa fa-heart"></i>
             </div>
         </div> 
-    `
+    `;
    
-    const photographerVideo = `
+    const photographerVideo = /*html*/`
         <video 
             type="video/mp4"
             controls="controls"
             title=""
             alt=" ${videoTitle()}"
-            class="photographer-video"
+            class="photographerMedia__video"
         >
-            <source src="./assets/Sample Photos/${name}/${video}">  
+            <source src="./assets/Sample Photos/${name}/${video}" tabindex="4">  
         </video>
-        <div class="photographer-comment" > 
+        <div class="photographerMedia__comment" > 
             <p>${videoTitle()}</p>
-            <div class="photographer-details">
+            <div class="photographerMedia__details">
                 <span>${likes}</span>
                 <i class="fa fa-heart"></i>
             </div>
         </div>
     `
     if(media.hasOwnProperty('video')){
-        wrapper.classList.add('photographer-work')
+        wrapper.classList.add('photographer__work')
         wrapper.innerHTML = photographerVideo;
     }else{
-        wrapper.classList.add('photographer-work')
+        wrapper.classList.add('photographer__work')
         wrapper.innerHTML = photographerPhoto;
     }
 

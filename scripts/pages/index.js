@@ -1,6 +1,8 @@
 import { photographersFactory } from "../factories/photographers.js";
 import { getPhotographer, getPhotographerMedia } from "../factories/photographer.js";
 import { modal } from '../factories/modal.js';
+import { displayModal, closeModal } from "../utils/contactForm.js";
+import { submitForm } from '../utils/submit.js';
 
 async function getPhotographers() {
    const photographersApi = await fetch("./data/photographers.json")
@@ -37,12 +39,30 @@ async function init() {
     const photographerId = current_url_query.slice(1);
 
     if(photographerId){
-        const mediaWrapper = document.querySelector('.photographer-media');
+        const mediaWrapper = document.querySelector('.photographerMedia');
 
         const foundPhotographers =photographers.filter(x => x.id=== parseInt(photographerId, 10));
         const foundPhotographer = foundPhotographers[0]
         getPhotographer(foundPhotographer);
-        modal();
+        //modal();
+        const btnPlay = document.querySelector('.photographerHeader__btn');
+    
+        btnPlay.addEventListener('click', () => {
+            modal();
+            displayModal();
+
+            const btnClose = document.querySelector('.modal__close')
+            btnClose.addEventListener('click', () => {
+                closeModal();
+            })
+
+            const btnSubmit = document.querySelector('.modal__form')
+            btnSubmit.addEventListener('submit', (e) => {
+                e.preventDefault();
+                submitForm();
+            })
+        })
+
         const foundPhotographerMedia = media.filter(x => x.photographerId=== parseInt(photographerId, 10));
         console.log('foundPhotographerMedia: ', foundPhotographerMedia)
         
