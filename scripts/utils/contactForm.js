@@ -1,4 +1,6 @@
 
+
+
 export function displayModal(){
    
     const headerPage = document.getElementById('header')
@@ -13,7 +15,8 @@ export function displayModal(){
     modal.setAttribute('aria-hidden', 'false')
     
     modal.style.display = "block"
-    modal.focus();
+    const btnClose = document.querySelector('.modal__close')
+    btnClose.focus();
 }
 
 export function closeModal(){

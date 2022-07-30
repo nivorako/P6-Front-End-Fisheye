@@ -51,16 +51,24 @@ async function init() {
             modal();
             displayModal();
 
+            const formSubmit = document.querySelector('.modal__form')
+            formSubmit.addEventListener('submit', (e) => {
+                e.preventDefault();
+                submitForm();
+            })
+
             const btnClose = document.querySelector('.modal__close')
             btnClose.addEventListener('click', () => {
                 closeModal();
             })
 
-            const btnSubmit = document.querySelector('.modal__form')
-            btnSubmit.addEventListener('submit', (e) => {
-                e.preventDefault();
-                submitForm();
-            })
+            // (document).on('keydown', e => {
+            //     const keyCode = e.keyCode ? e.keyCode : e.which
+            //     const modal = document.getElementById('modal')
+            //     if(modal.attributes("aria-hidden") === "false" && keyCode === 27){
+            //         closeModal();
+            //     }
+            // })
         })
 
         const foundPhotographerMedia = media.filter(x => x.photographerId=== parseInt(photographerId, 10));

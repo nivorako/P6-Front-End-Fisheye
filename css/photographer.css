@@ -148,7 +148,8 @@
     cursor: pointer;
 }
 
-.modal__header p {
+.modal__header p,
+.modal__header h2 {
     margin: 0;
     font-size: 64px;
     font-weight: normal;

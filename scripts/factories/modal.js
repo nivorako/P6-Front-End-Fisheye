@@ -1,4 +1,4 @@
-//import { closeModal } from "../utils/contactForm.js";
+
 
 export function modal(){
     const wrapper = document.querySelector('.modal');
@@ -6,7 +6,7 @@ export function modal(){
     const modal = /*html*/`
         <header class="modal__header">
             <div class="modal__function" >
-                <p>Contactez-moi</p>
+                <h2 id="modalTitle">Contactez-moi</h2>
                 <p class="modal__name">name</p>
             </div>
             <img src="assets/icons/close.svg" role="button" aria-label="Fermer" class="modal__close"/>
