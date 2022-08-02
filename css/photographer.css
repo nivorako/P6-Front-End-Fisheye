@@ -19,6 +19,12 @@
     align-items: center;
 }
 
+.photographerHeader__id,
+.photographerHeader__btn,
+.photographerHeader__img{
+    width: 30%;
+}
+
 .photographerHeader__id h1{
     font-size: 34px;
     color: #D3573C;
@@ -29,6 +35,11 @@
 }
 
 .photographerHeader__img{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.photographerHeader__img img{
     object-fit: cover;
     height: 200px;
     width: 200px;
@@ -48,17 +59,17 @@
     cursor: pointer;
 }
 
-.photographer__work{
-    width: 30%;
-    margin-bottom: 30px;
-}
-
 .photographerMedia{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 150px 100px;
     color: #901C1C;
+}
+
+.photographerMedia__work{
+    width: 30%;
+    margin-bottom: 30px;
 }
 
 .photographerMedia__comment{
@@ -119,9 +130,9 @@
 }
 
 .modal {
-    position: absolute;
+    position: fixed;
     left: 30%;
-    top: 100px;
+    top: 20px;
     border-radius: 5px;
     background-color: #DB8876;
     display: flex;
@@ -194,6 +205,98 @@
 
 .modal__name{
     font-size: 64px;
+}
+
+.carrousel{
+    position: fixed;
+    top: 0;
+    
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    /* opacity: 0;
+    z-index: -2; */
+}
+
+.carrousel__container{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.carrousel__close{
+    position: absolute;
+    top: 100px;
+    left: calc(90vw - 48px);
+    font-size: 48px;
+    opacity: 0.4;
+    transition: all .5s ease;
+}
+
+.carrousel__items{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+   
+    display: flex;
+    flex-direction: column;
+}
+
+.carrousel__item{
+    height: 100%;
+    width: 100%;
+    margin: 10px;
+    position: absolute;
+    object-fit: contain;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.carrousel__item.active{
+    transition: all .5s ease;
+    opacity: 1;
+}
+
+.carrousel__item img{
+    height: 100%;
+    width: 100%;
+    
+}
+
+.fa-chevron-circle-left{
+    position: absolute;
+    top: 50%;
+    left: 10vw;
+    font-size: 48px;
+    opacity: 0.4;
+    transition: all 0.5s ease;  
+}
+
+.fa-chevron-circle-right{
+    position: absolute;
+    top: 50%;
+    left: calc(90vw - 48px);
+    font-size: 48px;
+    opacity: 0.4;
+    transition: all 0.5s ease;
+}
+
+.carrousel__close:hover,
+.fa-chevron-circle-left:hover,
+.fa-chevron-circle-right:hover{
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.likes{
+    position: fixed;
+    bottom: 0;
+    right: 50px;
 }
 
 .hidden{

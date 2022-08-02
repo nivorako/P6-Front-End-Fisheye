@@ -3,6 +3,9 @@ import { getPhotographer, getPhotographerMedia } from "../factories/photographer
 import { modal } from '../factories/modal.js';
 import { displayModal, closeModal } from "../utils/contactForm.js";
 import { submitForm } from '../utils/submit.js';
+import { carrousel } from '../factories/carrousel.js';
+import { displayCarrousel } from "../utils/carrousel.js";
+import { likes } from '../factories/likes.js';
 
 async function getPhotographers() {
    const photographersApi = await fetch("./data/photographers.json")
@@ -44,7 +47,6 @@ async function init() {
         const foundPhotographers =photographers.filter(x => x.id=== parseInt(photographerId, 10));
         const foundPhotographer = foundPhotographers[0]
         getPhotographer(foundPhotographer);
-        //modal();
         const btnPlay = document.querySelector('.photographerHeader__btn');
     
         btnPlay.addEventListener('click', () => {
@@ -72,12 +74,58 @@ async function init() {
         })
 
         const foundPhotographerMedia = media.filter(x => x.photographerId=== parseInt(photographerId, 10));
-        console.log('foundPhotographerMedia: ', foundPhotographerMedia)
         
         foundPhotographerMedia.forEach(media =>{
             const template = getPhotographerMedia(media, foundPhotographer);
             mediaWrapper.appendChild(template);
         })
+
+        likes();
+
+        const photos = document.querySelectorAll('.photographerMedia__img');
+        photos.forEach(photo => photo.addEventListener('click', () => {
+            
+            carrousel(foundPhotographerMedia, foundPhotographer);
+            displayCarrousel();   
+            
+            const leftArrow = document.querySelector('.fa-chevron-circle-left')
+            const rightArrow = document.querySelector('.fa-chevron-circle-right')
+            const closeBtn = document.querySelector('.carrousel__close')
+
+            let images = document.querySelectorAll('.carrousel__item')
+            let nbrImg = images.length
+            let step = 0
+
+            images[0].classList.add("active")
+
+            function removeActiveImage(){
+                for(let i=0; i<nbrImg; i++){
+                    images[i].classList.remove("active")
+                  }
+            }        
+
+            leftArrow.addEventListener('click', () => {
+                step++
+                if(step >= nbrImg){
+                    step = 0
+                }
+                
+                removeActiveImage()
+                images[step].classList.add('active')
+            })
+            rightArrow.addEventListener('click', () => {
+                if(step == 0){
+                    step = nbrImg
+                }
+                step--
+                removeActiveImage()
+                images[step].classList.add('active')
+            })
+            console.log('closeBtn: ', closeBtn)
+            closeBtn.addEventListener('click', () => {
+                console.log('close carrousel')
+            })
+        }))
         
     }else{
         displayPhotographerData(photographers);

@@ -13,8 +13,8 @@ export function getPhotographer(photographer){
         <div class="photographerHeader__btn">
             <button class="photographerHeader__btn btn" tabindex="2">Contactez-moi</button>
         </div>
-        <div>
-            <img src="assets/photographers/${portrait}" class="photographerHeader__img" alt="photographie de ${name}"/>
+        <div class="photographerHeader__img" >
+            <img src="assets/photographers/${portrait}" alt="photographie de ${name}"/>
         </div>
     `;
 
@@ -23,7 +23,7 @@ export function getPhotographer(photographer){
     return header;
     }
 
-function photographerName(photographer){
+export function photographerName(photographer){
     let name = ""
     let avatar = photographer.name.split(" ")[0]
     if(avatar.split("-").length === 1) name = avatar
@@ -70,10 +70,10 @@ export function getPhotographerMedia( media, photographer){
         </div>
     `
     if(media.hasOwnProperty('video')){
-        wrapper.classList.add('photographer__work')
+        wrapper.classList.add('photographerMedia__work')
         wrapper.innerHTML = photographerVideo;
     }else{
-        wrapper.classList.add('photographer__work')
+        wrapper.classList.add('photographerMedia__work')
         wrapper.innerHTML = photographerPhoto;
     }
 
