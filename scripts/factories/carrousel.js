@@ -59,9 +59,10 @@ export function carrousel( media, photographer){
     }
 
     carrouselClose.appendChild(closeBtn)
-
-    carrouselContainer.appendChild(carrouselClose)
+    
     carrouselContainer.appendChild(carrouselItems)
+    carrouselContainer.appendChild(carrouselClose)
+   
     carrouselContainer.appendChild(leftArrow)
     carrouselContainer.appendChild(rightArrow)
 

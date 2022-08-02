@@ -2,6 +2,9 @@
     position: relative;
 } */
 
+.faLikeIncrement:hover{
+    transform: scale(1.5);
+}
 
 .photographerHeader {
     display: flex;
@@ -27,7 +30,7 @@
 
 .photographerHeader__id h1{
     font-size: 34px;
-    color: #D3573C;
+    color: var(--secondary);
 }
 
 .photographerHeader__id p{
@@ -293,10 +296,16 @@
     transform: scale(1.1);
 }
 
-.likes{
+.likes__container{
     position: fixed;
     bottom: 0;
     right: 50px;
+    display: flex;
+    justify-content: space-around;
+    width: 200px;
+    border-radius: 5px;
+    background-color: var(--secondary);
+
 }
 
 .hidden{

@@ -11,7 +11,7 @@ export function getPhotographer(photographer){
             <span> ${tagline} </span>
         </div>
         <div class="photographerHeader__btn">
-            <button class="photographerHeader__btn btn" tabindex="2">Contactez-moi</button>
+            <button class=" btn" tabindex="2">Contactez-moi</button>
         </div>
         <div class="photographerHeader__img" >
             <img src="assets/photographers/${portrait}" alt="photographie de ${name}"/>
@@ -35,6 +35,9 @@ export function getPhotographerMedia( media, photographer){
     const wrapper = document.createElement('div');
     const name = photographerName(photographer);
     const { title, likes , image, video } = media;
+
+    console.log('media: ', likes)
+    
     const videoTitle = () => {
         const title = String(video).split('.')[0].split("_").join(' ');
         return title;
@@ -45,8 +48,8 @@ export function getPhotographerMedia( media, photographer){
         <div class="photographerMedia__comment" > 
             <p>${title}</p>
             <div class="photographerMedia__details">
-                <span>${likes}</span>
-                <i class="fa fa-heart"></i>
+                <span class="photographerLikes">${likes}</span>
+                <i class="fa fa-heart faLikeIncrement"></i>
             </div>
         </div> 
     `;
@@ -64,8 +67,8 @@ export function getPhotographerMedia( media, photographer){
         <div class="photographerMedia__comment" > 
             <p>${videoTitle()}</p>
             <div class="photographerMedia__details">
-                <span>${likes}</span>
-                <i class="fa fa-heart"></i>
+                <span class="photographerLikes">${likes}</span>
+                <i class="fa fa-heart faLikeIncrement"></i>
             </div>
         </div>
     `
@@ -77,5 +80,6 @@ export function getPhotographerMedia( media, photographer){
         wrapper.innerHTML = photographerPhoto;
     }
 
+    
     return wrapper
 }

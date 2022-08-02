@@ -41,14 +41,18 @@ async function init() {
     const current_url_query = window.location.search;
     const photographerId = current_url_query.slice(1);
 
+    // page photographer
     if(photographerId){
         const mediaWrapper = document.querySelector('.photographerMedia');
 
         const foundPhotographers =photographers.filter(x => x.id=== parseInt(photographerId, 10));
         const foundPhotographer = foundPhotographers[0]
+
+        // photograher header
         getPhotographer(foundPhotographer);
         const btnPlay = document.querySelector('.photographerHeader__btn');
-    
+        
+        // modal element
         btnPlay.addEventListener('click', () => {
             modal();
             displayModal();
@@ -64,7 +68,16 @@ async function init() {
                 closeModal();
             })
 
-            // (document).on('keydown', e => {
+            const modalElt = document.querySelector('.modal')
+            window.addEventListener("keydown", (event) => {
+            
+                if(modalElt.getAttribute("aria-hidden") !== "false") return;
+                if(event.keyCode !== 27 && event.code !== "Escape") return;
+                closeModal();
+            })
+
+
+            // $(document).on('keydown', e => {
             //     const keyCode = e.keyCode ? e.keyCode : e.which
             //     const modal = document.getElementById('modal')
             //     if(modal.attributes("aria-hidden") === "false" && keyCode === 27){
@@ -77,11 +90,24 @@ async function init() {
         
         foundPhotographerMedia.forEach(media =>{
             const template = getPhotographerMedia(media, foundPhotographer);
+
             mediaWrapper.appendChild(template);
         })
 
-        likes();
+        const likeIncrements = document.querySelectorAll('.faLikeIncrement')
+        const photographerLikes = document.querySelectorAll('.photographerLikes')
+        const photographerLikesLength = photographerLikes.length
 
+        for(let i = 0; i < photographerLikesLength; i++){
+            likeIncrements[i].addEventListener("click", () => {
+                photographerLikes[i].textContent++
+            })
+        }
+        
+        // likes element
+        likes(foundPhotographerMedia, foundPhotographer);
+
+        // carrousel element
         const photos = document.querySelectorAll('.photographerMedia__img');
         photos.forEach(photo => photo.addEventListener('click', () => {
             
@@ -113,6 +139,7 @@ async function init() {
                 removeActiveImage()
                 images[step].classList.add('active')
             })
+        
             rightArrow.addEventListener('click', () => {
                 if(step == 0){
                     step = nbrImg
@@ -123,7 +150,7 @@ async function init() {
             })
             console.log('closeBtn: ', closeBtn)
             closeBtn.addEventListener('click', () => {
-                console.log('close carrousel')
+                alert('hello')
             })
         }))
         

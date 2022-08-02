@@ -15,8 +15,8 @@ export function displayModal(){
     modal.setAttribute('aria-hidden', 'false')
     
     modal.style.display = "block"
-    const btnClose = document.querySelector('.modal__close')
-    btnClose.focus();
+    const firstInput = modal.querySelector('input')
+    firstInput.focus();
 }
 
 export function closeModal(){
