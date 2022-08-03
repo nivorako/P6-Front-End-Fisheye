@@ -1,6 +1,6 @@
 import { photographersFactory } from "../factories/photographers.js";
 import { getPhotographer, getPhotographerMedia } from "../factories/photographer.js";
-import { modal } from '../factories/modal.js';
+//import { modal } from '../factories/modal.js';
 import { displayModal, closeModal } from "../utils/contactForm.js";
 import { submitForm } from '../utils/submit.js';
 import { carrousel } from '../factories/carrousel.js';
@@ -54,7 +54,7 @@ async function init() {
         
         // modal element
         btnPlay.addEventListener('click', () => {
-            modal();
+           
             displayModal();
 
             const formSubmit = document.querySelector('.modal__form')
