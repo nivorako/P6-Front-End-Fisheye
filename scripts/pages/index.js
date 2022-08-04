@@ -11,16 +11,15 @@ async function getPhotographers() {
    const photographersApi = await fetch("./data/photographers.json")
                                 .then(res => res.json())
                                 .then(function(res) {
-                                    let photographers = res.photographers
-                                    let media = res.media
+                                    let photographers = res.photographers;
+                                    let media = res.media;
                                     return {
                                         photographers,
                                         media
                                     }
                                 })
-                                .catch(err => console.log("Error to occur: ", err))
-    console.log("photographersApi: ", photographersApi)                          
-    return photographersApi
+                                .catch(err => console.log("Error to occur: ", err));                         
+    return photographersApi;
 }
 
 function displayPhotographerData(photographers) {
@@ -70,7 +69,7 @@ async function init() {
             })
 
             // fermer modal avec echap
-            const modalElt = document.querySelector('.modal')
+            const modalElt = document.querySelector('.modal');
             window.addEventListener("keydown", (event) => {
             
                 if(modalElt.getAttribute("aria-hidden") !== "false") return;
@@ -81,15 +80,15 @@ async function init() {
             // si modal ouvert, tab reste dans modal
 
             // récup modalForm
-            const modalForm = document.querySelector('.modal__form')
+            const modalForm = document.querySelector('.modal__form');
             
-            const inputElt = document.querySelectorAll('.input')
+            const inputElt = document.querySelectorAll('.input');
 
-            const inputEltLength = inputElt.length
+            const inputEltLength = inputElt.length;
             // récup firstElt
-            const firstInputElt = inputElt[0]
+            const firstInputElt = inputElt[0];
             // récup lastElt
-            const lastInputElt = inputElt[inputEltLength - 1]
+            const lastInputElt = inputElt[inputEltLength - 1];
             
             // modalElt.addEventListener('keydown', )
             modalForm.addEventListener('keydown', (e) => {
@@ -100,16 +99,16 @@ async function init() {
                         //si firstElt === document.activeElement
                         if(document.activeElement === firstInputElt){
                             // mettre focus sur lastElt
-                            e.preventDefault()
-                            lastInputElt.focus()
+                            e.preventDefault();
+                            lastInputElt.focus();
                         }
                         // sinon ( tab )
                     }else{
                          // si lastElt === document.activeElement
                          if(document.activeElement === lastInputElt){
                              // mettre focus sur firstElt
-                             e.preventDefault()
-                             firstInputElt.focus()
+                             e.preventDefault();
+                             firstInputElt.focus();
                          }  
                     }   
                  }
@@ -126,13 +125,13 @@ async function init() {
         })
 
         // incrémenter likes à chaque click sur icone
-        const likeIncrements = document.querySelectorAll('.faLikeIncrement')
-        const photographerLikes = document.querySelectorAll('.photographerLikes')
-        const photographerLikesLength = photographerLikes.length
+        const likeIncrements = document.querySelectorAll('.faLikeIncrement');
+        const photographerLikes = document.querySelectorAll('.photographerLikes');
+        const photographerLikesLength = photographerLikes.length;
 
         for(let i = 0; i < photographerLikesLength; i++){
             likeIncrements[i].addEventListener("click", () => {
-                photographerLikes[i].textContent++
+                photographerLikes[i].textContent++;
             })
         }
         
@@ -146,26 +145,26 @@ async function init() {
             carrousel(foundPhotographerMedia, foundPhotographer);
             displayCarrousel();   
             
-            const leftArrow = document.querySelector('.fa-chevron-circle-left')
-            const rightArrow = document.querySelector('.fa-chevron-circle-right')
-            const closeBtn = document.querySelector('.carrousel__close')
+            const leftArrow = document.querySelector('.fa-chevron-circle-left');
+            const rightArrow = document.querySelector('.fa-chevron-circle-right');
+            const closeBtn = document.querySelector('.carrousel__close');
 
-            let images = document.querySelectorAll('.carrousel__item')
-            let nbrImg = images.length
-            let step = 0
+            let images = document.querySelectorAll('.carrousel__item');
+            let nbrImg = images.length;
+            let step = 0;
 
-            images[0].classList.add("active")
+            images[0].classList.add("active");
 
             function removeActiveImage(){
                 for(let i=0; i<nbrImg; i++){
-                    images[i].classList.remove("active")
+                    images[i].classList.remove("active");
                   }
             }        
 
             leftArrow.addEventListener('click', () => {
-                step++
+                step++;
                 if(step >= nbrImg){
-                    step = 0
+                    step = 0;
                 }
                 
                 removeActiveImage()
@@ -174,13 +173,12 @@ async function init() {
         
             rightArrow.addEventListener('click', () => {
                 if(step == 0){
-                    step = nbrImg
+                    step = nbrImg;
                 }
-                step--
-                removeActiveImage()
-                images[step].classList.add('active')
+                step--;
+                removeActiveImage();
+                images[step].classList.add('active');
             })
-            console.log('closeBtn: ', closeBtn)
             closeBtn.addEventListener('click', () => {
                 alert('hello')
             })
@@ -189,10 +187,31 @@ async function init() {
     }else{
         // page principale
         displayPhotographerData(photographers);
-    }
+        // si displayPhotographerData alors piéger focus dans la page
+        const photographersBody = document.getElementById('body');
+        const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
+        const focusablePhotographerElts = photographersBody.querySelectorAll(focusablePhotographerEltsString);
+        const focusablePhotographerEltsLength = focusablePhotographerElts.length
+        
+        const firstFocusable = focusablePhotographerElts[0]
+        const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
 
-    
-   
+        photographersBody.addEventListener('keydown', (e) => {
+            if(e.key === "Tab" || e.keyCode === 9){
+                if(e.shiftKey){
+                    if(document.activeElement === firstFocusable){
+                        e.preventDefault()
+                        lastFocusable.focus()
+                    }
+                }else{
+                    if(document.activeElement === lastFocusable){
+                        e.preventDefault()
+                        firstFocusable.focus()
+                    }
+                }
+            }
+        })
+    }
 };
 
 init();
