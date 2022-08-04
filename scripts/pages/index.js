@@ -129,9 +129,13 @@ async function init() {
         const photographerLikes = document.querySelectorAll('.photographerLikes');
         const photographerLikesLength = photographerLikes.length;
 
+
         for(let i = 0; i < photographerLikesLength; i++){
+            // on ne peut cliquer qu une seule fois : data-increment="true"
             likeIncrements[i].addEventListener("click", () => {
+                if(likeIncrements[i].getAttribute("data-increment") === 'false')
                 photographerLikes[i].textContent++;
+                likeIncrements[i].setAttribute('data-increment', 'true')
             })
         }
         
@@ -189,6 +193,7 @@ async function init() {
         displayPhotographerData(photographers);
         // si displayPhotographerData alors piéger focus dans la page
         const photographersBody = document.getElementById('body');
+    
         const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
         const focusablePhotographerElts = photographersBody.querySelectorAll(focusablePhotographerEltsString);
         const focusablePhotographerEltsLength = focusablePhotographerElts.length

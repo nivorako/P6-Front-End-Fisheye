@@ -47,7 +47,7 @@ export function getPhotographerMedia( media, photographer){
             <p>${title}</p>
             <div class="photographerMedia__details">
                 <span class="photographerLikes">${likes}</span>
-                <i class="fa fa-heart faLikeIncrement"></i>
+                <i class="fa fa-heart faLikeIncrement" data-increment="false"></i>
             </div>
         </div> 
     `;
@@ -66,7 +66,7 @@ export function getPhotographerMedia( media, photographer){
             <p>${videoTitle()}</p>
             <div class="photographerMedia__details">
                 <span class="photographerLikes">${likes}</span>
-                <i class="fa fa-heart faLikeIncrement"></i>
+                <i class="fa fa-heart faLikeIncrement" data-increment="false"></i>
             </div>
         </div>
     `
