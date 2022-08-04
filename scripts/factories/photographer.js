@@ -47,7 +47,7 @@ export function getPhotographerMedia( media, photographer){
             <p>${title}</p>
             <div class="photographerMedia__details">
                 <span class="photographerLikes">${likes}</span>
-                <i class="fa fa-heart faLikeIncrement" data-increment="false"></i>
+                <i class="fa fa-heart faLikeIncrement" data-increment="false" tabindex="3"></i>
             </div>
         </div> 
     `;
@@ -60,13 +60,13 @@ export function getPhotographerMedia( media, photographer){
             alt=" ${videoTitle()}"
             class="photographerMedia__video"
         >
-            <source src="./assets/Sample Photos/${name}/${video}" tabindex="4">  
+            <source src="./assets/Sample Photos/${name}/${video}" tabindex="5">  
         </video>
         <div class="photographerMedia__comment" > 
             <p>${videoTitle()}</p>
             <div class="photographerMedia__details">
                 <span class="photographerLikes">${likes}</span>
-                <i class="fa fa-heart faLikeIncrement" data-increment="false"></i>
+                <i class="fa fa-heart faLikeIncrement" data-increment="false" tabindex="5"></i>
             </div>
         </div>
     `

@@ -124,6 +124,9 @@ async function init() {
             mediaWrapper.appendChild(template);
         })
 
+         // likes element
+         likes(foundPhotographerMedia, foundPhotographer);
+
         // incrémenter likes à chaque click sur icone
         const likeIncrements = document.querySelectorAll('.faLikeIncrement');
         const photographerLikes = document.querySelectorAll('.photographerLikes');
@@ -137,10 +140,15 @@ async function init() {
                 photographerLikes[i].textContent++;
                 likeIncrements[i].setAttribute('data-increment', 'true')
             })
+            // accessibilité: incrémenter une seule fois likes si enter sur icone
+            likeIncrements[i].addEventListener('keydown', (e) => {
+                if(e.key === "Enter" || e.keyCode === 13){
+                    if(likeIncrements[i].getAttribute("data-increment") === 'false')
+                    photographerLikes[i].textContent++;
+                    likeIncrements[i].setAttribute('data-increment', 'true')
+                }
+            })
         }
-        
-        // likes element
-        likes(foundPhotographerMedia, foundPhotographer);
 
         // carrousel element
         const photos = document.querySelectorAll('.photographerMedia__img');
