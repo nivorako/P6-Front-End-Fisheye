@@ -27,14 +27,14 @@ export function displayModal(){
         </header>
         <form class="modal__form">
                 <label for="lastName">Prénom</label>
-                <input  type="text" name="lastname" id="lastName" tabindex="0"/>
+                <input  class="input" type="text" name="lastname" id="lastName" tabindex="0"/>
                 <label for="firstName">Nom</label>
-                <input  type="text" name="firstName" id="firstName" tabindex="0">
+                <input  class="input" type="text" name="firstName" id="firstName" tabindex="0">
                 <label for="email">email</label>
-                <input  type="email" name="email" id="email" tabindex="0">
+                <input  class="input" type="email" name="email" id="email" tabindex="0">
                 <div class="modal__comment">
                     <label for="message">Votre message</label>
-                <textarea  type="text" name="message" id="message" class="modal__message" tabindex="0"></textarea>
+                    <textarea  type="text" name="message" id="message" class="modal__message input" tabindex="0"></textarea>
                 </div>
             
             <button class="btn" tabindex="0" type="submit">Envoyer</button>

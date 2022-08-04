@@ -48,15 +48,16 @@ async function init() {
         const foundPhotographers =photographers.filter(x => x.id=== parseInt(photographerId, 10));
         const foundPhotographer = foundPhotographers[0]
 
-        // photograher header
+        // partie photograher header
         getPhotographer(foundPhotographer);
         const btnPlay = document.querySelector('.photographerHeader__btn');
         
         // modal element
         btnPlay.addEventListener('click', () => {
-           
+            // display & create modal
             displayModal();
 
+            // sbmit modal
             const formSubmit = document.querySelector('.modal__form')
             formSubmit.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -68,6 +69,7 @@ async function init() {
                 closeModal();
             })
 
+            // fermer modal avec echap
             const modalElt = document.querySelector('.modal')
             window.addEventListener("keydown", (event) => {
             
@@ -76,16 +78,45 @@ async function init() {
                 closeModal();
             })
 
+            // si modal ouvert, tab reste dans modal
 
-            // $(document).on('keydown', e => {
-            //     const keyCode = e.keyCode ? e.keyCode : e.which
-            //     const modal = document.getElementById('modal')
-            //     if(modal.attributes("aria-hidden") === "false" && keyCode === 27){
-            //         closeModal();
-            //     }
-            // })
+            // récup modalForm
+            const modalForm = document.querySelector('.modal__form')
+            
+            const inputElt = document.querySelectorAll('.input')
+
+            const inputEltLength = inputElt.length
+            // récup firstElt
+            const firstInputElt = inputElt[0]
+            // récup lastElt
+            const lastInputElt = inputElt[inputEltLength - 1]
+            
+            // modalElt.addEventListener('keydown', )
+            modalForm.addEventListener('keydown', (e) => {
+                 // si key === tab
+                 if(e.key === "Tab" || e.keyCode === 9){
+                    // si key === shift ( shift )
+                    if(e.shiftKey){
+                        //si firstElt === document.activeElement
+                        if(document.activeElement === firstInputElt){
+                            // mettre focus sur lastElt
+                            e.preventDefault()
+                            lastInputElt.focus()
+                        }
+                        // sinon ( tab )
+                    }else{
+                         // si lastElt === document.activeElement
+                         if(document.activeElement === lastInputElt){
+                             // mettre focus sur firstElt
+                             e.preventDefault()
+                             firstInputElt.focus()
+                         }  
+                    }   
+                 }
+            })
         })
 
+        // partie photographer main
         const foundPhotographerMedia = media.filter(x => x.photographerId=== parseInt(photographerId, 10));
         
         foundPhotographerMedia.forEach(media =>{
@@ -94,6 +125,7 @@ async function init() {
             mediaWrapper.appendChild(template);
         })
 
+        // incrémenter likes à chaque click sur icone
         const likeIncrements = document.querySelectorAll('.faLikeIncrement')
         const photographerLikes = document.querySelectorAll('.photographerLikes')
         const photographerLikesLength = photographerLikes.length
@@ -155,6 +187,7 @@ async function init() {
         }))
         
     }else{
+        // page principale
         displayPhotographerData(photographers);
     }
 

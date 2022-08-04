@@ -35,8 +35,6 @@ export function getPhotographerMedia( media, photographer){
     const wrapper = document.createElement('div');
     const name = photographerName(photographer);
     const { title, likes , image, video } = media;
-
-    console.log('media: ', likes)
     
     const videoTitle = () => {
         const title = String(video).split('.')[0].split("_").join(' ');
