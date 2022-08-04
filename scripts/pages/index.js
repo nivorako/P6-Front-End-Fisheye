@@ -131,21 +131,25 @@ async function init() {
         const likeIncrements = document.querySelectorAll('.faLikeIncrement');
         const photographerLikes = document.querySelectorAll('.photographerLikes');
         const photographerLikesLength = photographerLikes.length;
-
+        const likesElt = document.querySelector('.likes__likes');
 
         for(let i = 0; i < photographerLikesLength; i++){
             // on ne peut cliquer qu une seule fois : data-increment="true"
             likeIncrements[i].addEventListener("click", () => {
-                if(likeIncrements[i].getAttribute("data-increment") === 'false')
-                photographerLikes[i].textContent++;
-                likeIncrements[i].setAttribute('data-increment', 'true')
+                if(likeIncrements[i].getAttribute("data-increment") === 'false'){
+                    photographerLikes[i].textContent++;
+                    likesElt.textContent++;
+                    likeIncrements[i].setAttribute('data-increment', 'true');
+                }
             })
             // accessibilité: incrémenter une seule fois likes si enter sur icone
             likeIncrements[i].addEventListener('keydown', (e) => {
                 if(e.key === "Enter" || e.keyCode === 13){
-                    if(likeIncrements[i].getAttribute("data-increment") === 'false')
-                    photographerLikes[i].textContent++;
-                    likeIncrements[i].setAttribute('data-increment', 'true')
+                    if(likeIncrements[i].getAttribute("data-increment") === 'false'){
+                        photographerLikes[i].textContent++;
+                        likesElt.textContent++;
+                        likeIncrements[i].setAttribute('data-increment', 'true');
+                    }
                 }
             })
         }

@@ -9,7 +9,7 @@ export function likes(media, photographer){
         nbrLikes += media[i].likes
     }
 
-    const likes = `
+    const likes = /*html */`
         <div class="likes__container"> 
             <p class="likes__likes">
                 ${nbrLikes} 
