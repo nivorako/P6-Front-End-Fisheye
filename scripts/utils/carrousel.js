@@ -23,7 +23,6 @@ export function displayCarrousel(media, photographer){
     carrouselClose.classList.add('carrousel__close')
     // carrousel__closeBtn
     const closeBtn = document.createElement('i')
-    closeBtn.setAttribute('tabindex', "1")
     closeBtn.classList.add('fa-window-close')
     closeBtn.classList.add('fas')
     // carrousel__items

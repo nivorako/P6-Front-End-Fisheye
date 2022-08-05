@@ -203,7 +203,6 @@ async function init() {
             //carrousel(foundPhotographerMedia, foundPhotographer);
             displayCarrousel(foundPhotographerMedia, foundPhotographer);  
             arrowsBtnCloseFunction();
-
             // mettre focus sur 
             const arrows = document.querySelectorAll('.arrow');
             arrows[0].focus();
@@ -216,6 +215,32 @@ async function init() {
                 //carrousel(foundPhotographerMedia, foundPhotographer);
                 displayCarrousel(foundPhotographerMedia, foundPhotographer);  
                 arrowsBtnCloseFunction(); 
+                 // mettre focus sur 
+                const arrows = document.querySelectorAll('.arrow');
+                arrows[0].focus();
+               
+                const carrousel = document.querySelector('.carrousel__container') ;
+                // piéger focus dans carrousel
+                carrousel.addEventListener('keydown', (e) => {
+                    if(e.key === "Tab" || e.keyCode === 9){
+                        if(e.shiftKey){
+                            if(document.activeElement === arrows[0]){
+                                e.preventDefault();
+                                arrows[1].focus();
+                            }
+                        }else{
+                            if(document.activeElement === arrows[1]){
+                                e.preventDefault();
+                                arrows[0].focus();
+                            }
+                        }
+                    }
+                    // fermer carrousel avec touche echap
+                    if(e.key === "Escape" || e.keyCode === 27){
+                        closeCarrousel();
+                    }
+                })
+               
             }
         }))
         
