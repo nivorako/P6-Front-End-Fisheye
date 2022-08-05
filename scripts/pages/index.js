@@ -3,8 +3,8 @@ import { getPhotographer, getPhotographerMedia } from "../factories/photographer
 //import { modal } from '../factories/modal.js';
 import { displayModal, closeModal } from "../utils/contactForm.js";
 import { submitForm } from '../utils/submit.js';
-import { carrousel } from '../factories/carrousel.js';
-import { displayCarrousel } from "../utils/carrousel.js";
+//  import { carrousel } from '../factories/carrousel.js';
+import { displayCarrousel, closeCarrousel } from "../utils/carrousel.js";
 import { likes } from '../factories/likes.js';
 
 async function getPhotographers() {
@@ -54,7 +54,7 @@ async function init() {
         // modal element
         btnPlay.addEventListener('click', () => {
             // display & create modal
-            displayModal();
+            displayModal(foundPhotographer);
 
             // sbmit modal
             const formSubmit = document.querySelector('.modal__form')
@@ -158,8 +158,8 @@ async function init() {
         const photos = document.querySelectorAll('.photographerMedia__img');
         photos.forEach(photo => photo.addEventListener('click', () => {
             
-            carrousel(foundPhotographerMedia, foundPhotographer);
-            displayCarrousel();   
+            //carrousel(foundPhotographerMedia, foundPhotographer);
+            displayCarrousel(foundPhotographerMedia, foundPhotographer);   
             
             const leftArrow = document.querySelector('.fa-chevron-circle-left');
             const rightArrow = document.querySelector('.fa-chevron-circle-right');
@@ -196,7 +196,7 @@ async function init() {
                 images[step].classList.add('active');
             })
             closeBtn.addEventListener('click', () => {
-                alert('hello')
+                closeCarrousel();
             })
         }))
         

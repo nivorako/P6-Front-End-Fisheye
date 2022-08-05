@@ -1,8 +1,8 @@
 
 
 
-export function displayModal(){
-   
+export function displayModal(photographer){
+    const { name } = photographer
     // récupérer la partie header et main de la page photographe
     const headerPage = document.getElementById('header')
     const mainPage = document.getElementById('main-photographer')
@@ -20,7 +20,7 @@ export function displayModal(){
         <header class="modal__header">
             <div class="modal__function" >
                 <h2 id="modalTitle">Contactez-moi</h2>
-                <p class="modal__name">name</p>
+                <p class="modal__name">${name}</p>
             </div>
             <img src="assets/icons/close.svg" role="button" aria-label="Fermer" class="modal__close" tabindex="0"/>
             

@@ -71,33 +71,3 @@ export function carrousel( media, photographer){
     console.log('wrapper: ', wrapper)
     return wrapper
 }
-
-
- // function createEltWithClass(classe, elt){
-    //     const container = document.createElement(elt)
-    //     container.classList.add(classe)
-    //     return container
-    // }
-
-    // const carousel = /*html*/`
-    //     <div class="carrousel__container">
-    //         <div class="carrousel__close"><i class="fas fa-window-close"></i></div>
-    //         <div class="carrousel__items">
-    //             <div class="carrousel__item">ici et la</div>
-    //         </div>
-    //         <div class="carrousel__arrow"><i class='fas fa-chevron-circle-left'></i></div>
-    //         <div class="carrousel__arrow"><i class='fas fa-chevron-circle-right'></i></div>
-    //     </div>
-    // `;
-
- // const carrouselItem1 = document.createElement('img')
-    // carrouselItem1.classList.add('carrousel__item')
-    // carrouselItem1.setAttribute("src", `./assets/Sample Photos/${name}/${media[1].image}`)
-
-    // const carrouselItem2 = document.createElement('img')
-    // carrouselItem2.classList.add('carrousel__item')
-    // carrouselItem2.setAttribute("src", `./assets/Sample Photos/${name}/${media[2].image}`)
-
-    // carrouselItems.appendChild(carrouselItem1)
-    // carrouselItems.appendChild(carrouselItem2)
-   
