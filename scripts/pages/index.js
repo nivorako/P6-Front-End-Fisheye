@@ -154,19 +154,14 @@ async function init() {
             })
         }
 
-        // carrousel element
-        const photos = document.querySelectorAll('.photographerMedia__img');
-        photos.forEach(photo => photo.addEventListener('click', () => {
-            
-            //carrousel(foundPhotographerMedia, foundPhotographer);
-            displayCarrousel(foundPhotographerMedia, foundPhotographer);   
-            
+        // gestion des bouttons gauche droite et close
+        function arrowsBtnCloseFunction(){
             const leftArrow = document.querySelector('.fa-chevron-circle-left');
             const rightArrow = document.querySelector('.fa-chevron-circle-right');
             const closeBtn = document.querySelector('.carrousel__close');
+            const images = document.querySelectorAll('.carrousel__item');
 
-            let images = document.querySelectorAll('.carrousel__item');
-            let nbrImg = images.length;
+            const nbrImg = images.length;
             let step = 0;
 
             images[0].classList.add("active");
@@ -174,7 +169,7 @@ async function init() {
             function removeActiveImage(){
                 for(let i=0; i<nbrImg; i++){
                     images[i].classList.remove("active");
-                  }
+                }
             }        
 
             leftArrow.addEventListener('click', () => {
@@ -198,6 +193,30 @@ async function init() {
             closeBtn.addEventListener('click', () => {
                 closeCarrousel();
             })
+        }
+
+        // carrousel element click event
+        const photos = document.querySelectorAll('.photographerMedia__img');
+
+        photos.forEach(photo => photo.addEventListener('click', () => {
+            
+            //carrousel(foundPhotographerMedia, foundPhotographer);
+            displayCarrousel(foundPhotographerMedia, foundPhotographer);  
+            arrowsBtnCloseFunction();
+
+            // mettre focus sur 
+            const arrows = document.querySelectorAll('.arrow');
+            arrows[0].focus();
+    
+        }))
+
+         // carrousel element keydown event
+        photos.forEach(photo => photo.addEventListener('keydown', (e) => {
+            if(e.key === "Enter" || e.keyCode === 13){
+                //carrousel(foundPhotographerMedia, foundPhotographer);
+                displayCarrousel(foundPhotographerMedia, foundPhotographer);  
+                arrowsBtnCloseFunction(); 
+            }
         }))
         
     }else{
