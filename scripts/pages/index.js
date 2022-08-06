@@ -93,7 +93,7 @@ async function init() {
             // modalElt.addEventListener('keydown', )
             modalForm.addEventListener('keydown', (e) => {
                  // si key === tab
-                 if(e.key === "Tab" || e.keyCode === 9){
+                if(e.key === "Tab" || e.keyCode === 9){
                     // si key === shift ( shift )
                     if(e.shiftKey){
                         //si firstElt === document.activeElement
@@ -111,7 +111,13 @@ async function init() {
                              firstInputElt.focus();
                          }  
                     }   
-                 }
+                }
+                // si document.activeElement === lastInputElt (submit) et e.key === enter alors submit
+                if((document.activeElement === lastInputElt) && (e.key === "Enter" || e.keyCode === 13)){
+                    e.preventDefault();
+                    submitForm();
+                }
+
             })
         })
 

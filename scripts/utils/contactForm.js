@@ -37,7 +37,7 @@ export function displayModal(photographer){
                     <textarea  type="text" name="message" id="message" class="modal__message input" tabindex="0"></textarea>
                 </div>
             
-            <button class="btn" tabindex="0" type="submit">Envoyer</button>
+            <button class="btn input" tabindex="0" type="submit">Envoyer</button>
         </form>
     ` ;
 
