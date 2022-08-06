@@ -174,7 +174,7 @@ async function init() {
 
             leftArrow.addEventListener('click', () => {
                 step++;
-                if(step >= nbrImg){
+                if(step >= nbrImg ){
                     step = 0;
                 }
                 
@@ -222,25 +222,69 @@ async function init() {
                 const carrousel = document.querySelector('.carrousel__container') ;
                 // piéger focus dans carrousel
                 carrousel.addEventListener('keydown', (e) => {
+
                     if(e.key === "Tab" || e.keyCode === 9){
                         if(e.shiftKey){
                             if(document.activeElement === arrows[0]){
                                 e.preventDefault();
                                 arrows[1].focus();
+                                
                             }
-                        }else{
-                            if(document.activeElement === arrows[1]){
+                        }else if(document.activeElement === arrows[1]){
                                 e.preventDefault();
                                 arrows[0].focus();
-                            }
                         }
+                        
                     }
+
                     // fermer carrousel avec touche echap
                     if(e.key === "Escape" || e.keyCode === 27){
                         closeCarrousel();
                     }
+                    // gérer images avec arrowLeft
+                    
+                    if(document.activeElement === arrows[0]){
+                        if(e.key === "Enter" || e.keyCode === 13){
+                            e.preventDefault();
+                            const images = document.querySelectorAll('.carrousel__item');
+                            const arrayImages = Array.from(images);
+                            const length = arrayImages.length;
+                            console.log('enter a gauche')
+                            let step = 0;
+
+                            for(let i=0; i<length; i++){
+                                step++;
+                                if(step === length - 1){
+                                    step = 0;
+                                }
+                                images[i].classList.remove("active");
+                            }
+                            images[step].classList.add('active')
+                        }
+                    }
+
+                    if(document.activeElement === arrows[1]){
+                        if(e.key === "Enter" || e.keyCode === 13){
+                            e.preventDefault();
+                            const images = document.querySelectorAll('.carrousel__item');
+                            const arrayImages = Array.from(images);
+                            const length = arrayImages.length;
+                            console.log('enter a droite')
+                            let step = 0;
+
+                            for(let i=0; i<length; i++){  
+                                if(step === 0){
+                                    step = length-1;
+                                }
+                                step--;
+                                images[i].classList.remove("active");
+                            }
+                            images[step].classList.add('active')
+                        }
+                    }
+                  
                 })
-               
+                
             }
         }))
         
