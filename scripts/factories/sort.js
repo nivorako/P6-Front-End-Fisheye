@@ -4,5 +4,7 @@ export function sort(){
         <div> Hello World!!! </div>
     `;
 
-    sortWrapper.innerHTML = sort
+    sortWrapper.innerHTML = sort;
+
+    return sortWrapper;
 }

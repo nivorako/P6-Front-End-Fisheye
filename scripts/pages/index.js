@@ -4,7 +4,7 @@ import { displayModal, closeModal } from "../utils/contactForm.js";
 import { submitForm } from '../utils/submit.js';
 import { displayCarrousel, closeCarrousel } from "../utils/carrousel.js";
 import { likes } from '../factories/likes.js';
-import { sort } from '../factories/sort.ls';
+import { sort } from '../factories/sort.js';
 
 // extraire data de ./data/photographers.json
 async function getPhotographers() {
