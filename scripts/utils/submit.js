@@ -4,5 +4,5 @@ export function submitForm(){
     const email = document.getElementById('email');
     console.log('lastname: ', lastName.value);
     console.log('firstName: ', firstName.value);
-    console.log('emali: ', email.value)
+    console.log('emali: ', email.value);
 }

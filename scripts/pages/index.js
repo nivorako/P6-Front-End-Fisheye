@@ -1,12 +1,11 @@
 import { photographersFactory } from "../factories/photographers.js";
 import { getPhotographer, getPhotographerMedia } from "../factories/photographer.js";
-//import { modal } from '../factories/modal.js';
 import { displayModal, closeModal } from "../utils/contactForm.js";
 import { submitForm } from '../utils/submit.js';
-//  import { carrousel } from '../factories/carrousel.js';
 import { displayCarrousel, closeCarrousel } from "../utils/carrousel.js";
 import { likes } from '../factories/likes.js';
 
+// extraire data de ./data/photographers.json
 async function getPhotographers() {
    const photographersApi = await fetch("./data/photographers.json")
                                 .then(res => res.json())
@@ -22,6 +21,7 @@ async function getPhotographers() {
     return photographersApi;
 }
 
+// afficher page acceuil
 function displayPhotographerData(photographers) {
     const photographersSection = document.querySelector(".photographers_section");
     photographers.forEach((photographer) => {
@@ -36,7 +36,7 @@ async function init() {
     // Récupère les datas des photographes
     const { photographers } = await getPhotographers();
     const { media } = await getPhotographers();
-
+    // récupérer id courrant de photographer
     const current_url_query = window.location.search;
     const photographerId = current_url_query.slice(1);
 
@@ -203,11 +203,11 @@ async function init() {
 
         // carrousel element click event
         const photos = document.querySelectorAll('.photographerMedia__img');
-
         photos.forEach(photo => photo.addEventListener('click', () => {
             
             //carrousel(foundPhotographerMedia, foundPhotographer);
             displayCarrousel(foundPhotographerMedia, foundPhotographer);  
+            // gestion des bouttons gauche droite et close
             arrowsBtnCloseFunction();
             // mettre focus sur 
             const arrows = document.querySelectorAll('.arrow');
@@ -218,17 +218,19 @@ async function init() {
          // carrousel element keydown event
         photos.forEach(photo => photo.addEventListener('keydown', (e) => {
             if(e.key === "Enter" || e.keyCode === 13){
-                //carrousel(foundPhotographerMedia, foundPhotographer);
+                // afficher carrousel(foundPhotographerMedia, foundPhotographer);
                 displayCarrousel(foundPhotographerMedia, foundPhotographer);  
+
                 arrowsBtnCloseFunction(); 
                  // mettre focus sur 
                 const arrows = document.querySelectorAll('.arrow');
                 arrows[0].focus();
                
+                // evenements keydown sur carrousel
                 const carrousel = document.querySelector('.carrousel__container') ;
-                // piéger focus dans carrousel
                 carrousel.addEventListener('keydown', (e) => {
 
+                     // piéger focus dans carrousel
                     if(e.key === "Tab" || e.keyCode === 9){
                         if(e.shiftKey){
                             if(document.activeElement === arrows[0]){
@@ -247,35 +249,37 @@ async function init() {
                     if(e.key === "Escape" || e.keyCode === 27){
                         closeCarrousel();
                     }
-                    // gérer images avec arrowLeft
-                    
+
+                    // gérer images avec arrowLeft  NE FONCTIONNE qu'une seule fois ???
                     if(document.activeElement === arrows[0]){
                         if(e.key === "Enter" || e.keyCode === 13){
                             e.preventDefault();
                             const images = document.querySelectorAll('.carrousel__item');
                             const arrayImages = Array.from(images);
                             const length = arrayImages.length;
-                            console.log('enter a gauche')
+                            console.log('length: ', length)
                             let step = 0;
 
-                            for(let i=0; i<length; i++){
-                                step++;
-                                if(step === length - 1){
+                            for(let i=0; i<length; i++){ 
+                                step++; 
+                                if(step === length-1){
                                     step = 0;
                                 }
+                                
                                 images[i].classList.remove("active");
                             }
-                            images[step].classList.add('active')
+                            images[step].classList.add('active');     
                         }
                     }
 
+                    // gérer images avec arrowRight NE FONCTIONNE PAS qu'une seule fois ???    
                     if(document.activeElement === arrows[1]){
                         if(e.key === "Enter" || e.keyCode === 13){
                             e.preventDefault();
                             const images = document.querySelectorAll('.carrousel__item');
                             const arrayImages = Array.from(images);
                             const length = arrayImages.length;
-                            console.log('enter a droite')
+        
                             let step = 0;
 
                             for(let i=0; i<length; i++){  
@@ -293,14 +297,40 @@ async function init() {
                 
             }
         }))
+
+         // si displayPhotographer alors piéger focus dans la page
+         const photographerBody = document.getElementById('photographerBody');
+    
+         const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
+         const focusablePhotographerElts = photographerBody.querySelectorAll(focusablePhotographerEltsString);
+         const focusablePhotographerEltsLength = focusablePhotographerElts.length
+         console.log("focusablePhotographerEltsLength: ", focusablePhotographerEltsLength)
+         const firstFocusable = focusablePhotographerElts[0]
+         const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
+ 
+         photographerBody.addEventListener('keydown', (e) => {
+             if(e.key === "Tab" || e.keyCode === 9){
+                 if(e.shiftKey){
+                     if(document.activeElement === firstFocusable){
+                         e.preventDefault()
+                         lastFocusable.focus()
+                     }
+                 }else{
+                     if(document.activeElement === lastFocusable){
+                         e.preventDefault()
+                         firstFocusable.focus()
+                     }
+                 }
+             }
+         })
         
     }else{
-        // page principale
+        // sinon page principale
         displayPhotographerData(photographers);
-        // si displayPhotographerData alors piéger focus dans la page
+        // si displayPhotographers alors piéger focus dans la page
         const photographersBody = document.getElementById('body');
     
-        const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
+        const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]), tabindex:not([disabled])';
         const focusablePhotographerElts = photographersBody.querySelectorAll(focusablePhotographerEltsString);
         const focusablePhotographerEltsLength = focusablePhotographerElts.length
         
