@@ -4,7 +4,7 @@ import { displayModal, closeModal } from "../utils/contactForm.js";
 import { submitForm } from '../utils/submit.js';
 import { displayCarrousel, closeCarrousel } from "../utils/carrousel.js";
 import { likes } from '../factories/likes.js';
-import { sort } from '../factories/sort.js';
+import { sorter } from '../factories/sorter.js';
 
 // extraire data de ./data/photographers.json
 async function getPhotographers() {
@@ -50,7 +50,30 @@ async function init() {
 
         // partie photograher header
         getPhotographer(foundPhotographer);
-
+       
+        sorter();
+        const sorterItems = document.querySelectorAll('.sorter__item');
+        const sorterItemsLength = sorterItems.length;
+        const sorterSelected = document.querySelector('.sorter__selected');
+        const btnSelected = document.querySelector('.fa-angle-down');
+        // chaque fois qu on clicke sur sorter selected
+        sorterItems[0].addEventListener('click', () => {
+            
+            for( let i=0; i<sorterItemsLength; i++){
+                sorterItems[i].classList.toggle('active')
+            }
+            btnSelected.classList.toggle('active'); 
+        })
+        // a chaque fois qu on clicke sur un selected item:
+        sorterItems.forEach(item => {
+            item.addEventListener('click', () => {
+                let x;
+                let selectedItem = item.querySelector('.sorter__sort').innerHTML;
+                x=sorterSelected.innerHTML;
+                sorterSelected.innerHTML = selectedItem;
+                item.querySelector('.sorter__sort').innerHTML = x;
+            })
+        })
         // modal element
         const btnPlay = document.querySelector('.photographerHeader__btn');   
         btnPlay.addEventListener('click', () => {
@@ -131,6 +154,7 @@ async function init() {
             mediaWrapper.appendChild(template);
         })
 
+        console.log("foundPhotographerMedia: ", foundPhotographerMedia)
          // likes element
          likes(foundPhotographerMedia, foundPhotographer);
 
@@ -302,10 +326,9 @@ async function init() {
          // si displayPhotographer alors piéger focus dans la page
          const photographerBody = document.getElementById('photographerBody');
     
-         const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
+         const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]), li:[tabindex=""]';
          const focusablePhotographerElts = photographerBody.querySelectorAll(focusablePhotographerEltsString);
          const focusablePhotographerEltsLength = focusablePhotographerElts.length
-         console.log("focusablePhotographerEltsLength: ", focusablePhotographerEltsLength)
          const firstFocusable = focusablePhotographerElts[0]
          const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
  
