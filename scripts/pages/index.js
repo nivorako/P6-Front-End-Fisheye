@@ -4,6 +4,7 @@ import { displayModal, closeModal } from "../utils/contactForm.js";
 import { submitForm } from '../utils/submit.js';
 import { displayCarrousel, closeCarrousel } from "../utils/carrousel.js";
 import { likes } from '../factories/likes.js';
+import { sort } from '../factories/sort.ls';
 
 // extraire data de ./data/photographers.json
 async function getPhotographers() {
@@ -49,9 +50,9 @@ async function init() {
 
         // partie photograher header
         getPhotographer(foundPhotographer);
-        const btnPlay = document.querySelector('.photographerHeader__btn');
-        
+
         // modal element
+        const btnPlay = document.querySelector('.photographerHeader__btn');   
         btnPlay.addEventListener('click', () => {
             // display & create modal
             displayModal(foundPhotographer);
@@ -327,10 +328,11 @@ async function init() {
     }else{
         // sinon page principale
         displayPhotographerData(photographers);
-        // si displayPhotographers alors piéger focus dans la page
+        // si displayPhotographers alors piéger focus dans la page : Le focus reste bloqué dans video,
+        // entre <img/> et <div class="photographerMedia__comment" > 
         const photographersBody = document.getElementById('body');
     
-        const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]), tabindex:not([disabled])';
+        const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
         const focusablePhotographerElts = photographersBody.querySelectorAll(focusablePhotographerEltsString);
         const focusablePhotographerEltsLength = focusablePhotographerElts.length
         
