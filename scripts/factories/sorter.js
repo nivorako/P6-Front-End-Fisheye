@@ -19,4 +19,6 @@ export function sorter(){
     `;
 
     sorterWrapper.innerHTML = sorter
+
+    return sorterWrapper
 }

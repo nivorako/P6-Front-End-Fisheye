@@ -44,7 +44,7 @@ export function photographersFactory(data) {
         article.appendChild(label)
         return (article);
     }
-    return { name, picture,city ,country ,tagline, price, getUserCardDOM }
+    return {  getUserCardDOM }
 }
 
 

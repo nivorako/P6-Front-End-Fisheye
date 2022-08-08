@@ -56,6 +56,7 @@ async function init() {
         const sorterItemsLength = sorterItems.length;
         const sorterSelected = document.querySelector('.sorter__selected');
         const btnSelected = document.querySelector('.fa-angle-down');
+       
         // chaque fois qu on clicke sur sorter selected
         sorterItems[0].addEventListener('click', () => {
             
@@ -64,6 +65,15 @@ async function init() {
             }
             btnSelected.classList.toggle('active'); 
         })
+
+        // si btnSelected est active, alors en cliquant sur la page (window) on enlève la classe active
+        // if(btnSelected.classList.contains("active")){
+        //     window.addEventListener('click', () => {
+        //         console.log('hello')
+                
+        //     })
+        // } 
+
         // a chaque fois qu on clicke sur un selected item:
         sorterItems.forEach(item => {
             item.addEventListener('click', () => {
@@ -72,7 +82,9 @@ async function init() {
                 x=sorterSelected.innerHTML;
                 sorterSelected.innerHTML = selectedItem;
                 item.querySelector('.sorter__sort').innerHTML = x;
+                console.log('selectedItem: ', selectedItem)
             })
+
         })
         // modal element
         const btnPlay = document.querySelector('.photographerHeader__btn');   
@@ -326,7 +338,7 @@ async function init() {
          // si displayPhotographer alors piéger focus dans la page
          const photographerBody = document.getElementById('photographerBody');
     
-         const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]), li:[tabindex=""]';
+         const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
          const focusablePhotographerElts = photographerBody.querySelectorAll(focusablePhotographerEltsString);
          const focusablePhotographerEltsLength = focusablePhotographerElts.length
          const firstFocusable = focusablePhotographerElts[0]
