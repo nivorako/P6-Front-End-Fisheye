@@ -34,7 +34,7 @@ export function photographerName(photographer){
 export function getPhotographerMedia( media, photographer){
     const wrapper = document.createElement('div');
     const name = photographerName(photographer);
-    const { title, likes , image, video } = media;
+    const { title, likes , image, video, date } = media;
     
     const videoTitle = () => {
         const title = String(video).split('.')[0].split("_").join(' ');
@@ -46,6 +46,7 @@ export function getPhotographerMedia( media, photographer){
             <img src="./assets/Sample Photos/${name}/${image}" class="photographerMedia__img" alt="une image qui représente le ${title}" tabindex="4"   />
             <div class="photographerMedia__comment" > 
                 <p>${title}</p>
+                <p>${date}</p>
                 <div class="photographerMedia__details">
                     <span class="photographerLikes">${likes}</span>
                     <i class="fa fa-heart faLikeIncrement" data-increment="false" tabindex="4"></i>

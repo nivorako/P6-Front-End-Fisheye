@@ -51,41 +51,6 @@ async function init() {
         // partie photograher header
         getPhotographer(foundPhotographer);
        
-        sorter();
-        const sorterItems = document.querySelectorAll('.sorter__item');
-        const sorterItemsLength = sorterItems.length;
-        const sorterSelected = document.querySelector('.sorter__selected');
-        const btnSelected = document.querySelector('.fa-angle-down');
-       
-        // chaque fois qu on clicke sur sorter selected
-        sorterItems[0].addEventListener('click', () => {
-            
-            for( let i=0; i<sorterItemsLength; i++){
-                sorterItems[i].classList.toggle('active')
-            }
-            btnSelected.classList.toggle('active'); 
-        })
-
-        // si btnSelected est active, alors en cliquant sur la page (window) on enlève la classe active
-        // if(btnSelected.classList.contains("active")){
-        //     window.addEventListener('click', () => {
-        //         console.log('hello')
-                
-        //     })
-        // } 
-
-        // a chaque fois qu on clicke sur un selected item:
-        sorterItems.forEach(item => {
-            item.addEventListener('click', () => {
-                let x;
-                let selectedItem = item.querySelector('.sorter__sort').innerHTML;
-                x=sorterSelected.innerHTML;
-                sorterSelected.innerHTML = selectedItem;
-                item.querySelector('.sorter__sort').innerHTML = x;
-                console.log('selectedItem: ', selectedItem)
-            })
-
-        })
         // modal element
         const btnPlay = document.querySelector('.photographerHeader__btn');   
         btnPlay.addEventListener('click', () => {
@@ -158,17 +123,17 @@ async function init() {
         })
 
         // partie photographer main
-        const foundPhotographerMedia = media.filter(x => x.photographerId=== parseInt(photographerId, 10));
-        
+        const foundPhotographerMedia = media.filter(x => x.photographerId=== parseInt(photographerId, 10));    
         foundPhotographerMedia.forEach(media =>{
             const template = getPhotographerMedia(media, foundPhotographer);
 
             mediaWrapper.appendChild(template);
         })
+        
+        sorter(foundPhotographerMedia, foundPhotographer);
 
-        console.log("foundPhotographerMedia: ", foundPhotographerMedia)
          // likes element
-         likes(foundPhotographerMedia, foundPhotographer);
+        likes(foundPhotographerMedia, foundPhotographer);
 
         // incrémenter likes à chaque click sur icone
         const likeIncrements = document.querySelectorAll('.faLikeIncrement');
