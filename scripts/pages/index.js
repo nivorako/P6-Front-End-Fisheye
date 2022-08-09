@@ -41,6 +41,8 @@ async function init() {
     const current_url_query = window.location.search;
     const photographerId = current_url_query.slice(1);
 
+
+
     // page photographer
     if(photographerId){
         const mediaWrapper = document.querySelector('.photographerMedia');
@@ -51,12 +53,15 @@ async function init() {
         // partie photograher header
         getPhotographer(foundPhotographer);
        
+        // SORTER
+
         sorter();
         const sorterItems = document.querySelectorAll('.sorter__item');
         const sorterItemsLength = sorterItems.length;
         const sorterSelected = document.querySelector('.sorter__selected');
         const btnSelected = document.querySelector('.fa-angle-down');
        
+
         // chaque fois qu on clicke sur sorter selected
         sorterItems[0].addEventListener('click', () => {
             
@@ -74,6 +79,7 @@ async function init() {
         //     })
         // } 
 
+
         // a chaque fois qu on clicke sur un selected item:
         sorterItems.forEach(item => {
             item.addEventListener('click', () => {
@@ -86,11 +92,17 @@ async function init() {
             })
 
         })
+
+
+        // MODAL
+
         // modal element
         const btnPlay = document.querySelector('.photographerHeader__btn');   
         btnPlay.addEventListener('click', () => {
+
             // display & create modal
             displayModal(foundPhotographer);
+
 
             // sbmit modal
             const formSubmit = document.querySelector('.modal__form')
@@ -104,6 +116,7 @@ async function init() {
                 closeModal();
             })
 
+
             // fermer modal avec echap
             const modalElt = document.querySelector('.modal');
             window.addEventListener("keydown", (event) => {
@@ -116,14 +129,10 @@ async function init() {
             // si modal ouvert, tab reste dans modal
 
             // récup modalForm
-            const modalForm = document.querySelector('.modal__form');
-            
+            const modalForm = document.querySelector('.modal__form');           
             const inputElt = document.querySelectorAll('.input');
-
             const inputEltLength = inputElt.length;
-            // récup firstElt
             const firstInputElt = inputElt[0];
-            // récup lastElt
             const lastInputElt = inputElt[inputEltLength - 1];
             
             // modalElt.addEventListener('keydown', )
@@ -157,6 +166,8 @@ async function init() {
             })
         })
 
+        // PHOTOGRAPHER__MEDIA
+
         // partie photographer main
         const foundPhotographerMedia = media.filter(x => x.photographerId=== parseInt(photographerId, 10));
         
@@ -166,7 +177,9 @@ async function init() {
             mediaWrapper.appendChild(template);
         })
 
-        console.log("foundPhotographerMedia: ", foundPhotographerMedia)
+        
+        // LIKES
+
          // likes element
          likes(foundPhotographerMedia, foundPhotographer);
 
@@ -196,6 +209,10 @@ async function init() {
                 }
             })
         }
+
+
+        // CARROUSEL
+
 
         // gestion des bouttons gauche droite et close
         function arrowsBtnCloseFunction(){
@@ -239,7 +256,7 @@ async function init() {
         }
 
         // carrousel element click event
-        const photos = document.querySelectorAll('.photographerMedia__img');
+         const photos = document.querySelectorAll('.photographerMedia__img');
         photos.forEach(photo => photo.addEventListener('click', () => {
             
             //carrousel(foundPhotographerMedia, foundPhotographer);
@@ -250,9 +267,13 @@ async function init() {
             const arrows = document.querySelectorAll('.arrow');
             arrows[0].focus();
     
+            
+
         }))
 
-         // carrousel element keydown event
+
+
+         // carrousel element keydown event ou click
         photos.forEach(photo => photo.addEventListener('keydown', (e) => {
             if(e.key === "Enter" || e.keyCode === 13){
                 // afficher carrousel(foundPhotographerMedia, foundPhotographer);
@@ -334,6 +355,9 @@ async function init() {
                 
             }
         }))
+
+
+        // TRAPP FOCUS PHOTOGRAPHER PAGE
 
          // si displayPhotographer alors piéger focus dans la page
          const photographerBody = document.getElementById('photographerBody');

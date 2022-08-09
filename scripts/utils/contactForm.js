@@ -10,8 +10,10 @@ export function displayModal(photographer){
     // hidden!: aria et class
     headerPage.setAttribute('aria-hidden', 'true')
     mainPage.setAttribute('aria-hidden', 'true') 
-    headerPage.classList.add('hidden')
-    mainPage.classList.add('hidden')
+    // headerPage.classList.add('hidden')
+    // mainPage.classList.add('hidden')
+    headerPage.style.display = "none"
+    mainPage.style.display = 'none'
 
     // fabirquer et charger modalElement dans class="modal"
     const modal= document.getElementById('modal')
@@ -55,8 +57,8 @@ export function closeModal(){
     headerPage.setAttribute('aria-hidden', 'false')
     mainPage.setAttribute('aria-hidden', 'false')
 
-    headerPage.classList.remove('hidden')
-    mainPage.classList.remove('hidden')
+    headerPage.style.display = "block"
+    mainPage.style.display = 'block'
 
     const modal = document.getElementById('modal')
     modal.setAttribute('aria-hidden', 'true')
