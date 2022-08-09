@@ -79,16 +79,10 @@ async function init() {
             })
 
             // si modal ouvert, tab reste dans modal
-
-            // récup modalForm
-            const modalForm = document.querySelector('.modal__form');
-            
+            const modalForm = document.querySelector('.modal__form');           
             const inputElt = document.querySelectorAll('.input');
-
             const inputEltLength = inputElt.length;
-            // récup firstElt
             const firstInputElt = inputElt[0];
-            // récup lastElt
             const lastInputElt = inputElt[inputEltLength - 1];
             
             // modalElt.addEventListener('keydown', )
@@ -152,6 +146,7 @@ async function init() {
             })
             // accessibilité: incrémenter une seule fois likes si enter sur icone
             likeIncrements[i].addEventListener('keydown', (e) => {
+                e.preventDefault();
                 if(e.key === "Enter" || e.keyCode === 13){
                     if(likeIncrements[i].getAttribute("data-increment") === 'false'){
                         photographerLikes[i].textContent++;

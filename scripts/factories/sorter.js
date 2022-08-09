@@ -1,7 +1,7 @@
 import { getPhotographerMedia } from "./photographer.js";
 
 export function sorter(media, photographer){
-
+    
     function select(data, orderBy){
         if(orderBy === "likes"){
            
