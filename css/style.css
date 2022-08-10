@@ -83,7 +83,8 @@ h1 {
 
 .photographersSection__locality{
     display: inline-block;
-    height: auto;
+    height: 20px;
+    
     color: var(--primary);
     font-size: var(--f16);
     font-weight: bolder;
