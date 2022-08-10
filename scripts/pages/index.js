@@ -24,7 +24,7 @@ async function getPhotographers() {
 
 // afficher page acceuil
 function displayPhotographerData(photographers) {
-    const photographersSection = document.querySelector(".photographers_section");
+    const photographersSection = document.querySelector(".photographersSection");
     photographers.forEach((photographer) => {
         const photographerModel = photographersFactory(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
@@ -140,13 +140,13 @@ async function init() {
 
            // SORTER
 
-           sorter(foundPhotographerMedia, foundPhotographer);
+        sorter(foundPhotographerMedia, foundPhotographer);
 
         
         // LIKES
 
          // likes element
-         likes(foundPhotographerMedia, foundPhotographer);
+        likes(foundPhotographerMedia, foundPhotographer);
 
         // incrémenter likes à chaque click sur icone
         const likeIncrements = document.querySelectorAll('.faLikeIncrement');
@@ -178,6 +178,20 @@ async function init() {
 
 
         // CARROUSEL
+
+        // carrousel element click event
+        const photos = document.querySelectorAll('.photographerMedia__img');
+        photos.forEach(photo => photo.addEventListener('click', () => {
+            
+            //carrousel(foundPhotographerMedia, foundPhotographer);
+            displayCarrousel(foundPhotographerMedia, foundPhotographer);  
+            // gestion des bouttons gauche droite et close
+            arrowsBtnCloseFunction();
+            // mettre focus sur 
+            const arrows = document.querySelectorAll('.arrow');
+            arrows[0].focus();  
+
+        }))
 
 
         // gestion des bouttons gauche droite et close
@@ -220,23 +234,6 @@ async function init() {
                 closeCarrousel();
             })
         }
-
-        // carrousel element click event
-         const photos = document.querySelectorAll('.photographerMedia__img');
-        photos.forEach(photo => photo.addEventListener('click', () => {
-            
-            //carrousel(foundPhotographerMedia, foundPhotographer);
-            displayCarrousel(foundPhotographerMedia, foundPhotographer);  
-            // gestion des bouttons gauche droite et close
-            arrowsBtnCloseFunction();
-            // mettre focus sur 
-            const arrows = document.querySelectorAll('.arrow');
-            arrows[0].focus();
-    
-            
-
-        }))
-
 
 
          // carrousel element keydown event ou click

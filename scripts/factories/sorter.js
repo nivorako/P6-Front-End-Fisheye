@@ -1,4 +1,5 @@
 import { getPhotographerMedia } from '../factories/photographer.js';
+import { displayCarrousel } from '../utils/carrousel.js';
 
 
 export function sorter(media, photographer){
@@ -36,7 +37,7 @@ export function sorter(media, photographer){
             }
         })
 
-        // le item selecté s'affiche dans sorter__sort
+        // le item selecté s'affiche dans sorter__sort ET on affiche les selected item
         sorterItems.forEach(item => {
             item.addEventListener('click', () => {
                 let x;
@@ -51,14 +52,17 @@ export function sorter(media, photographer){
         
     }
 
+    // fonction pour afficher le selts séléctés
     function displaySelectedItem(sorted){
         const mediaWrapper = document.querySelector('.photographerMedia')
+        // selected(elements media, mot clé: selectedItem)
         const sortedData = select(media, sorted)
         sortedData.forEach(sorted =>{
             const template = getPhotographerMedia(sorted, photographer);
             mediaWrapper.removeChild(mediaWrapper.firstElementChild)
             mediaWrapper.appendChild(template);
         })
+        
     }
 
     function select(data, orderBy){
