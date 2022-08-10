@@ -156,6 +156,7 @@ async function init() {
             // on ne peut cliquer qu une seule fois : data-increment="true"
             likeIncrements[i].addEventListener("click", () => {
                 if(likeIncrements[i].getAttribute("data-increment") === 'false'){
+                    console.log('data === false, donc incremente')
                     photographerLikes[i].textContent++;
                     likesElt.textContent++;
                     likeIncrements[i].setAttribute('data-increment', 'true');
