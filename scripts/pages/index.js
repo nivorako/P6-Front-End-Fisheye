@@ -52,10 +52,7 @@ async function init() {
 
         // partie photograher header
         getPhotographer(foundPhotographer);
-       
-        // SORTER
 
-        sorter();
        
         // MODAL
 
@@ -139,6 +136,11 @@ async function init() {
 
             mediaWrapper.appendChild(template);
         })
+
+
+           // SORTER
+
+           sorter(foundPhotographerMedia, foundPhotographer);
 
         
         // LIKES
