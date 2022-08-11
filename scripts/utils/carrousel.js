@@ -54,19 +54,25 @@ export function displayCarrousel(media, photographer){
     // gérer le cas ou si img ou video
     const l = media.length;
     for(let i=0; i<l; i++){
-        // carrousel__item--img
-        const carrouselItemImg= document.createElement('img')
-        carrouselItemImg.classList.add('carrousel__item')
-        // carrousel__item--video
-        const carrouselItemVideo= document.createElement('video')
-        carrouselItemVideo.classList.add('carrousel__item')
+
+        //carrousel__item
+        const carrouselItem = document.createElement('div')
+        carrouselItem.classList.add('carrousel__item')
+        // carrousel__img
+        const carrouselImg= document.createElement('img')
+        carrouselImg.classList.add('carrousel__img')
+        // carrousel__video
+        const carrouselVideo= document.createElement('video')
+        carrouselVideo.classList.add('carrousel__video')
         
         if(media[i].hasOwnProperty('video')){
-            carrouselItemVideo.setAttribute("src", `./assets/Sample Photos/${name}/${media[i].video}`)
-            carrouselItems.appendChild(carrouselItemVideo)  
+            carrouselVideo.setAttribute("src", `./assets/Sample Photos/${name}/${media[i].video}`)
+            carrouselItem.appendChild(carrouselVideo) 
+            carrouselItems.appendChild(carrouselItem) 
         }else{
-            carrouselItemImg.setAttribute("src", `./assets/Sample Photos/${name}/${media[i].image}`)
-            carrouselItems.appendChild(carrouselItemImg)  
+            carrouselImg.setAttribute("src", `./assets/Sample Photos/${name}/${media[i].image}`)
+            carrouselItem.appendChild(carrouselImg) 
+            carrouselItems.appendChild(carrouselItem) 
         } 
     }
 

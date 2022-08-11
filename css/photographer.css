@@ -8,6 +8,10 @@
     --f16: 16px
 }
 
+body{
+    position: relative;
+}
+
 .faLikeIncrement:hover{
     transform: scale(1.5);
 }
@@ -75,13 +79,14 @@ a{
 
 .photographerMedia{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     margin: 150px 100px;
 }
 
 .photographerMedia__work{
-    width: 30%;
+    width: 350px;
+    margin: 35px;
     margin-bottom: 30px;
 }
 
@@ -91,12 +96,14 @@ a{
     align-items: center;
 }
 .photographerMedia__img{
+    border-radius: 10px;
     object-fit: cover;
     width: 100%;
     height: 350px;
-} 
+}
 
 .photographerMedia__video{
+    border-radius: 10px;
     object-fit: cover;
     width: 100%;
     height: 350px;
@@ -124,12 +131,12 @@ a{
     justify-content: space-between;
     align-items: flex-start;
 }
- 
+
 
 .sorter__items{
     margin: 0 ;
     list-style: none;
-    
+
 }
 
 .sorter__item{
@@ -201,7 +208,7 @@ a{
     font-size: 64px;
     font-weight: normal;
     text-align: left;
-    
+
 }
 .modal__comment{
     width: 100%;
@@ -246,7 +253,7 @@ a{
 .carrousel{
     position: fixed;
     top: 0;
-    
+
     max-height: 100%;
     display: flex;
     justify-content: center;
@@ -273,35 +280,34 @@ a{
 
 .carrousel__items{
     position: relative;
-    width: 100vw;
-    height: 100vh;
-    margin: 0 auto;
-   
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .carrousel__item{
-    height: 100%;
-    width: 100%;
-    margin: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 80%;
+    width: 60%;
     position: absolute;
-    object-fit: contain;
-    top: 0;
-    left: 0;
+    top: 10%;
+    left: 20vw;
     opacity: 0;
     transition: all .5s ease;
+}
+
+.carrousel__video,
+.carrousel__img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 
 .carrousel__item.active{
     transition: all .5s ease;
     opacity: 1;
-}
-
-.carrousel__item img{
-    height: 100%;
-    width: 100%;
-    
 }
 
 .fa-chevron-circle-left{
@@ -310,7 +316,7 @@ a{
     left: 10vw;
     font-size: 48px;
     opacity: 0.4;
-    transition: all 0.5s ease;  
+    transition: all 0.5s ease;
 }
 
 .fa-chevron-circle-right{
@@ -358,3 +364,10 @@ a{
     z-index: 1;
 }
 
+@media all and (max-width: 1000px){
+    .photographerHeader__btn{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+    }
+}
