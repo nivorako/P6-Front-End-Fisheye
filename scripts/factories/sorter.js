@@ -6,20 +6,17 @@ export function sorter(media, photographer){
     const sorterWrapper = document.querySelector('.sorter')
 
     function sorterOnClick (){
-        const sorterItems = document.querySelectorAll('.sorter__item');
-        const sorterItemsLength = sorterItems.length;
+        const sorterItems = document.querySelector('.sorter__items');
         const sorterSelected = document.querySelector('.sorter__selected');
-        const btnSelected = document.querySelector('.fa-angle-down');
+        const btnSelected = document.querySelector('.fa-angle-down'); 
+        const sorterItem = sorterItems.querySelectorAll('.sorter__item');
        
 
         // chaque fois qu on clicke sur sorter selected, on ferme ou on ouvre sorter__item
-        sorterItems[0].addEventListener('click', () => {
+        sorterSelected.addEventListener('click', () => {
             
-            for( let i=0; i<sorterItemsLength; i++){
-                sorterItems[i].classList.toggle('active')
-            }
-            btnSelected.classList.toggle('active'); 
-
+            sorterItems.classList.toggle('active'); 
+            btnSelected.classList.toggle('active')
             // si btnSelected active ==> sorter item active 
             if(btnSelected.classList.contains('active')){
                 document.addEventListener(
@@ -27,10 +24,8 @@ export function sorter(media, photographer){
                     (e) => {
                         // si le clic se produit hors de sorter__container
                         if(!e.target.closest(".sorter__container")){
-                            for( let i=0; i<sorterItemsLength; i++){
-                                sorterItems[i].classList.remove('active')
-                                btnSelected.classList.remove('active')
-                            }
+                            sorterItems.classList.remove('active')
+                            btnSelected.classList.remove('active')
                         }
                     }
                 )
@@ -38,18 +33,17 @@ export function sorter(media, photographer){
         })
 
         // le item selecté s'affiche dans sorter__sort ET on affiche les selected item
-        sorterItems.forEach(item => {
+        sorterItem.forEach(item => {
             item.addEventListener('click', () => {
                 let x;
                 let selectedItem = item.querySelector('.sorter__sort').innerHTML;
-                x=sorterSelected.innerHTML;
-                sorterSelected.innerHTML = selectedItem;
+                x=sorterSelected.querySelector('.sorter__selectedText').innerHTML;
+                sorterSelected.querySelector('.sorter__selectedText').innerHTML = selectedItem;
                 item.querySelector('.sorter__sort').innerHTML = x;
-
+               
                 displaySelectedItem(selectedItem)
             })
         })
-        
     }
 
     // fonction pour afficher le selts séléctés
@@ -94,21 +88,23 @@ export function sorter(media, photographer){
     }
     
     const sorter = /*html*/`
-        <div class="sorter__container">
-            <h2 class="sorter__title">Trier par</h2>
-            <ul class="sorter__items">
-                <li class="sorter__item" tabindex="3">
-                    <p class="sorter__sort sorter__selected">date</p>
-                    <i class="fas fa-angle-down"></i>
-                </li>
-                <li class="sorter__item" tabindex="3">
-                    <p class="sorter__sort">likes</p>
-                </li>
-                <li class="sorter__item" tabindex="3">
-                    <p class="sorter__sort">titre</p>
-                </li>
-            </ul>
+    <div class="sorter">
+    <h2 class="sorter__title">Trier par</h2>
+    <div class="sorter__container">
+        <div class="sorter__selected btn">
+            <p class="sorter__selectedText">date</p>
+            <i class="fas fa-angle-down"></i>
         </div>
+        <ul class="sorter__items">
+            <li class="sorter__item btn" tabindex="3">
+                <p class="sorter__sort">likes</p>
+            </li>
+            <li class="sorter__item btn" tabindex="3">
+                <p class="sorter__sort">titre</p>
+            </li>
+        </ul>
+    </div>
+</div> 
     `;
     // <i class="fas fa-angle-down"></i>
     sorterWrapper.innerHTML = sorter
