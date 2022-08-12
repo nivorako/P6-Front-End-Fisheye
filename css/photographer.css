@@ -149,6 +149,7 @@ a{
 }
 
 .sorter__items{
+    margin: 0;
     width: 250px;
     display: none;
 }
