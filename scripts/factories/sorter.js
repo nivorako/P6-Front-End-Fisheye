@@ -110,7 +110,7 @@ export function sorter(media, photographer){
             </ul>
         </div>
     `;
-
+    // <i class="fas fa-angle-down"></i>
     sorterWrapper.innerHTML = sorter
 
     sorterOnClick()

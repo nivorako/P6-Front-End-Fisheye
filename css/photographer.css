@@ -69,7 +69,7 @@ a{
     font-weight: bold;
     color: white;
     padding: 11px;
-    width: 170px;
+    min-width: 170px;
     height: 70px;
     border: none;
     background-color: #901C1C;
@@ -86,6 +86,7 @@ a{
 
 .photographerMedia__work{
     width: 350px;
+    min-width: 350px;
     margin: 35px;
     margin-bottom: 30px;
 }
@@ -120,18 +121,22 @@ a{
 }
 
 .sorter{
-    width: 400px;
+    width: 350px;
     position: absolute;
     margin-top: 50px;
-    margin-left: 100px;
+    margin-left: 110px;
 }
 
 .sorter__container{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
 }
 
+.sorter__title{
+    font-weight: lighter;
+    font-size: medium;
+}
 
 .sorter__items{
     margin: 0 ;
@@ -141,9 +146,10 @@ a{
 
 .sorter__item{
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    line-height: 2em;
+
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -155,21 +161,26 @@ a{
     border-radius: 5px;
     cursor: pointer;
     margin-top: 1px;
+    margin: auto auto auto auto;
     opacity: 0;
+    /* display: none; */
     transition: all .5s ease;
 }
 
 .sorter__item.active{
     opacity: 1;
+    /* display: block; */
 }
 
 .fa-angle-down.active{
     transform: rotate(180deg);
     transition: all .5s ease;
+    /* display: block; */
 }
 
 .sorter__item:first-child{
     opacity: 1;
+    /* display: block; */
 }
 
 .modal {
@@ -364,10 +375,41 @@ a{
     z-index: 1;
 }
 
-@media all and (max-width: 1000px){
+@media all and (max-width: 1200px){
+
+    .likes__container{
+        display: none;
+    }
+   
     .photographerHeader__btn{
-        position: fixed;
-        bottom: 0;
-        left: 0;
+        position: absolute;
+        bottom: -50px;
+        left: calc(50% - 95px);
+    }
+}
+
+@media all and (max-width: 900px){
+    .photographerHeader{
+        margin:0;
+    }
+    .photographerHeader__img img{
+        
+        height: 150px;
+        width: 150px;
+
+    }
+    .sorter{
+        margin-left: 0;
+    }
+    .sorter__container{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media all and (max-width: 400px){
+    .photographerHeader{
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }
