@@ -145,6 +145,7 @@ a{
 .sorter__selected{
     display: flex;
     justify-content: space-between;
+
     align-items: center;
     
 }
