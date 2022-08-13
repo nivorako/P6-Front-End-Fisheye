@@ -5,7 +5,8 @@ import { submitForm } from '../utils/submit.js';
 import { displayCarrousel, closeCarrousel } from "../utils/carrousel.js";
 import { likes } from '../factories/likes.js';
 import { sorter } from '../factories/sorter.js';
-import { displaySelectedItem } from "../utils/sorterSelect.js";
+import { displaySelectedItem} from "../utils/sorterSelect.js";
+import { carrouselClickEvent, carrouselKeydownEnter } from '../utils/carrousel.js';
 
 // extraire data de ./data/photographers.json
 async function getPhotographers() {
@@ -139,7 +140,6 @@ async function init() {
 
         // partie photographer main
         const sorterSelected = document.querySelector('.sorter__selectedText').innerHTML;
-
         displaySelectedItem(sorterSelected, foundPhotographerMedia, foundPhotographer);
 
 
@@ -180,146 +180,162 @@ async function init() {
 
         // CARROUSEL
 
-        // carrousel element click event
+
+         // carrousel element click event
         const photos = document.querySelectorAll('.photographerMedia__img');
-        photos.forEach(photo => photo.addEventListener('click', () => {
+        carrouselClickEvent(photos, foundPhotographerMedia, foundPhotographer)
+
+        carrouselKeydownEnter(photos, foundPhotographerMedia, foundPhotographer)
+        
+
+        // // ouvre carrousel avec enter + gestion bouton clic et keydown
+        // function carrouselKeydownEnter(photos){
+        //     photos.forEach(photo => photo.addEventListener('keydown', (e) => {
+        //         if(e.key === "Enter" || e.keyCode === 13){
+        //             // afficher carrousel(foundPhotographerMedia, foundPhotographer);
+        //             displayCarrousel(foundPhotographerMedia, foundPhotographer);  
+    
+        //             arrowsLeftRightCloseFunction(); 
+        //              // mettre focus sur 
+        //             const arrows = document.querySelectorAll('.arrow');
+        //             arrows[0].focus();
+                   
+        //             keydownCarrousel();
+        //         }
+        //     }))
+        // }
+        
+        // // ouvre carrousel avec  clic
+        // function carrouselClickEvent(photos){
+        //     photos.forEach(photo => photo.addEventListener('click', () => {
             
-            //carrousel(foundPhotographerMedia, foundPhotographer);
-            displayCarrousel(foundPhotographerMedia, foundPhotographer);  
-            // gestion des bouttons gauche droite et close
-            arrowsBtnCloseFunction();
-            // mettre focus sur 
-            const arrows = document.querySelectorAll('.arrow');
-            arrows[0].focus();  
+        //         //carrousel(foundPhotographerMedia, foundPhotographer);
+        //         displayCarrousel(foundPhotographerMedia, foundPhotographer);  
+        //         // gestion des bouttons gauche droite et close
+        //         arrowsLeftRightCloseFunction();
+        //         // mettre focus sur 
+        //         const arrows = document.querySelectorAll('.arrow');
+        //         arrows[0].focus();  
+    
+        //         keydownCarrousel();
+    
+        //     }))
+        // }
 
-        }))
+        // // gestion des bouttons gauche droite et close au clic
+        // function arrowsLeftRightCloseFunction(){
+        //     const leftArrow = document.querySelector('.fa-chevron-circle-left');
+        //     const rightArrow = document.querySelector('.fa-chevron-circle-right');
+        //     const closeBtn = document.querySelector('.carrousel__close');
+        //     const images = document.querySelectorAll('.carrousel__item');
 
+        //     const nbrImg = images.length;
+        //     let step = 0;
 
-        // gestion des bouttons gauche droite et close
-        function arrowsBtnCloseFunction(){
-            const leftArrow = document.querySelector('.fa-chevron-circle-left');
-            const rightArrow = document.querySelector('.fa-chevron-circle-right');
-            const closeBtn = document.querySelector('.carrousel__close');
-            const images = document.querySelectorAll('.carrousel__item');
+        //     images[0].classList.add("active");
 
-            const nbrImg = images.length;
-            let step = 0;
+        //     function removeActiveImage(){
+        //         for(let i=0; i<nbrImg; i++){
+        //             images[i].classList.remove("active");
+        //         }
+        //     }        
 
-            images[0].classList.add("active");
-
-            function removeActiveImage(){
-                for(let i=0; i<nbrImg; i++){
-                    images[i].classList.remove("active");
-                }
-            }        
-
-            leftArrow.addEventListener('click', () => {
-                step++;
-                if(step >= nbrImg ){
-                    step = 0;
-                }
+        //     leftArrow.addEventListener('click', () => {
+        //         step++;
+        //         if(step >= nbrImg ){
+        //             step = 0;
+        //         }
                 
-                removeActiveImage()
-                images[step].classList.add('active')
-            })
+        //         removeActiveImage()
+        //         images[step].classList.add('active')
+        //     })
         
-            rightArrow.addEventListener('click', () => {
-                if(step == 0){
-                    step = nbrImg;
-                }
-                step--;
-                removeActiveImage();
-                images[step].classList.add('active');
-            })
-            closeBtn.addEventListener('click', () => {
-                closeCarrousel();
-            })
-        }
+        //     rightArrow.addEventListener('click', () => {
+        //         if(step == 0){
+        //             step = nbrImg;
+        //         }
+        //         step--;
+        //         removeActiveImage();
+        //         images[step].classList.add('active');
+        //     })
+        //     closeBtn.addEventListener('click', () => {
+        //         closeCarrousel();
+        //     })
+        // }
 
+       
+        //  // gérer evenements keydown sur carrousel
+        // function keydownCarrousel(){
+        //      // evenements keydown sur carrousel
+        //     const arrows = document.querySelectorAll('.arrow');
+        //     document.addEventListener('keydown', (e) => {
 
-         // carrousel element keydown event ou click
-        photos.forEach(photo => photo.addEventListener('keydown', (e) => {
-            if(e.key === "Enter" || e.keyCode === 13){
-                // afficher carrousel(foundPhotographerMedia, foundPhotographer);
-                displayCarrousel(foundPhotographerMedia, foundPhotographer);  
+        //           // piéger focus dans carrousel
+        //          if(e.key === "Tab" || e.keyCode === 9){
+        //             console.log('ici tab')
+        //              if(e.shiftKey){
+        //                  if(document.activeElement === arrows[0]){
+        //                      e.preventDefault();
+        //                      arrows[1].focus();
+                             
+        //                  }
+        //              }else if(document.activeElement === arrows[1]){
+        //                      e.preventDefault();
+        //                      arrows[0].focus();
+        //              }
+                     
+        //          }
 
-                arrowsBtnCloseFunction(); 
-                 // mettre focus sur 
-                const arrows = document.querySelectorAll('.arrow');
-                arrows[0].focus();
+        //          // fermer carrousel avec touche echap
+        //          if(e.key === "Escape" || e.keyCode === 27){
+        //              closeCarrousel();
+        //          }
+
+        //          // gérer images avec arrowLeft  NE FONCTIONNE qu'une seule fois ???
+        //          if(document.activeElement === arrows[0]){
+        //              if(e.key === "Enter" || e.keyCode === 13){
+        //                  e.preventDefault();
+        //                  const images = document.querySelectorAll('.carrousel__item');
+        //                  const arrayImages = Array.from(images);
+        //                  const length = arrayImages.length;
+        //                  console.log('length: ', length)
+        //                  let step = 0;
+
+        //                  for(let i=0; i<length; i++){ 
+        //                      step++; 
+        //                      if(step === length-1){
+        //                          step = 0;
+        //                      }
+                             
+        //                      images[i].classList.remove("active");
+        //                  }
+        //                  images[step].classList.add('active');     
+        //              }
+        //          }
+
+        //          // gérer images avec arrowRight NE FONCTIONNE PAS qu'une seule fois ???    
+        //          if(document.activeElement === arrows[1]){
+        //              if(e.key === "Enter" || e.keyCode === 13){
+        //                  e.preventDefault();
+        //                  const images = document.querySelectorAll('.carrousel__item');
+        //                  const arrayImages = Array.from(images);
+        //                  const length = arrayImages.length;
+     
+        //                  let step = 0;
+
+        //                  for(let i=0; i<length; i++){  
+        //                      if(step === 0){
+        //                          step = length-1;
+        //                      }
+        //                      step--;
+        //                      images[i].classList.remove("active");
+        //                  }
+        //                  images[step].classList.add('active')
+        //              }
+        //          }
                
-                // evenements keydown sur carrousel
-                const carrousel = document.querySelector('.carrousel__container') ;
-                carrousel.addEventListener('keydown', (e) => {
-
-                     // piéger focus dans carrousel
-                    if(e.key === "Tab" || e.keyCode === 9){
-                        if(e.shiftKey){
-                            if(document.activeElement === arrows[0]){
-                                e.preventDefault();
-                                arrows[1].focus();
-                                
-                            }
-                        }else if(document.activeElement === arrows[1]){
-                                e.preventDefault();
-                                arrows[0].focus();
-                        }
-                        
-                    }
-
-                    // fermer carrousel avec touche echap
-                    if(e.key === "Escape" || e.keyCode === 27){
-                        closeCarrousel();
-                    }
-
-                    // gérer images avec arrowLeft  NE FONCTIONNE qu'une seule fois ???
-                    if(document.activeElement === arrows[0]){
-                        if(e.key === "Enter" || e.keyCode === 13){
-                            e.preventDefault();
-                            const images = document.querySelectorAll('.carrousel__item');
-                            const arrayImages = Array.from(images);
-                            const length = arrayImages.length;
-                            console.log('length: ', length)
-                            let step = 0;
-
-                            for(let i=0; i<length; i++){ 
-                                step++; 
-                                if(step === length-1){
-                                    step = 0;
-                                }
-                                
-                                images[i].classList.remove("active");
-                            }
-                            images[step].classList.add('active');     
-                        }
-                    }
-
-                    // gérer images avec arrowRight NE FONCTIONNE PAS qu'une seule fois ???    
-                    if(document.activeElement === arrows[1]){
-                        if(e.key === "Enter" || e.keyCode === 13){
-                            e.preventDefault();
-                            const images = document.querySelectorAll('.carrousel__item');
-                            const arrayImages = Array.from(images);
-                            const length = arrayImages.length;
-        
-                            let step = 0;
-
-                            for(let i=0; i<length; i++){  
-                                if(step === 0){
-                                    step = length-1;
-                                }
-                                step--;
-                                images[i].classList.remove("active");
-                            }
-                            images[step].classList.add('active')
-                        }
-                    }
-                  
-                })
-                
-            }
-        }))
-
+        //      })
+        // }
 
         // TRAPP FOCUS PHOTOGRAPHER PAGE
 

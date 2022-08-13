@@ -4,7 +4,7 @@ import { displaySelectedItem } from '../utils/sorterSelect.js';
 
 export function sorter(media, photographer){
     const sorterWrapper = document.querySelector('.sorter')
-    const mediaWrapper = document.querySelector('.photographerMedia')
+    
     function sorterOnClick (){
         const sorterItems = document.querySelector('.sorter__items');
         const sorterSelected = document.querySelector('.sorter__selected');
@@ -40,9 +40,9 @@ export function sorter(media, photographer){
                 x=sorterSelected.querySelector('.sorter__selectedText').innerHTML;
                 sorterSelected.querySelector('.sorter__selectedText').innerHTML = selectedItem;
                 item.querySelector('.sorter__sort').innerHTML = x;
-               
-                mediaWrapper.removeChild(mediaWrapper.firstElementChild);
+
                 displaySelectedItem(selectedItem, media, photographer);
+                
             })
         })
     }

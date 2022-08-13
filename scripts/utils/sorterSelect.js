@@ -3,14 +3,24 @@ import { getPhotographerMedia } from "../factories/photographer.js";
     // fonction pour afficher le selts séléctés
 export function displaySelectedItem(sorted, media, photographer){
     const mediaWrapper = document.querySelector('.photographerMedia')
+    
+    //mediaWrapper.removeChild(mediaWrapper.firstElementChild)
     // selected(elements media, sorted: selectedItem)
     const sortedData = select(media, sorted)
-    sortedData.forEach(sorted =>{
-        const template = getPhotographerMedia(sorted, photographer);
-        console.log('fisrts element: ', mediaWrapper.children[0])
-        mediaWrapper.appendChild(template);
-    })
-    
+    if(mediaWrapper.firstElementChild){
+        
+        sortedData.forEach(sorted =>{
+            const template = getPhotographerMedia(sorted, photographer);
+            mediaWrapper.removeChild(mediaWrapper.firstElementChild)
+            mediaWrapper.appendChild(template);
+        })
+    }else{
+        console.log('mediaWrapper pas child')
+        sortedData.forEach(sorted =>{
+            const template = getPhotographerMedia(sorted, photographer);
+            mediaWrapper.appendChild(template);
+        })
+    }
 }
 
 function select(data, orderBy){
