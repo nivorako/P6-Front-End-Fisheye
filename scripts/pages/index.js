@@ -5,6 +5,7 @@ import { submitForm } from '../utils/submit.js';
 import { displayCarrousel, closeCarrousel } from "../utils/carrousel.js";
 import { likes } from '../factories/likes.js';
 import { sorter } from '../factories/sorter.js';
+import { displaySelectedItem } from "../utils/sorterSelect.js";
 
 // extraire data de ./data/photographers.json
 async function getPhotographers() {
@@ -126,21 +127,21 @@ async function init() {
             })
         })
 
+
+
+
+        // SORTER
+        const foundPhotographerMedia = media.filter(x => x.photographerId=== parseInt(photographerId, 10));
+        sorter(foundPhotographerMedia, foundPhotographer);
+
+
         // PHOTOGRAPHER__MEDIA
 
         // partie photographer main
-        const foundPhotographerMedia = media.filter(x => x.photographerId=== parseInt(photographerId, 10));
-        
-        foundPhotographerMedia.forEach(media =>{
-            const template = getPhotographerMedia(media, foundPhotographer);
+        const sorterSelected = document.querySelector('.sorter__selectedText').innerHTML;
 
-            mediaWrapper.appendChild(template);
-        })
+        displaySelectedItem(sorterSelected, foundPhotographerMedia, foundPhotographer);
 
-
-           // SORTER
-
-        sorter(foundPhotographerMedia, foundPhotographer);
 
         
         // LIKES

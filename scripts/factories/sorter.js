@@ -1,10 +1,10 @@
-import { getPhotographerMedia } from '../factories/photographer.js';
-import { displayCarrousel } from '../utils/carrousel.js';
+
+import { displaySelectedItem } from '../utils/sorterSelect.js'; 
 
 
 export function sorter(media, photographer){
     const sorterWrapper = document.querySelector('.sorter')
-
+    const mediaWrapper = document.querySelector('.photographerMedia')
     function sorterOnClick (){
         const sorterItems = document.querySelector('.sorter__items');
         const sorterSelected = document.querySelector('.sorter__selected');
@@ -41,52 +41,13 @@ export function sorter(media, photographer){
                 sorterSelected.querySelector('.sorter__selectedText').innerHTML = selectedItem;
                 item.querySelector('.sorter__sort').innerHTML = x;
                
-                displaySelectedItem(selectedItem)
+                mediaWrapper.removeChild(mediaWrapper.firstElementChild);
+                displaySelectedItem(selectedItem, media, photographer);
             })
         })
     }
 
-    // fonction pour afficher le selts séléctés
-    function displaySelectedItem(sorted){
-        const mediaWrapper = document.querySelector('.photographerMedia')
-        // selected(elements media, mot clé: selectedItem)
-        const sortedData = select(media, sorted)
-        sortedData.forEach(sorted =>{
-            const template = getPhotographerMedia(sorted, photographer);
-            mediaWrapper.removeChild(mediaWrapper.firstElementChild)
-            mediaWrapper.appendChild(template);
-        })
-        
-    }
 
-    function select(data, orderBy){
-        if(orderBy === "likes"){
-           
-            data.sort((a, b) => {
-                console.log("likes")
-                return b.likes - a.likes
-            })
-    
-            return data
-        }else if(orderBy === "date"){
-            console.log("date data: ", data)
-            data.sort((a, b) => {
-                return new Date(b.date) - new Date(a.date)
-            })
-            console.log("date")
-            return data
-        }else if(orderBy === "titre"){
-            console.log("titre data: ", data)
-            data.sort((a, b) => {
-                return (a.title || a.video).localeCompare(b.title || a.video)
-            }) 
-            
-            return data
-        }else{
-            throw 'unknow orderBy type'
-        }
-    }
-    
     const sorter = /*html*/`
     <div class="sorter">
     <h2 class="sorter__title">Trier par</h2>
@@ -112,3 +73,45 @@ export function sorter(media, photographer){
     sorterOnClick()
     return sorterWrapper
 }
+
+
+    // // fonction pour afficher le selts séléctés
+    // function displaySelectedItem(sorted){
+    //     const mediaWrapper = document.querySelector('.photographerMedia')
+    //     // selected(elements media, sorted: selectedItem)
+    //     const sortedData = select(media, sorted)
+    //     sortedData.forEach(sorted =>{
+    //         const template = getPhotographerMedia(sorted, photographer);
+    //         mediaWrapper.removeChild(mediaWrapper.firstElementChild)
+    //         mediaWrapper.appendChild(template);
+    //     })
+        
+    // }
+
+    // function select(data, orderBy){
+    //     if(orderBy === "likes"){
+           
+    //         data.sort((a, b) => {
+    //             console.log("likes")
+    //             return b.likes - a.likes
+    //         })
+    
+    //         return data
+    //     }else if(orderBy === "date"){
+    //         console.log("date data: ", data)
+    //         data.sort((a, b) => {
+    //             return new Date(b.date) - new Date(a.date)
+    //         })
+    //         console.log("date")
+    //         return data
+    //     }else if(orderBy === "titre"){
+    //         console.log("titre data: ", data)
+    //         data.sort((a, b) => {
+    //             return (a.title || a.video).localeCompare(b.title || a.video)
+    //         }) 
+            
+    //         return data
+    //     }else{
+    //         throw 'unknow orderBy type'
+    //     }
+    // }
