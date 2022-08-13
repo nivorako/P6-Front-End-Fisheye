@@ -126,19 +126,13 @@ a{
 }
 
 .sorter{
-    width: 300px;
+    width: 400px;
     position: absolute;
     margin-top: 10px;
     margin-left: 50px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-}
-
-.sorter__container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .sorter__selected{
@@ -160,7 +154,7 @@ a{
 
 .fa-angle-down.active{
     transform: rotate(180deg);
-}
+} 
 
 
 .modal {
