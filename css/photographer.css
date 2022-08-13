@@ -135,6 +135,13 @@ a{
     align-items: flex-start;
 }
 
+.sorter__container{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .sorter__selected{
     display: flex;
     justify-content: space-between;
