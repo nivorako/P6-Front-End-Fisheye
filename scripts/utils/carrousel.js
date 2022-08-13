@@ -182,7 +182,7 @@ function arrowsLeftRightCloseFunction(){
     })
 }
 
-export function keydownCarrousel(){
+function keydownCarrousel(){
     // evenements keydown sur carrousel
    const arrows = document.querySelectorAll('.arrow');
    document.addEventListener('keydown', (e) => {

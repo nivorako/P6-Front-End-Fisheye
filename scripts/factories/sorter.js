@@ -1,7 +1,6 @@
 
 import { displaySelectedItem } from '../utils/sorterSelect.js'; 
 
-
 export function sorter(media, photographer){
     const sorterWrapper = document.querySelector('.sorter')
     

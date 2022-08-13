@@ -1,25 +1,32 @@
 import { getPhotographerMedia } from "../factories/photographer.js";
+import { carrouselClickEvent, carrouselKeydownEnter } from "./carrousel.js";
 
-    // fonction pour afficher le selts séléctés
+    // fonction pour afficher les elts séléctés
 export function displaySelectedItem(sorted, media, photographer){
     const mediaWrapper = document.querySelector('.photographerMedia')
-    
-    //mediaWrapper.removeChild(mediaWrapper.firstElementChild)
-    // selected(elements media, sorted: selectedItem)
+    // on charge les elts selectionnés dans mediaWrapper
     const sortedData = select(media, sorted)
     if(mediaWrapper.firstElementChild){
-        
         sortedData.forEach(sorted =>{
             const template = getPhotographerMedia(sorted, photographer);
             mediaWrapper.removeChild(mediaWrapper.firstElementChild)
             mediaWrapper.appendChild(template);
         })
+
+        // on installe evt clic et event dans chaque nouvel elt
+        const photos = document.querySelectorAll('.photographerMedia__img' )
+        carrouselClickEvent(photos, media, photographer);
+        carrouselKeydownEnter(photos, media, photographer);
     }else{
-        console.log('mediaWrapper pas child')
         sortedData.forEach(sorted =>{
             const template = getPhotographerMedia(sorted, photographer);
             mediaWrapper.appendChild(template);
         })
+
+        // on installe evt clic et event dans chaque nouvel elt
+        const photos = document.querySelectorAll('.photographerMedia__img' )
+        carrouselClickEvent(photos, media, photographer);
+        carrouselKeydownEnter(photos, media, photographer);
     }
 }
 
