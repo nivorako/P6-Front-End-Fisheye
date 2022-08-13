@@ -140,7 +140,7 @@ async function init() {
 
         // partie photographer main
 
-
+        // display sorter selected, install clic and keydown event in each elt
         const sorterSelected = document.querySelector('.sorter__selectedText').innerHTML;
         displaySelectedItem(sorterSelected, foundPhotographerMedia, foundPhotographer);
 
@@ -151,44 +151,6 @@ async function init() {
          // likes element
         likes(foundPhotographerMedia, foundPhotographer);
 
-        // incrémenter likes à chaque click sur icone
-        const likeIncrements = document.querySelectorAll('.faLikeIncrement');
-        const photographerLikes = document.querySelectorAll('.photographerLikes');
-        const photographerLikesLength = photographerLikes.length;
-        const likesElt = document.querySelector('.likes__likes');
-
-        for(let i = 0; i < photographerLikesLength; i++){
-            // on ne peut cliquer qu une seule fois : data-increment="true"
-            likeIncrements[i].addEventListener("click", () => {
-                if(likeIncrements[i].getAttribute("data-increment") === 'false'){
-                    console.log('data === false, donc incremente')
-                    photographerLikes[i].textContent++;
-                    likesElt.textContent++;
-                    likeIncrements[i].setAttribute('data-increment', 'true');
-                }
-            })
-            // accessibilité: incrémenter une seule fois likes si enter sur icone
-            likeIncrements[i].addEventListener('keydown', (e) => {
-                if(e.key === "Enter" || e.keyCode === 13){
-                    if(likeIncrements[i].getAttribute("data-increment") === 'false'){
-                        photographerLikes[i].textContent++;
-                        likesElt.textContent++;
-                        likeIncrements[i].setAttribute('data-increment', 'true');
-                    }
-                }
-            })
-        }
-
-
-        // CARROUSEL
-
-
-         // carrousel element click event
-        // const photos = document.querySelectorAll('.photographerMedia__img');
-        // carrouselClickEvent(photos, foundPhotographerMedia, foundPhotographer)
-
-        // carrouselKeydownEnter(photos, foundPhotographerMedia, foundPhotographer)
-        
 
         // TRAPP FOCUS PHOTOGRAPHER PAGE
 

@@ -1,5 +1,6 @@
 import { getPhotographerMedia } from "../factories/photographer.js";
 import { carrouselClickEvent, carrouselKeydownEnter } from "./carrousel.js";
+import { likes } from "../factories/likes.js";
 
     // fonction pour afficher les elts séléctés
 export function displaySelectedItem(sorted, media, photographer){
@@ -17,6 +18,9 @@ export function displaySelectedItem(sorted, media, photographer){
         const photos = document.querySelectorAll('.photographerMedia__img' )
         carrouselClickEvent(photos, media, photographer);
         carrouselKeydownEnter(photos, media, photographer);
+        const likesLikes = document.querySelector('.likes__likes');
+        likesLikes.textContent = "";
+        likes(media, photographer)
     }else{
         sortedData.forEach(sorted =>{
             const template = getPhotographerMedia(sorted, photographer);
