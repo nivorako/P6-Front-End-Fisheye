@@ -145,16 +145,19 @@ a{
 .sorter__selected{
     display: flex;
     justify-content: space-between;
-
     align-items: center;
     
 }
 
 .sorter__items{
-    margin: 0;
-    width: 250px;
+    margin-top: 1px;
     display: none;
 }
+
+.sorter__item{
+    margin-top: 1px;
+}
+
 
 .sorter__items.active{
     display: block;
@@ -162,9 +165,7 @@ a{
 
 .fa-angle-down.active{
     transform: rotate(180deg);
-} 
-
-
+}
 .modal {
     position: fixed;
     left: 30%;
