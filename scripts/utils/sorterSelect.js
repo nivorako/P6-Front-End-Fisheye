@@ -15,7 +15,7 @@ export function displaySelectedItem(sorted, media, photographer){
             mediaWrapper.appendChild(template);
         })
 
-        // on installe evt clic et event dans chaque nouvel elt
+        // on installe evt clic et event dans chaque nouvel elt (img et video)
         const photos = document.querySelectorAll('.photographerMedia__img' );
         const video = document.querySelectorAll('.photographerMedia__video' )
         carrouselClickEvent(video, media, photographer);
@@ -51,32 +51,33 @@ export function displaySelectedItem(sorted, media, photographer){
          // si displayPhotographer alors piéger focus dans la page
         const photographerBody = document.getElementById('photographerBody');
     
-        const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
-        const focusablePhotographerElts = photographerBody.querySelectorAll(focusablePhotographerEltsString);
-        const focusablePhotographerEltsLength = focusablePhotographerElts.length
-        const firstFocusable = focusablePhotographerElts[0]
-        const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
+        // const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]), div:not([disabled]), i:not([disabled]) ';
         
-        console.log('focusablePhotographerElts:', focusablePhotographerElts)
-        console.log('lastFocusable: ', lastFocusable)
-        photographerBody.addEventListener('keydown', (e) => {
-            if(e.key === "Tab" || e.keyCode === 9){
+        // const focusablePhotographerElts = photographerBody.querySelectorAll(focusablePhotographerEltsString);
+        // const focusablePhotographerEltsLength = focusablePhotographerElts.length
+        // const firstFocusable = focusablePhotographerElts[0]
+        // const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
+        
+        // console.log('focusablePhotographerElts:', focusablePhotographerElts)
+        // console.log('lastFocusable: ', lastFocusable)
+        // photographerBody.addEventListener('keydown', (e) => {
+        //     if(e.key === "Tab" || e.keyCode === 9){
                 
-                if(e.shiftKey){
-                    console.log('c est shift')
-                    if(document.activeElement === firstFocusable){
-                        e.preventDefault()
-                        lastFocusable.focus()
-                    }
-                }else{
-                    console.log('c est tab')
-                    if(document.activeElement === lastFocusable){
-                        e.preventDefault()
-                        firstFocusable.focus()
-                    }
-                }
-            }
-        })
+        //         if(e.shiftKey){
+        //             console.log('c est shift')
+        //             if(document.activeElement === firstFocusable){
+        //                 e.preventDefault()
+        //                 lastFocusable.focus()
+        //             }
+        //         }else{
+        //             console.log('c est tab')
+        //             if(document.activeElement === lastFocusable){
+        //                 e.preventDefault()
+        //                 firstFocusable.focus()
+        //             }
+        //         }
+        //     }
+        // })
     }
 }
 
@@ -88,8 +89,13 @@ function select(data, orderBy){
 
         return data
     }else if(orderBy === "date"){
+        console.log("order by : date")
         data.sort((a, b) => {
-            return new Date(b.date) - new Date(a.date)
+            const dateA = a.date.split('-')
+            const dateB = b.date.split('-')
+            //console.log('a.date: ', a.date + "  " + b.date)
+            return new Date(dateB[0], dateB[1], dateB[2]).getTime() - new Date(dateA[0], dateA[1], dateA[2]).getTime()
+           
         })
         return data
     }else if(orderBy === "titre"){

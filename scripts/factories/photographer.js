@@ -42,21 +42,21 @@ export function getPhotographerMedia( media, photographer){
     }
 
     const photographerPhoto = /*html*/`
-        <a href="#">
+        <div class="colorCoeur">
             <img src="./assets/Sample Photos/${name}/${image}" class="photographerMedia__img" alt="une image qui représente le ${title}" tabindex="4"   />
             <div class="photographerMedia__comment" >
                 <p>${date}</p> 
                 <p>${title}</p>
                 <div class="photographerMedia__details">
                     <span class="photographerLikes">${likes}</span>
-                    <i class="fa fa-heart faLikeIncrement" data-increment="false" tabindex="4"></i>
+                    <i class="fa fa-heart faLikeIncrement" data-increment="false" tabindex="4" ></i>
                 </div>
             </div> 
-        </a>
+        </div>
     `;
    
     const photographerVideo = /*html*/`
-        <a href="#">
+        <div class="colorCoeur">
             <video 
                 type="video/mp4"
                 title=""
@@ -69,10 +69,10 @@ export function getPhotographerMedia( media, photographer){
                 <p>${videoTitle()}</p>
                 <div class="photographerMedia__details">
                     <span class="photographerLikes">${likes}</span>
-                    <i class="fa fa-heart faLikeIncrement" data-increment="false" tabindex="5"></i>
+                    <i class="fa fa-heart faLikeIncrement" data-increment="false" tabindex="5" aria-hidden='false'></i>
                 </div>
             </div>
-        </a>
+        </div>
     `
     if(media.hasOwnProperty('video')){
         wrapper.classList.add('photographerMedia__work')
