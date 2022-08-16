@@ -148,28 +148,28 @@ async function init() {
         // entre <img/> et <div class="photographerMedia__comment" > 
         const photographersBody = document.getElementById('body');
     
-       // const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
-        //const focusablePhotographerElts = photographersBody.querySelectorAll(focusablePhotographerEltsString);
-        //const focusablePhotographerEltsLength = focusablePhotographerElts.length
+       const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
+        const focusablePhotographerElts = photographersBody.querySelectorAll(focusablePhotographerEltsString);
+        const focusablePhotographerEltsLength = focusablePhotographerElts.length
         
-        // const firstFocusable = focusablePhotographerElts[0]
-        // const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
+        const firstFocusable = focusablePhotographerElts[0]
+        const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
 
-        // photographersBody.addEventListener('keydown', (e) => {
-        //     if(e.key === "Tab" || e.keyCode === 9){
-        //         if(e.shiftKey){
-        //             if(document.activeElement === firstFocusable){
-        //                 e.preventDefault()
-        //                 lastFocusable.focus()
-        //             }
-        //         }else{
-        //             if(document.activeElement === lastFocusable){
-        //                 e.preventDefault()
-        //                 firstFocusable.focus()
-        //             }
-        //         }
-        //     }
-        // })
+        photographersBody.addEventListener('keydown', (e) => {
+            if(e.key === "Tab" || e.keyCode === 9){
+                if(e.shiftKey){
+                    if(document.activeElement === firstFocusable){
+                        e.preventDefault()
+                        lastFocusable.focus()
+                    }
+                }else{
+                    if(document.activeElement === lastFocusable){
+                        e.preventDefault()
+                        firstFocusable.focus()
+                    }
+                }
+            }
+        })
     }
 };
 
