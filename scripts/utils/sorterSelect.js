@@ -16,7 +16,10 @@ export function displaySelectedItem(sorted, media, photographer){
         })
 
         // on installe evt clic et event dans chaque nouvel elt
-        const photos = document.querySelectorAll('.photographerMedia__work' );
+        const photos = document.querySelectorAll('.photographerMedia__img' );
+        const video = document.querySelectorAll('.photographerMedia__video' )
+        carrouselClickEvent(video, media, photographer);
+        carrouselKeydownEnter(video, media, photographer);
         carrouselClickEvent(photos, media, photographer);
         carrouselKeydownEnter(photos, media, photographer);
         const likesLikes = document.querySelector('.likes__likes');
@@ -34,7 +37,10 @@ export function displaySelectedItem(sorted, media, photographer){
         })
 
         // on installe evt clic et event dans chaque nouvel elt
-        const photos = document.querySelectorAll('.photographerMedia__work' )
+        const photos = document.querySelectorAll('.photographerMedia__img' )
+        const video = document.querySelectorAll('.photographerMedia__video' )
+        carrouselClickEvent(video, media, photographer);
+        carrouselKeydownEnter(video, media, photographer);
         carrouselClickEvent(photos, media, photographer);
         carrouselKeydownEnter(photos, media, photographer);
 
@@ -50,7 +56,7 @@ export function displaySelectedItem(sorted, media, photographer){
         const focusablePhotographerEltsLength = focusablePhotographerElts.length
         const firstFocusable = focusablePhotographerElts[0]
         const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
-
+        
         console.log('focusablePhotographerElts:', focusablePhotographerElts)
         console.log('lastFocusable: ', lastFocusable)
         photographerBody.addEventListener('keydown', (e) => {

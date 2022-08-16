@@ -1,6 +1,6 @@
 import { photographerName } from "../factories/photographer.js";
 
-export function displayCarrousel(media, photographer){
+function displayCarrousel(media, photographer){
     // récuperer header et main header
     const headerPage = document.getElementById('header');
     const mainPage = document.getElementById('main-photographer');
@@ -89,7 +89,7 @@ export function displayCarrousel(media, photographer){
     carrousel.appendChild(carrouselContainer);
 }
 
-export function closeCarrousel(){
+function closeCarrousel(){
     const headerPage = document.getElementById('header')
     const mainPage = document.getElementById('main-photographer')
 
@@ -127,7 +127,6 @@ export function carrouselKeydownEnter(photos, media, photographer){
 // ouvre carrousel avec  clic
 export function carrouselClickEvent(photos, media, photographer){
     photos.forEach(photo => photo.addEventListener('click', () => {
-    
         //carrousel(foundPhotographerMedia, foundPhotographer);
         displayCarrousel(media, photographer);  
         // gestion des bouttons gauche droite et close
@@ -240,6 +239,7 @@ function carrouselKeydownFunction(){
         if(e.key === "ArrowRight" || e.keyCode === 39){
             e.preventDefault();
             const images = document.querySelectorAll('.carrousel__item');
+            // ???? arrayImages != images ????
             const arrayImages = Array.from(images);
             const length = arrayImages.length;
             console.log('avant keydown on right, step; ', step    )
