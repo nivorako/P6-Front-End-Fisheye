@@ -63,7 +63,7 @@ export function getPhotographerMedia( media, photographer){
                 alt=" ${videoTitle()}"
                 class="photographerMedia__video"
             >
-                <source src="./assets/Sample Photos/${name}/${video}" tabindex="5">  
+                <source src="./assets/Sample Photos/${name}/${video}" tabindex="5" autoplay>  
             </video>
             <div class="photographerMedia__comment" > 
                 <p>${videoTitle()}</p>

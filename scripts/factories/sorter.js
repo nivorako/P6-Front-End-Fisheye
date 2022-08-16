@@ -32,6 +32,7 @@ export function sorter(media, photographer){
         })
 
         // le item selecté s'affiche dans sorter__sort ET on affiche les selected item
+        
         sorterItem.forEach(item => {
             item.addEventListener('click', () => {
                 let x;
@@ -51,8 +52,8 @@ export function sorter(media, photographer){
     <div class="sorter">
     <h2 class="sorter__title">Trier par</h2>
     <div class="sorter__container">
-        <div class="sorter__selected btn">
-            <p class="sorter__selectedText">date</p>
+        <div class="sorter__selected btn" tabindex="3">
+            <p class="sorter__selectedText" >date</p>
             <i class="fas fa-angle-down"></i>
         </div>
         <ul class="sorter__items">
@@ -74,43 +75,4 @@ export function sorter(media, photographer){
 }
 
 
-    // // fonction pour afficher le selts séléctés
-    // function displaySelectedItem(sorted){
-    //     const mediaWrapper = document.querySelector('.photographerMedia')
-    //     // selected(elements media, sorted: selectedItem)
-    //     const sortedData = select(media, sorted)
-    //     sortedData.forEach(sorted =>{
-    //         const template = getPhotographerMedia(sorted, photographer);
-    //         mediaWrapper.removeChild(mediaWrapper.firstElementChild)
-    //         mediaWrapper.appendChild(template);
-    //     })
-        
-    // }
-
-    // function select(data, orderBy){
-    //     if(orderBy === "likes"){
-           
-    //         data.sort((a, b) => {
-    //             console.log("likes")
-    //             return b.likes - a.likes
-    //         })
-    
-    //         return data
-    //     }else if(orderBy === "date"){
-    //         console.log("date data: ", data)
-    //         data.sort((a, b) => {
-    //             return new Date(b.date) - new Date(a.date)
-    //         })
-    //         console.log("date")
-    //         return data
-    //     }else if(orderBy === "titre"){
-    //         console.log("titre data: ", data)
-    //         data.sort((a, b) => {
-    //             return (a.title || a.video).localeCompare(b.title || a.video)
-    //         }) 
-            
-    //         return data
-    //     }else{
-    //         throw 'unknow orderBy type'
-    //     }
-    // }
+   

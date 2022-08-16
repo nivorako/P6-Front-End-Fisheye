@@ -10,17 +10,23 @@ export function displaySelectedItem(sorted, media, photographer){
     if(mediaWrapper.firstElementChild){
         sortedData.forEach(sorted =>{
             const template = getPhotographerMedia(sorted, photographer);
+            // enleve ancien mediaWrapper
             mediaWrapper.removeChild(mediaWrapper.firstElementChild)
             mediaWrapper.appendChild(template);
         })
 
         // on installe evt clic et event dans chaque nouvel elt
-        const photos = document.querySelectorAll('.photographerMedia__img' )
+        const photos = document.querySelectorAll('.photographerMedia__work' );
         carrouselClickEvent(photos, media, photographer);
         carrouselKeydownEnter(photos, media, photographer);
         const likesLikes = document.querySelector('.likes__likes');
         likesLikes.textContent = "";
-        likes(media, photographer)
+        // on affiche dans likeslikes le total nbre likes
+        likes(media, photographer);
+    
+        // TRAPP FOCUS PHOTOGRAPHER PAGE
+
+         // si displayPhotographer alors piéger focus dans la page
     }else{
         sortedData.forEach(sorted =>{
             const template = getPhotographerMedia(sorted, photographer);
@@ -28,30 +34,59 @@ export function displaySelectedItem(sorted, media, photographer){
         })
 
         // on installe evt clic et event dans chaque nouvel elt
-        const photos = document.querySelectorAll('.photographerMedia__img' )
+        const photos = document.querySelectorAll('.photographerMedia__work' )
         carrouselClickEvent(photos, media, photographer);
         carrouselKeydownEnter(photos, media, photographer);
+
+        likes(media, photographer);
+
+        // TRAPP FOCUS PHOTOGRAPHER PAGE
+
+         // si displayPhotographer alors piéger focus dans la page
+        const photographerBody = document.getElementById('photographerBody');
+    
+        const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
+        const focusablePhotographerElts = photographerBody.querySelectorAll(focusablePhotographerEltsString);
+        const focusablePhotographerEltsLength = focusablePhotographerElts.length
+        const firstFocusable = focusablePhotographerElts[0]
+        const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
+
+        console.log('focusablePhotographerElts:', focusablePhotographerElts)
+        console.log('lastFocusable: ', lastFocusable)
+        photographerBody.addEventListener('keydown', (e) => {
+            if(e.key === "Tab" || e.keyCode === 9){
+                
+                if(e.shiftKey){
+                    console.log('c est shift')
+                    if(document.activeElement === firstFocusable){
+                        e.preventDefault()
+                        lastFocusable.focus()
+                    }
+                }else{
+                    console.log('c est tab')
+                    if(document.activeElement === lastFocusable){
+                        e.preventDefault()
+                        firstFocusable.focus()
+                    }
+                }
+            }
+        })
     }
 }
 
 function select(data, orderBy){
     if(orderBy === "likes"){
-        console.log('likes data: ', data)
         data.sort((a, b) => {
-            console.log("likes")
             return b.likes - a.likes
         })
 
         return data
     }else if(orderBy === "date"){
-        console.log("date data: ", data)
         data.sort((a, b) => {
             return new Date(b.date) - new Date(a.date)
         })
-        console.log("date")
         return data
     }else if(orderBy === "titre"){
-        console.log("titre data: ", data)
         data.sort((a, b) => {
             return (a.title || a.video).localeCompare(b.title || a.video)
         }) 

@@ -1,12 +1,9 @@
 import { photographersFactory } from "../factories/photographers.js";
-import { getPhotographer, getPhotographerMedia } from "../factories/photographer.js";
+import { getPhotographer } from "../factories/photographer.js";
 import { displayModal, closeModal } from "../utils/contactForm.js";
 import { submitForm } from '../utils/submit.js';
-import { displayCarrousel, closeCarrousel } from "../utils/carrousel.js";
-import { likes } from '../factories/likes.js';
 import { sorter } from '../factories/sorter.js';
 import { displaySelectedItem} from "../utils/sorterSelect.js";
-import { carrouselClickEvent, carrouselKeydownEnter } from '../utils/carrousel.js';
 
 // extraire data de ./data/photographers.json
 async function getPhotographers() {
@@ -138,46 +135,37 @@ async function init() {
 
         // PHOTOGRAPHER__MEDIA
 
-        // partie photographer main
-
         // display sorter selected, install clic and keydown event in each elt
+        // set likes elt 
         const sorterSelected = document.querySelector('.sorter__selectedText').innerHTML;
         displaySelectedItem(sorterSelected, foundPhotographerMedia, foundPhotographer);
-
-
-        
-        // LIKES
-
-         // likes element
-        likes(foundPhotographerMedia, foundPhotographer);
-
 
         // TRAPP FOCUS PHOTOGRAPHER PAGE
 
          // si displayPhotographer alors piéger focus dans la page
-         const photographerBody = document.getElementById('photographerBody');
+        //  const photographerBody = document.getElementById('photographerBody');
     
-         const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
-         const focusablePhotographerElts = photographerBody.querySelectorAll(focusablePhotographerEltsString);
-         const focusablePhotographerEltsLength = focusablePhotographerElts.length
-         const firstFocusable = focusablePhotographerElts[0]
-         const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
+        //  const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
+        //  const focusablePhotographerElts = photographerBody.querySelectorAll(focusablePhotographerEltsString);
+        //  const focusablePhotographerEltsLength = focusablePhotographerElts.length
+        //  const firstFocusable = focusablePhotographerElts[0]
+        //  const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
  
-         photographerBody.addEventListener('keydown', (e) => {
-             if(e.key === "Tab" || e.keyCode === 9){
-                 if(e.shiftKey){
-                     if(document.activeElement === firstFocusable){
-                         e.preventDefault()
-                         lastFocusable.focus()
-                     }
-                 }else{
-                     if(document.activeElement === lastFocusable){
-                         e.preventDefault()
-                         firstFocusable.focus()
-                     }
-                 }
-             }
-         })
+        //  photographerBody.addEventListener('keydown', (e) => {
+        //      if(e.key === "Tab" || e.keyCode === 9){
+        //          if(e.shiftKey){
+        //              if(document.activeElement === firstFocusable){
+        //                  e.preventDefault()
+        //                  lastFocusable.focus()
+        //              }
+        //          }else{
+        //              if(document.activeElement === lastFocusable){
+        //                  e.preventDefault()
+        //                  firstFocusable.focus()
+        //              }
+        //          }
+        //      }
+        //  })
         
     }else{
         // sinon page principale

@@ -114,12 +114,12 @@ export function carrouselKeydownEnter(photos, media, photographer){
             // afficher carrousel(foundPhotographerMedia, foundPhotographer);
             displayCarrousel(media, photographer);  
 
-            arrowsLeftRightCloseFunction(); 
+            carrouselClickFunction(); 
              // mettre focus sur 
             const arrows = document.querySelectorAll('.arrow');
             arrows[0].focus();
            
-            keydownCarrousel();
+            carrouselKeydownFunction();
         }
     }))
 }
@@ -131,26 +131,26 @@ export function carrouselClickEvent(photos, media, photographer){
         //carrousel(foundPhotographerMedia, foundPhotographer);
         displayCarrousel(media, photographer);  
         // gestion des bouttons gauche droite et close
-        arrowsLeftRightCloseFunction();
+        carrouselClickFunction();
         // mettre focus sur 
         const arrows = document.querySelectorAll('.arrow');
         arrows[0].focus();  
 
-        keydownCarrousel();
+        carrouselKeydownFunction();
 
     }))
 }
 
 // gestion des bouttons gauche droite et close au clic
-function arrowsLeftRightCloseFunction(){
+function carrouselClickFunction(){
     const leftArrow = document.querySelector('.fa-chevron-circle-left');
     const rightArrow = document.querySelector('.fa-chevron-circle-right');
     const closeBtn = document.querySelector('.carrousel__close');
     const images = document.querySelectorAll('.carrousel__item');
 
     const nbrImg = images.length;
+   
     let step = 0;
-
     images[0].classList.add("active");
 
     function removeActiveImage(){
@@ -160,20 +160,23 @@ function arrowsLeftRightCloseFunction(){
     }        
 
     leftArrow.addEventListener('click', () => {
+        console.log('avant clic, step = ', step)
         step++;
         if(step >= nbrImg ){
             step = 0;
         }
-        
+        console.log('après clic, step = ', step)
         removeActiveImage()
         images[step].classList.add('active')
     })
 
     rightArrow.addEventListener('click', () => {
+        console.log('avant clic, step = ', step)
         if(step == 0){
             step = nbrImg;
         }
         step--;
+        console.log('après clic, step = ', step)
         removeActiveImage();
         images[step].classList.add('active');
     })
@@ -182,11 +185,12 @@ function arrowsLeftRightCloseFunction(){
     })
 }
 
-function keydownCarrousel(){
+function carrouselKeydownFunction(){
     // evenements keydown sur carrousel
-   const arrows = document.querySelectorAll('.arrow');
-   document.addEventListener('keydown', (e) => {
+    const arrows = document.querySelectorAll('.arrow');
+    let step = 0;
 
+    document.addEventListener('keydown', (e) => {
          // piéger focus dans carrousel
         if(e.key === "Tab" || e.keyCode === 9){
            console.log('ici tab')
@@ -206,50 +210,53 @@ function keydownCarrousel(){
         // fermer carrousel avec touche echap
         if(e.key === "Escape" || e.keyCode === 27){
             closeCarrousel();
-        }
+        }       
+        
+    })
 
-        // gérer images avec arrowLeft  NE FONCTIONNE qu'une seule fois ???
-        if(document.activeElement === arrows[0]){
-            if(e.key === "Enter" || e.keyCode === 13){
-                e.preventDefault();
-                const images = document.querySelectorAll('.carrousel__item');
-                const arrayImages = Array.from(images);
-                const length = arrayImages.length;
-                console.log('length: ', length)
-                let step = 0;
-
-                for(let i=0; i<length; i++){ 
-                    step++; 
-                    if(step === length-1){
-                        step = 0;
-                    }
-                    
-                    images[i].classList.remove("active");
-                }
-                images[step].classList.add('active');     
+    arrows[0].addEventListener('keydown', (e) => {
+        if(e.key === "ArrowLeft" || e.keyCode === 37){
+            e.preventDefault();
+            const images = document.querySelectorAll('.carrousel__item');
+            const arrayImages = Array.from(images);
+            const length = arrayImages.length;
+            console.log(' avant keydownon left, step: ', step)
+            console.log('at left, length: ', length)
+            for(let i=0; i<length; i++){       
+                arrayImages[i].classList.remove("active");
             }
-        }
-
-        // gérer images avec arrowRight NE FONCTIONNE PAS qu'une seule fois ???    
-        if(document.activeElement === arrows[1]){
-            if(e.key === "Enter" || e.keyCode === 13){
-                e.preventDefault();
-                const images = document.querySelectorAll('.carrousel__item');
-                const arrayImages = Array.from(images);
-                const length = arrayImages.length;
-
-                let step = 0;
-
-                for(let i=0; i<length; i++){  
-                    if(step === 0){
-                        step = length-1;
-                    }
-                    step--;
-                    images[i].classList.remove("active");
-                }
-                images[step].classList.add('active')
+            step++; 
+            if(step === length){
+                step = 0;
             }
+            console.log(' après keydownon left, step: ', step)
+            arrayImages[step].classList.add('active');  
+            //arrows[0].focus();
         }
-      
+            
+    })
+
+    arrows[1].addEventListener('keydown', (e) => {
+        if(e.key === "ArrowRight" || e.keyCode === 39){
+            e.preventDefault();
+            const images = document.querySelectorAll('.carrousel__item');
+            const arrayImages = Array.from(images);
+            const length = arrayImages.length;
+            console.log('avant keydown on right, step; ', step    )
+            console.log('images: ', images)
+            console.log('at right, array images length: ', length)
+            console.log("images.length: ", images.length)
+            for(let i=0; i<length; i++){  
+                arrayImages[i].classList.remove("active");
+            }
+            if(step === 0){
+                step = length-1;
+            }
+            step--;
+            console.log('apres keydown on right, step; ', step    )
+            arrayImages[step].classList.add('active')
+            //arrows[1].focus()
+        }
+           
     })
 }
