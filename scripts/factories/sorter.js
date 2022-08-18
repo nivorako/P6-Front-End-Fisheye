@@ -3,6 +3,78 @@ import { displaySelectedItem } from '../utils/sorterSelect.js';
 
 export function sorter(media, photographer){
     const sorterWrapper = document.querySelector('.sorter')
+
+    function sorterOnKeydown(){
+        const sorterItems = document.querySelector('.sorter__items');
+        const sorterSelected = document.querySelector('.sorter__selected');
+        const btnSelected = document.querySelector('.fa-angle-down'); 
+        const sorterItem = sorterItems.querySelectorAll('.sorter__item');
+
+        sorterSelected.addEventListener('keydown', (e) => {
+            if(e.key === "Enter" || e.keyCode === 13){
+                sorterItems.classList.toggle('active'); 
+                btnSelected.classList.toggle('active')
+                // si btnSelected active ==> sorter item active 
+                if(btnSelected.classList.contains('active')){
+                    document.addEventListener(
+                        'click', 
+                        (e) => {
+                            // si le clic se produit hors de sorter__container
+                            if(!e.target.closest(".sorter__container")){
+                                sorterItems.classList.remove('active')
+                                btnSelected.classList.remove('active')
+                            }
+                        }
+                    )   
+                }
+
+                    // piege le focus dans sorter__container
+                    const container = document.querySelector('.sorter__container')
+
+                    container.addEventListener('keydown', (e) => {
+
+                    // fair fonctionner le enter dans chaque item
+                    const sorterItem = sorterItems.querySelectorAll('.sorter__item');
+                    if(e.key === "Enter" || e.keyCode === 13){
+                        sorterItem.forEach(item => {
+                            
+                                let x;
+                                let selectedItem = item.querySelector('.sorter__sort').innerHTML;
+                                x=sorterSelected.querySelector('.sorter__selectedText').innerHTML;
+                                sorterSelected.querySelector('.sorter__selectedText').innerHTML = selectedItem;
+                                item.querySelector('.sorter__sort').innerHTML = x;
+                
+                                displaySelectedItem(selectedItem, media, photographer);
+                                
+                        
+                        })
+                    }
+
+                     // piege le focus dans sorter__container
+                    const focusablePhotographerEltsString = 'div, li ';
+                    const focusablePhotographerElts = container.querySelectorAll(focusablePhotographerEltsString);
+                    const focusableLength = focusablePhotographerElts.length;
+                    const firstFocusable = focusablePhotographerElts[0];
+                    const lastFocusable = focusablePhotographerElts[focusableLength-1];
+                    if(e.key === "Tab" || e.keyCode === 9){
+                        if(e.shiftKey){
+                            if(document.activeElement === firstFocusable){
+                                e.preventDefault()
+                                lastFocusable.focus()
+                            }
+                        }else{
+                            if(document.activeElement === lastFocusable){
+                                e.preventDefault()
+                                firstFocusable.focus()
+                            }
+                        }
+                    }
+                })
+
+            }
+        })
+       
+    }
     
     function sorterOnClick (){
         const sorterItems = document.querySelector('.sorter__items');
@@ -28,10 +100,11 @@ export function sorter(media, photographer){
                         }
                     }
                 )
+                
             }
         })
 
-        // le item selecté s'affiche dans sorter__sort ET on affiche les selected item
+        // le item selecté s'affiche dans sorter__sort ET on affiche les selected item 
         
         sorterItem.forEach(item => {
             item.addEventListener('click', () => {
@@ -44,35 +117,57 @@ export function sorter(media, photographer){
                 displaySelectedItem(selectedItem, media, photographer);
                 
             })
-        })
+        }) 
+
+        // Ici:    DO {piéger le focus dans sorter}  TANT QUE {}
     }
 
-
     const sorter = /*html*/`
-    <div class="sorter">
-    <h2 class="sorter__title">Trier par</h2>
-    <div class="sorter__container">
-        <div class="sorter__selected btn" tabindex="3">
-            <p class="sorter__selectedText" >date</p>
-            <i class="fas fa-angle-down"></i>
+        
+        <h2 class="sorter__title">Trier par</h2>
+        <div class="sorter__container">
+            <div class="sorter__selected btn" tabindex="3">
+                <p class="sorter__selectedText" >date</p>
+                <i class="fas fa-angle-down"></i>
+            </div>
+            <ul class="sorter__items">
+                <li class="sorter__item btn" tabindex="3">
+                    <p class="sorter__sort">likes</p>
+                </li>
+                <li class="sorter__item btn" tabindex="3">
+                    <p class="sorter__sort">titre</p>
+                </li>
+            </ul>
         </div>
-        <ul class="sorter__items">
-            <li class="sorter__item btn" tabindex="3">
-                <p class="sorter__sort">likes</p>
-            </li>
-            <li class="sorter__item btn" tabindex="3">
-                <p class="sorter__sort">titre</p>
-            </li>
-        </ul>
-    </div>
-</div> 
+        
     `;
     // <i class="fas fa-angle-down"></i>
     sorterWrapper.innerHTML = sorter
-
+    sorterOnKeydown()
     sorterOnClick()
     return sorterWrapper
 }
 
 
    
+// const container = sorterWrapper.querySelector('.sorter__container')
+// const focusablePhotographerEltsString = 'div, li ';
+// const focusablePhotographerElts = container.querySelectorAll(focusablePhotographerEltsString);
+// const focusableLength = focusablePhotographerElts.length;
+// const firstFocusable = focusablePhotographerElts[0];
+// const lastFocusable = focusablePhotographerElts[focusableLength-1];
+// container.addEventListener('keydown', (e) => {
+//     if(e.key === "Tab" || e.keyCode === 9){
+//         if(e.shiftKey){
+//             if(document.activeElement === firstFocusable){
+//                 e.preventDefault()
+//                 lastFocusable.focus()
+//             }
+//         }else{
+//             if(document.activeElement === lastFocusable){
+//                 e.preventDefault()
+//                 firstFocusable.focus()
+//             }
+//         }
+//     }
+// })

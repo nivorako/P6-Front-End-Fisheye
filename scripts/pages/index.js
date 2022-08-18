@@ -148,7 +148,7 @@ async function init() {
         // entre <img/> et <div class="photographerMedia__comment" > 
         const photographersBody = document.getElementById('body');
     
-       const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
+        const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])';
         const focusablePhotographerElts = photographersBody.querySelectorAll(focusablePhotographerEltsString);
         const focusablePhotographerEltsLength = focusablePhotographerElts.length
         
