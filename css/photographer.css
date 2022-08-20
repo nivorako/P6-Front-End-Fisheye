@@ -97,6 +97,8 @@ li, ul{
 }
 
 .photographerMedia__comment{
+    text-decoration: none;
+    color: #901C1C;
     display: flex;
     justify-content: space-between;
     align-items: center;

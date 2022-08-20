@@ -28,7 +28,6 @@ export function likes(media, photographer){
             })
             // accessibilité: incrémenter une seule fois likes si enter sur icone
             likeIncrements[i].addEventListener('keydown', (e) => {
-                e.preventDefault();
                 if(e.key === "Enter" || e.keyCode === 13){
                     if(likeIncrements[i].getAttribute("data-increment") === 'false'){
                         photographerLikes[i].textContent++;

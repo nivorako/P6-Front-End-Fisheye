@@ -51,38 +51,38 @@ export function displaySelectedItem(sorted, media, photographer){
          // si displayPhotographer alors piéger focus dans la page
         const photographerBody = document.getElementById('photographerBody');
     
-        // const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]), div:not([disabled]), i:not([disabled]) ';
+        const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), i:not([disabled]) ';
         
-        // const focusablePhotographerElts = photographerBody.querySelectorAll(focusablePhotographerEltsString);
-        // const focusablePhotographerEltsLength = focusablePhotographerElts.length
-        // const firstFocusable = focusablePhotographerElts[0]
-        // const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
+        const focusablePhotographerElts = photographerBody.querySelectorAll(focusablePhotographerEltsString);
+        const focusablePhotographerEltsLength = focusablePhotographerElts.length
+        const firstFocusable = focusablePhotographerElts[0]
+        const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
         
-        // console.log('focusablePhotographerElts:', focusablePhotographerElts)
-        // console.log('lastFocusable: ', lastFocusable)
-        // photographerBody.addEventListener('keydown', (e) => {
-        //     if(e.key === "Tab" || e.keyCode === 9){
+        const likeElts = photographerBody.querySelectorAll('a')
+        const likeEltsLength = likeElts.length
+        
+        photographerBody.addEventListener('keydown', (e) => {
+            if(e.key === "Tab" || e.keyCode === 9){
                 
-        //         if(e.shiftKey){
-        //             console.log('c est shift')
-        //             if(document.activeElement === firstFocusable){
-        //                 e.preventDefault()
-        //                 lastFocusable.focus()
-        //             }
-        //         }else{
-        //             console.log('c est tab')
-        //             if(document.activeElement === lastFocusable){
-        //                 e.preventDefault()
-        //                 firstFocusable.focus()
-        //             }
-        //         }
-        //     }
-        // })
+                if(e.shiftKey){
+                    if(document.activeElement === firstFocusable){
+                        e.preventDefault()
+                        lastFocusable.focus()
+                    }
+                }else{
+                    if(document.activeElement === lastFocusable){
+                        e.preventDefault()
+                        firstFocusable.focus()
+                    }
+                }
+            }
+        })
     }
 }
 
 function select(data, orderBy){
     if(orderBy === "likes"){
+        console.log('order by likes')
         data.sort((a, b) => {
             return b.likes - a.likes
         })
@@ -99,6 +99,7 @@ function select(data, orderBy){
         })
         return data
     }else if(orderBy === "titre"){
+        console.log('order by titre')
         data.sort((a, b) => {
             return (a.title || a.video).localeCompare(b.title || a.video)
         }) 
