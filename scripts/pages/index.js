@@ -70,6 +70,7 @@ async function init() {
                 submitForm();
             })
 
+            // fermer modal avec clic btnclose
             const btnClose = document.querySelector('.modal__close')
             btnClose.addEventListener('click', () => {
                 closeModal();
@@ -85,38 +86,29 @@ async function init() {
                 closeModal();
             })
 
-            // si modal ouvert, tab reste dans modal
-
-            // récup modalForm
+            // piege le focus dans modal 
             const modalForm = document.querySelector('.modal__form');           
-            const inputElt = document.querySelectorAll('.input');
-            const inputEltLength = inputElt.length;
-            const firstInputElt = inputElt[0];
-            const lastInputElt = inputElt[inputEltLength - 1];
-            
-            // modalElt.addEventListener('keydown', )
             modalForm.addEventListener('keydown', (e) => {
-                 // si key === tab
-                if(e.key === "Tab" || e.keyCode === 9){
-                    // si key === shift ( shift )
+                
+                const inputElt = document.querySelectorAll('.input');
+                const inputEltLength = inputElt.length;
+                const firstInputElt = inputElt[0];
+                const lastInputElt = inputElt[inputEltLength - 1];
+                
+                if(e.key === "Tab" || e.keyCode === 9){ 
                     if(e.shiftKey){
-                        //si firstElt === document.activeElement
                         if(document.activeElement === firstInputElt){
-                            // mettre focus sur lastElt
                             e.preventDefault();
                             lastInputElt.focus();
                         }
-                        // sinon ( tab )
                     }else{
-                         // si lastElt === document.activeElement
                          if(document.activeElement === lastInputElt){
-                             // mettre focus sur firstElt
                              e.preventDefault();
                              firstInputElt.focus();
                          }  
                     }   
                 }
-                // si document.activeElement === lastInputElt (submit) et e.key === enter alors submit
+                // si document.activeElement === (submit) et e.key === enter alors submit
                 if((document.activeElement === lastInputElt) && (e.key === "Enter" || e.keyCode === 13)){
                     e.preventDefault();
                     submitForm();

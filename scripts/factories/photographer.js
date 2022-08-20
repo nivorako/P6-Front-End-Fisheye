@@ -42,7 +42,7 @@ export function getPhotographerMedia( media, photographer){
     }
 
     const photographerPhoto = /*html*/`
-        <a href="#">
+        <article>
             <img src="./assets/Sample Photos/${name}/${image}" class="photographerMedia__img" alt="une image qui représente le ${title}" tabindex="4"   />
         </a>
         <div class="photographerMedia__comment" >
@@ -52,12 +52,12 @@ export function getPhotographerMedia( media, photographer){
                 <span class="photographerLikes">${likes}</span>
                 <i class="fa fa-heart faLikeIncrement" data-increment="false" tabindex="4" ></i>
             </div>
-        </div> 
+        </article> 
       
     `;
    
     const photographerVideo = /*html*/`
-        <a href="#">
+        <article>
             <video 
                 type="video/mp4"
                 title=""
@@ -66,7 +66,7 @@ export function getPhotographerMedia( media, photographer){
             >
                 <source src="./assets/Sample Photos/${name}/${video}" tabindex="4" autoplay>  
             </video>
-        </a>
+        </article>
         <div class="photographerMedia__comment" > 
             <p>${videoTitle()}</p>
             <div class="photographerMedia__details">

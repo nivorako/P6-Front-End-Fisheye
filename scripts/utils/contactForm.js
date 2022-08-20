@@ -1,6 +1,4 @@
 
-
-
 export function displayModal(photographer){
     const { name } = photographer
     // récupérer la partie header et main de la page photographe
@@ -10,8 +8,7 @@ export function displayModal(photographer){
     // hidden!: aria et class
     headerPage.setAttribute('aria-hidden', 'true')
     mainPage.setAttribute('aria-hidden', 'true') 
-    // headerPage.classList.add('hidden')
-    // mainPage.classList.add('hidden')
+
     headerPage.style.display = "none"
     mainPage.style.display = 'none'
 

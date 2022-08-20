@@ -36,6 +36,7 @@ export function sorter(media, photographer) {
                     container.addEventListener('keydown', (e) => {
                         if (e.key === "Tab" || e.keyCode === 9) {
                             if (e.shiftKey) {
+                               
                                 if (document.activeElement === firstFocusable) {                
                                     e.preventDefault()
                                     lastFocusable.focus()
@@ -69,49 +70,6 @@ export function sorter(media, photographer) {
             }
         }))
 
-        // sorterItems.addEventListener('keydown', (e) => {
-
-        //     //faire fonctionner le enter dans chaque item
-        //     const sorterItem = sorterItems.querySelectorAll('.sorter__item');
-        //     sorterItem.forEach(item => {
-        //         if (e.key === "Enter" || e.keyCode === 13) {
-        //             e.preventDefault();
-            
-        //             let x;
-        //             let selectedItem = item.querySelector('.sorter__sort').innerHTML;
-        //             x = sorterSelected.querySelector('.sorter__selectedText').innerHTML;
-        //             sorterSelected.querySelector('.sorter__selectedText').innerHTML = selectedItem;
-        //             item.querySelector('.sorter__sort').innerHTML = x;
-
-        //             displaySelectedItem(selectedItem, media, photographer);
-        //         }
-        //     })
-            
-
-            // piege le focus dans sorter__container
-            // const container = document.querySelector('.sorter__container');
-            // const focusablePhotographerEltsString = 'div, li ';
-            // const focusablePhotographerElts = container.querySelectorAll(focusablePhotographerEltsString);
-            // const focusableLength = focusablePhotographerElts.length;
-            // const firstFocusable = focusablePhotographerElts[0];
-            // const lastFocusable = focusablePhotographerElts[focusableLength - 1];
-            
-            // if (e.key === "Tab" || e.keyCode === 9) {
-            //     if (e.shiftKey) {
-            //         if (document.activeElement === lastFocusable) {
-            //             console.log('lastFocusable: ', lastFocusable)
-            //             e.preventDefault()
-            //             lastFocusable.focus()
-            //         }
-            //     } else {
-            //         if (document.activeElement === lastFocusable) {
-            //             console.log('firstFocusable: ', firstFocusable)
-            //             e.preventDefault()
-            //             firstFocusable.focus()
-            //         }
-            //     }
-            // }    
-        //})
     }
 
     function sorterOnClick() {
@@ -179,7 +137,7 @@ export function sorter(media, photographer) {
         </div>
         
     `;
-    // <i class="fas fa-angle-down"></i>
+   
     sorterWrapper.innerHTML = sorter
     sorterOnKeydown()
     sorterOnClick()

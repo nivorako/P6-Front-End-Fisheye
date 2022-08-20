@@ -2,7 +2,6 @@ export function likes(media, photographer){
 
     //definir total nbre likes pour photographer
     const wrapper = document.querySelector('.likes')
-
     let photographerLength = media.length 
     let nbrLikes = 0
 
