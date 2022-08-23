@@ -11,7 +11,7 @@ export function getPhotographer(photographer){
             <span> ${tagline} </span>
         </div>
         <div class="photographerHeader__btn">
-            <button class=" btn" tabindex="2">Contactez-moi</button>
+            <button class=" btn" type="button" tabindex="2">Contactez-moi</button>
         </div>
         <div class="photographerHeader__img" >
             <img src="assets/photographers/${portrait}" alt="photographie de ${name}"/>
@@ -42,9 +42,8 @@ export function getPhotographerMedia( media, photographer){
     }
 
     const photographerPhoto = /*html*/`
-        <article>
-            <img src="./assets/Sample Photos/${name}/${image}" class="photographerMedia__img" alt="une image qui représente le ${title}" tabindex="4"   />
-        </a>
+       
+        <img src="./assets/Sample Photos/${name}/${image}" class="photographerMedia__img" alt="une image qui représente le ${title}" tabindex="4" aria-label=""/>
         <div class="photographerMedia__comment" >
             <p>${date}</p> 
             <p>${title}</p>
@@ -52,21 +51,21 @@ export function getPhotographerMedia( media, photographer){
                 <span class="photographerLikes">${likes}</span>
                 <i class="fa fa-heart faLikeIncrement" data-increment="false" tabindex="4" ></i>
             </div>
-        </article> 
+        
       
     `;
    
     const photographerVideo = /*html*/`
-        <article>
-            <video 
-                type="video/mp4"
-                title=""
-                alt=" ${videoTitle()}"
-                class="photographerMedia__video"
-            >
-                <source src="./assets/Sample Photos/${name}/${video}" tabindex="4" autoplay>  
-            </video>
-        </article>
+        
+        <video 
+            type="video/mp4"
+            title=""
+            alt=" ${videoTitle()}"
+            class="photographerMedia__video"
+        >
+            <source src="./assets/Sample Photos/${name}/${video}" tabindex="4" >  
+        </video>
+        
         <div class="photographerMedia__comment" > 
             <p>${videoTitle()}</p>
             <div class="photographerMedia__details">

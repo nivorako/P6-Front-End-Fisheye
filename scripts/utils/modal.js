@@ -21,7 +21,7 @@ export function displayModal(photographer){
                 <h2 id="modalTitle">Contactez-moi</h2>
                 <p class="modal__name">${name}</p>
             </div>
-            <img src="assets/icons/close.svg" role="button" aria-label="Fermer" class="modal__close" tabindex="0"/>
+            <img src="assets/icons/close.svg" role="button" aria-label="Fermer la modal" class="modal__close" tabindex="0"/>
             
         </header>
         <form class="modal__form">
@@ -45,7 +45,7 @@ export function displayModal(photographer){
     //afficher modal et lui mettre focus (dans le 1er input)
     modal.style.display = "block"
     const firstInput = modal.querySelector('input')
-    firstInput.focus();
+    firstInput.focus();   
 }
 
 export function closeModal(){
@@ -62,4 +62,7 @@ export function closeModal(){
     
     modal.innerHTML = ""
     modal.style.display = "none"
+
+   
 }
+

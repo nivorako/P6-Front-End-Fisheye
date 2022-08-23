@@ -51,7 +51,7 @@ export function displaySelectedItem(sorted, media, photographer){
          // si displayPhotographer alors piéger focus dans la page
         const photographerBody = document.getElementById('photographerBody');
     
-        const focusablePhotographerEltsString = ' a[href]:not([disabled]), article, button:not([disabled]), i:not([disabled])';
+        const focusablePhotographerEltsString = '[href], [tabindex]:not([tabindex="-1"], button:not([disabled])';
         
         const focusablePhotographerElts = photographerBody.querySelectorAll(focusablePhotographerEltsString);
         const focusablePhotographerEltsLength = focusablePhotographerElts.length

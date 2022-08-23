@@ -20,12 +20,12 @@ export function sorter(media, photographer) {
                         (e) => {
                             // si le clic se produit hors de sorter__container
                             if (!e.target.closest(".sorter__container")) {
+                                console.log('alert je ferme')
                                 sorterItems.classList.remove('active')
                                 btnSelected.classList.remove('active')
                             }
                         }
                     )   
-                    
                      // piege le focus dans sorter__container
                     const container = document.querySelector('.sorter__container');
                     const focusablePhotographerEltsString = 'div, li ';
@@ -78,21 +78,30 @@ export function sorter(media, photographer) {
         const btnSelected = document.querySelector('.fa-angle-down');
         const sorterItem = sorterItems.querySelectorAll('.sorter__item');
 
-
         // chaque fois qu on clicke sur sorter selected, on ferme ou on ouvre sorter__item
         sorterSelected.addEventListener('click', () => {
 
             sorterItems.classList.toggle('active');
-            btnSelected.classList.toggle('active')
+            btnSelected.classList.toggle('active');
+            
+            const sorterSelectedAfter = window.getComputedStyle(sorterSelected, "::after");
+            sorterSelectedAfter
+            sorterSelected.style.setProperty("transrorm", "rotate(180deg)")
+            if(sorterItems.classList.contains('active')){
+                sorterItems.setAttribute('aria-hidden', 'false');
+            }else{
+                sorterItems.setAttribute('aria-hidden', 'true');
+            }
+
             // si btnSelected active ==> sorter item active 
-            if (btnSelected.classList.contains('active')) {
+            if (sorterItems.classList.contains('active')) {
                 document.addEventListener(
                     'click',
                     (e) => {
                         // si le clic se produit hors de sorter__container
                         if (!e.target.closest(".sorter__container")) {
-                            sorterItems.classList.remove('active')
-                            btnSelected.classList.remove('active')
+                            sorterItems.classList.remove('active');
+                            btnSelected.classList.remove('active');
                         }
                     }
                 )
@@ -120,18 +129,18 @@ export function sorter(media, photographer) {
 
     const sorter = /*html*/`
         
-        <h2 class="sorter__title">Trier par</h2>
-        <div class="sorter__container">
-            <div class="sorter__selected btn" tabindex="3">
-                <p class="sorter__selectedText" >date</p>
+        <h2 class="sorter__title" id="titre">Trier par</h2>
+        <div class="sorter__container" id="sorterContainer" >
+            <div class="sorter__selected btn" tabindex="3" >
+                <p class="sorter__selectedText" id="affiche-choix-tri">date</p>
                 <i class="fas fa-angle-down"></i>
             </div>
-            <ul class="sorter__items">
-                <li class="sorter__item btn" tabindex="3">
-                    <p class="sorter__sort">likes</p>
+            <ul class="sorter__items" aria-hidden="true" >
+                <li class="sorter__item  btn" tabindex="3" >
+                    <p class="sorter__sort" id="choix-tri">likes</p>
                 </li>
-                <li class="sorter__item btn" tabindex="3">
-                    <p class="sorter__sort">titre</p>
+                <li class="sorter__item  btn" tabindex="3" >
+                    <p class="sorter__sort" id="choix-tri">titre</p>
                 </li>
             </ul>
         </div>

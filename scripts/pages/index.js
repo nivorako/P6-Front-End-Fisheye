@@ -1,6 +1,6 @@
 import { photographersFactory } from "../factories/photographers.js";
 import { getPhotographer } from "../factories/photographer.js";
-import { displayModal, closeModal } from "../utils/contactForm.js";
+import { displayModal, closeModal } from "../utils/modal.js";
 import { submitForm } from '../utils/submit.js';
 import { sorter } from '../factories/sorter.js';
 import { displaySelectedItem} from "../utils/sorterSelect.js";
@@ -60,10 +60,15 @@ async function init() {
         btnPlay.addEventListener('click', () => {
 
             // display & create modal
-            displayModal(foundPhotographer);
+            displayModal(foundPhotographer); 
+            
+            // document.addEventListener('click', (e) => {
+            //     if(!e.target.closest(".modal")){
+                   
+            //     }
+            // })
 
-
-            // sbmit modal
+            // submit modal
             const formSubmit = document.querySelector('.modal__form')
             formSubmit.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -73,9 +78,9 @@ async function init() {
             // fermer modal avec clic btnclose
             const btnClose = document.querySelector('.modal__close')
             btnClose.addEventListener('click', () => {
+                
                 closeModal();
             })
-
 
             // fermer modal avec echap
             const modalElt = document.querySelector('.modal');
@@ -114,10 +119,8 @@ async function init() {
                     submitForm();
                 }
 
-            })
+            })    
         })
-
-
 
 
         // SORTER

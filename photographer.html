@@ -2,12 +2,16 @@
 <html lang="fr">
 
 <head>
+    <meta charset="utf-8">
+
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
+    
     <link rel="icon" type="image/png" href="assets/favicon.png"/>
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet"/>
+    
     <script src="https://kit.fontawesome.com/4ed0ec6e4e.js" crossorigin="anonymous"></script>
+    
     <title>Fisheye - photographe </title>
 </head>
 
@@ -24,13 +28,13 @@
     </header>
     <main id="main-photographer">
         <section class="photographerHeader"></section>
-        <div class="sorter"></div>
+        <div class="sorter" role="button" aria-describedby="titre"></div>
         <section class="photographerMedia"></section>
         <div class="likes"></div>
     </main>
 
     <aside class="carrousel"></aside>
-    <aside id="modal" class="modal" aria-hidden="true" role="dialog" aria-describedby="modalTitle"></aside>
+    <aside id="modal" class="modal" ></aside>
     
     
     <script type="module" src="./scripts/pages/index.js"></script>
