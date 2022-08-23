@@ -27,9 +27,41 @@ export function displaySelectedItem(sorted, media, photographer){
         // on affiche dans likeslikes le total nbre likes
         likes(media, photographer);
     
-        // TRAPP FOCUS PHOTOGRAPHER PAGE
+          // TRAPP FOCUS PHOTOGRAPHER PAGE
 
          // si displayPhotographer alors piéger focus dans la page
+         const photographerBody = document.getElementById('photographerBody');
+    
+         const focusablePhotographerEltsString = '[href], [tabindex]:not([tabindex="-1"], button:not([disabled])';
+         
+         const focusablePhotographerElts = photographerBody.querySelectorAll(focusablePhotographerEltsString);
+         const focusablePhotographerEltsLength = focusablePhotographerElts.length
+         const firstFocusable = focusablePhotographerElts[0]
+         const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
+         
+         console.log('focusablePhotographerElts:', focusablePhotographerElts)
+         photographerBody.addEventListener('keydown', (e) => {
+             if(e.key === "Tab" || e.keyCode === 9){
+                 console.log('keydown: tab / shift')
+                 if(e.shiftKey){
+                     console.log('keydown:  shift')
+                     if(document.activeElement === firstFocusable){
+                         console.log('firstfocusable: ', firstFocusable)
+                         console.log('lastfocusable: ', lastFocusable)
+                         e.preventDefault()
+                         lastFocusable.focus()
+                     }
+                 }else{
+                     console.log('keydown: tab ')
+                     if(document.activeElement === lastFocusable){
+                         console.log("last focusable: ", lastFocusable)
+                         e.preventDefault()
+                         firstFocusable.focus()
+                     }
+                 }
+                 
+             }
+         })
     }else{
         sortedData.forEach(sorted =>{
             const template = getPhotographerMedia(sorted, photographer);

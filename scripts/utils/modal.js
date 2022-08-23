@@ -45,7 +45,21 @@ export function displayModal(photographer){
     //afficher modal et lui mettre focus (dans le 1er input)
     modal.style.display = "block"
     const firstInput = modal.querySelector('input')
-    firstInput.focus();   
+    firstInput.focus(); 
+     setTimeout(closeClicOutside(), 1000) 
+    
+}
+
+function closeClicOutside(){
+    window.addEventListener('click', (e) => {
+    
+        const isClickedInside = modal.contains(e.target)
+       
+        if(isClickedInside === false){
+           closeModal()
+           
+        }
+     })
 }
 
 export function closeModal(){

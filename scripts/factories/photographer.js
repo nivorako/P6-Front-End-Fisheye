@@ -43,7 +43,7 @@ export function getPhotographerMedia( media, photographer){
 
     const photographerPhoto = /*html*/`
        
-        <img src="./assets/Sample Photos/${name}/${image}" class="photographerMedia__img" alt="une image qui représente le ${title}" tabindex="4" aria-label=""/>
+        <img src="./assets/Sample Photos/${name}/${image}" class="photographerMedia__img" alt="une image qui représente le ${title}" tabindex="4" />
         <div class="photographerMedia__comment" >
             <p>${date}</p> 
             <p>${title}</p>
@@ -58,12 +58,14 @@ export function getPhotographerMedia( media, photographer){
     const photographerVideo = /*html*/`
         
         <video 
+            
             type="video/mp4"
             title=""
             alt=" ${videoTitle()}"
             class="photographerMedia__video"
+            tabindex="4"
         >
-            <source src="./assets/Sample Photos/${name}/${video}" tabindex="4" >  
+            <source src="./assets/Sample Photos/${name}/${video}"  >  
         </video>
         
         <div class="photographerMedia__comment" > 

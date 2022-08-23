@@ -62,12 +62,8 @@ async function init() {
             // display & create modal
             displayModal(foundPhotographer); 
             
-            // document.addEventListener('click', (e) => {
-            //     if(!e.target.closest(".modal")){
-                   
-            //     }
-            // })
-
+            
+            
             // submit modal
             const formSubmit = document.querySelector('.modal__form')
             formSubmit.addEventListener('submit', (e) => {
