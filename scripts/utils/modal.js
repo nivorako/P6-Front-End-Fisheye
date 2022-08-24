@@ -46,21 +46,9 @@ export function displayModal(photographer){
     modal.style.display = "block"
     const firstInput = modal.querySelector('input')
     firstInput.focus(); 
-     setTimeout(closeClicOutside(), 1000) 
     
 }
 
-function closeClicOutside(){
-    window.addEventListener('click', (e) => {
-    
-        const isClickedInside = modal.contains(e.target)
-       
-        if(isClickedInside === false){
-           closeModal()
-           
-        }
-     })
-}
 
 export function closeModal(){
     const headerPage = document.getElementById('header')

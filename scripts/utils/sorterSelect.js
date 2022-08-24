@@ -93,19 +93,13 @@ export function displaySelectedItem(sorted, media, photographer){
         console.log('focusablePhotographerElts:', focusablePhotographerElts)
         photographerBody.addEventListener('keydown', (e) => {
             if(e.key === "Tab" || e.keyCode === 9){
-                console.log('keydown: tab / shift')
                 if(e.shiftKey){
-                    console.log('keydown:  shift')
                     if(document.activeElement === firstFocusable){
-                        console.log('firstfocusable: ', firstFocusable)
-                        console.log('lastfocusable: ', lastFocusable)
                         e.preventDefault()
                         lastFocusable.focus()
                     }
                 }else{
-                    console.log('keydown: tab ')
                     if(document.activeElement === lastFocusable){
-                        console.log("last focusable: ", lastFocusable)
                         e.preventDefault()
                         firstFocusable.focus()
                     }
@@ -118,24 +112,20 @@ export function displaySelectedItem(sorted, media, photographer){
 
 function select(data, orderBy){
     if(orderBy === "likes"){
-        console.log('order by likes')
         data.sort((a, b) => {
             return b.likes - a.likes
         })
 
         return data
     }else if(orderBy === "date"){
-        console.log("order by : date")
         data.sort((a, b) => {
             const dateA = a.date.split('-')
             const dateB = b.date.split('-')
-            //console.log('a.date: ', a.date + "  " + b.date)
             return new Date(dateB[0], dateB[1], dateB[2]).getTime() - new Date(dateA[0], dateA[1], dateA[2]).getTime()
            
         })
         return data
     }else if(orderBy === "titre"){
-        console.log('order by titre')
         data.sort((a, b) => {
             return (a.title || a.video).localeCompare(b.title || a.video)
         }) 

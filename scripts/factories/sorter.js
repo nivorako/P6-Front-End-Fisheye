@@ -20,7 +20,6 @@ export function sorter(media, photographer) {
                         (e) => {
                             // si le clic se produit hors de sorter__container
                             if (!e.target.closest(".sorter__container")) {
-                                console.log('alert je ferme')
                                 sorterItems.classList.remove('active')
                                 btnSelected.classList.remove('active')
                             }

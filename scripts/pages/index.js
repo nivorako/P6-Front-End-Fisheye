@@ -31,6 +31,20 @@ function displayPhotographerData(photographers) {
     });
 };
 
+// fermer modal si on click en dehors
+function closeClicOutsideModal(){
+    //const body = document.getElementById('photographerBody')
+    const modal = document.querySelector('.modal')
+    if(modal.style.display === "block"){
+        document.addEventListener('click', (e) => {
+            if(!e.target.closest('.modal')){
+                closeModal()
+            }
+           
+        }, true)
+    }
+}
+
 async function init() {
 
     // Récupère les datas des photographes
@@ -62,8 +76,7 @@ async function init() {
             // display & create modal
             displayModal(foundPhotographer); 
             
-            
-            
+            closeClicOutsideModal()
             // submit modal
             const formSubmit = document.querySelector('.modal__form')
             formSubmit.addEventListener('submit', (e) => {
