@@ -129,8 +129,8 @@ export function sorter(media, photographer) {
 
     function nom(){
         
-        const sort = document.querySelector('.sorter__selectedText').innerHTML;
-        console.log('sort: ', sort)
+        const sort = document.querySelector('.sorter__selectedText');
+        sort.setAttribute("aria-label", sort.innerHTML)
         
     }
 
@@ -138,7 +138,7 @@ export function sorter(media, photographer) {
         
         <h2 class="sorter__title" id="titre">Trier par</h2>
         <div class="sorter__container" id="sorterContainer" >
-            <div class="sorter__selected btn" tabindex="3" role="button" aria-label="choix du tri ">
+            <div class="sorter__selected btn" tabindex="3" role="button">
                 <p class="sorter__selectedText" id="affiche-choix-tri">date</p>
                 <i class="fas fa-angle-down"></i>
             </div>
