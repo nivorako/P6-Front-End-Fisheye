@@ -130,6 +130,10 @@ li, ul{
     align-items: center;
 }
 
+.photographerMedia__comment h3{
+    font-size: var(--f16);
+}
+
 .photographerMedia__details span, .photographerMedia__details i{
     margin-left: 10px;
 }

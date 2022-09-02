@@ -31,7 +31,7 @@ h1 {
     color: var(--primary);
 }
 
-.logo {
+.header__logo {
     height: 50px;
     margin-left: 100px;
 }

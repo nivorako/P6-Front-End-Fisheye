@@ -69,8 +69,8 @@ export function displaySelectedItem(sorted, media, photographer){
         })
 
         // on installe evt clic et event dans chaque nouvel elt
-        const photos = document.querySelectorAll('.photographerMedia__img' )
-        const video = document.querySelectorAll('.photographerMedia__video' )
+        const photos = document.querySelectorAll('.photographerMedia__img' );
+        const video = document.querySelectorAll('.photographerMedia__video' );
         carrouselClickEvent(video, media, photographer);
         carrouselKeydownEnter(video, media, photographer);
         carrouselClickEvent(photos, media, photographer);
@@ -83,29 +83,30 @@ export function displaySelectedItem(sorted, media, photographer){
          // si displayPhotographer alors piéger focus dans la page
         const photographerBody = document.getElementById('photographerBody');
     
-        const focusablePhotographerEltsString = '[href], [tabindex]:not([tabindex="-1"], button:not([disabled])';
+        const focusablePhotographerEltsString = 'a[href]:not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"])';
         
         const focusablePhotographerElts = photographerBody.querySelectorAll(focusablePhotographerEltsString);
-        const focusablePhotographerEltsLength = focusablePhotographerElts.length
-        const firstFocusable = focusablePhotographerElts[0]
+        const focusablePhotographerEltsLength = focusablePhotographerElts.length;
+        const firstFocusable = focusablePhotographerElts[0];
         const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
-        
-        console.log('focusablePhotographerElts:', focusablePhotographerElts)
+        firstFocusable.focus();
+        console.log('focusablePhotographerElts:', focusablePhotographerElts);
         photographerBody.addEventListener('keydown', (e) => {
             if(e.key === "Tab" || e.keyCode === 9){
                 if(e.shiftKey){
                     if(document.activeElement === firstFocusable){
-                        e.preventDefault()
-                        lastFocusable.focus()
+                        e.preventDefault();
+                        lastFocusable.focus();
                     }
                 }else{
                     if(document.activeElement === lastFocusable){
-                        e.preventDefault()
-                        firstFocusable.focus()
+                        e.preventDefault();
+                        firstFocusable.focus();
                     }
                 }
-                
             }
+                
+           // }
         })
     }
 }

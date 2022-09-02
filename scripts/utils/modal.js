@@ -17,17 +17,17 @@ export function displayModal(photographer){
     modal.setAttribute('aria-hidden', 'false')
     const modalElement = /*html*/`
         <header class="modal__header">
-            <div class="modal__function" >
+            <div class="modal__function">
                 <h2 id="modalTitle">Contactez-moi</h2>
                 <p class="modal__name">${name}</p>
             </div>
-            <img src="assets/icons/close.svg" role="button" aria-label="Fermer la modal" class="modal__close" tabindex="0"/>
+            <img src="assets/icons/close.svg" class="modal__close" tabindex="0" role="button" aria-label="fermer le modal"/>
             
         </header>
         <form class="modal__form">
-                <label for="lastName">Prénom</label>
-                <input  class="input" type="text" name="lastname" id="lastName" tabindex="0"/>
-                <label for="firstName">Nom</label>
+                <label for="lastName" id="prenom">Prénom</label>
+                <input  class="input" type="text" name="lastname" id="lastName" tabindex="0" aria-labelledby="prenom"/>
+                <label for="firstName" >Nom</label>
                 <input  class="input" type="text" name="firstName" id="firstName" tabindex="0">
                 <label for="email">email</label>
                 <input  class="input" type="email" name="email" id="email" tabindex="0">
@@ -44,7 +44,7 @@ export function displayModal(photographer){
     
     //afficher modal et lui mettre focus (dans le 1er input)
     modal.style.display = "block"
-    const firstInput = modal.querySelector('input')
+    const firstInput = modal.querySelector('.modal__function')
     firstInput.focus(); 
     
 }

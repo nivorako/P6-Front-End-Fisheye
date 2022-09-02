@@ -13,6 +13,8 @@ export function photographersFactory(data) {
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
         img.setAttribute('alt', `photographie de ${name}`)
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', `ouvre la page pour ${name}`);
 
         const cityElt = document.createElement('p');
         cityElt.innerHTML = `${country}: ${city}`;
@@ -46,7 +48,7 @@ export function photographersFactory(data) {
         article.appendChild(label)
         return (article);
     }
-    
+
     return {  getUserCardDOM }
 }
 

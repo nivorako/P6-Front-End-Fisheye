@@ -37,7 +37,8 @@ function closeClicOutsideModal(){
     const modal = document.querySelector('.modal')
     if(modal.style.display === "block"){
         document.addEventListener('click', (e) => {
-            if(!e.target.closest('.modal')){
+            if(!e.target.classList == 'modal'){
+            //if(!e.target.closest('.modal')){
                 closeModal()
             }
            
@@ -103,25 +104,50 @@ async function init() {
             // piege le focus dans modal 
             const modalForm = document.querySelector('.modal__form');           
             modalForm.addEventListener('keydown', (e) => {
+
+                const modal = document.querySelector('.modal');
+                const focusElets = '[tabindex]:not([tabindex="-1"]';
+                const modalFocusElts = modal.querySelectorAll(focusElets);
                 
-                const inputElt = document.querySelectorAll('.input');
-                const inputEltLength = inputElt.length;
-                const firstInputElt = inputElt[0];
-                const lastInputElt = inputElt[inputEltLength - 1];
-                
+
+                const modalFocusEltsLength = modalFocusElts.length;
+                const firstmodalFocusElt = modalFocusElts[0];
+                const lastmodalFocusElt = modalFocusElts[modalFocusEltsLength - 1];
+
                 if(e.key === "Tab" || e.keyCode === 9){ 
                     if(e.shiftKey){
-                        if(document.activeElement === firstInputElt){
+                        if(document.activeElement === firstmodalFocusElt){
                             e.preventDefault();
-                            lastInputElt.focus();
+                            lastmodalFocusElt.focus();
                         }
                     }else{
-                         if(document.activeElement === lastInputElt){
+                         if(document.activeElement === lastmodalFocusElt){
                              e.preventDefault();
-                             firstInputElt.focus();
+                             firstmodalFocusElt.focus();
                          }  
                     }   
                 }
+
+                // const inputElt = document.querySelectorAll('.input');
+                // const inputEltLength = inputElt.length;
+                // const firstInputElt = inputElt[0];
+                // const lastInputElt = inputElt[inputEltLength - 1];
+                
+                // if(e.key === "Tab" || e.keyCode === 9){ 
+                //     if(e.shiftKey){
+                //         if(document.activeElement === firstInputElt){
+                //             e.preventDefault();
+                //             lastInputElt.focus();
+                //         }
+                //     }else{
+                //          if(document.activeElement === lastInputElt){
+                //              e.preventDefault();
+                //              firstInputElt.focus();
+                //          }  
+                //     }   
+                // }
+
+
                 // si document.activeElement === (submit) et e.key === enter alors submit
                 if((document.activeElement === lastInputElt) && (e.key === "Enter" || e.keyCode === 13)){
                     e.preventDefault();
@@ -148,6 +174,10 @@ async function init() {
     }else{
         // sinon page principale
         displayPhotographerData(photographers);
+
+        // mettre le focus sur logo (1er element)
+        const logo = document.querySelector('.header__link');
+        logo.focus();
         // si displayPhotographers alors piéger focus dans la page : Le focus reste bloqué dans video,
         // entre <img/> et <div class="photographerMedia__comment" > 
         const photographersBody = document.getElementById('body');
@@ -176,5 +206,4 @@ async function init() {
         })
     }
 };
-
 init();

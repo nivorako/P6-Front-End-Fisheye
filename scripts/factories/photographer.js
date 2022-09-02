@@ -6,15 +6,22 @@ export function getPhotographer(photographer){
  
     const photograph = /*html*/`
         <div class="photographerHeader__id"> 
-            <h1>${name}</h1>
-            <p> ${city}: ${country} </p>
+            <h1 tabindex="2">${name}</h1>
+            <p tabindex="2"> ${city}: ${country} </p>
             <span> ${tagline} </span>
         </div>
         <div class="photographerHeader__btn">
-            <button class=" btn" type="button" tabindex="2">Contactez-moi</button>
+            <button 
+                class=" btn" 
+                type="button" 
+                aria-label="ouvre le formulaire pour contacter ${name}" 
+                tabindex="2"
+            >
+            Contactez-moi
+            </button>
         </div>
         <div class="photographerHeader__img" >
-            <img src="assets/photographers/${portrait}" alt="photographie de ${name}"/>
+            <img src="assets/photographers/${portrait}" alt="photographie de ${name}" tabindex="2"/>
         </div>
     `;
 
@@ -43,22 +50,35 @@ export function getPhotographerMedia( media, photographer){
 
     const photographerPhoto = /*html*/`
        
-        <img src="./assets/Sample Photos/${name}/${image}" class="photographerMedia__img" alt="une image qui représente le ${title}" tabindex="4" />
+        <img 
+            role="bouton"
+            aria-label="acceder au carrossel de ${name}"
+            src="./assets/Sample Photos/${name}/${image}" 
+            class="photographerMedia__img" 
+            alt="une image qui représente le ${title}" 
+            tabindex="4" 
+        />
         <div class="photographerMedia__comment" >
-            <p>${date}</p> 
-            <p>${title}</p>
-            <div class="photographerMedia__details">
+            <h3 tabindex="4">${title}</h3>
+            <div class="photographerMedia__details" role="button" aria-labelledby="bouton-likes">
                 <span class="photographerLikes">${likes}</span>
-                <i class="fa fa-heart faLikeIncrement" data-increment="false" tabindex="4" ></i>
+                <i 
+                   id="bouton-likes"
+                    class="fa fa-heart faLikeIncrement" 
+                    data-increment="false" 
+                    tabindex="4" 
+                >
+                </i>
             </div>
         
-      
+       </div>
     `;
    
     const photographerVideo = /*html*/`
         
         <video 
-            
+            role="button"
+            aria-label="acceder au carrossel"
             type="video/mp4"
             title=""
             alt=" ${videoTitle()}"
@@ -69,10 +89,19 @@ export function getPhotographerMedia( media, photographer){
         </video>
         
         <div class="photographerMedia__comment" > 
-            <p>${videoTitle()}</p>
+            <h3 tabindex="4">${videoTitle()}</h3>
             <div class="photographerMedia__details">
                 <span class="photographerLikes">${likes}</span>
-                <i class="fa fa-heart faLikeIncrement" data-increment="false" tabindex="4" aria-hidden='false'></i>
+                <i 
+                    role="button"
+                    aria-pressed="false"
+                    aria-label="le nombre de likes est ${likes}, clickez pour en rajouter"
+                    class="fa fa-heart faLikeIncrement" 
+                    data-increment="false" 
+                    tabindex="4" 
+                    aria-hidden='false'
+                >
+                </i>
             </div>
         </div>
        
