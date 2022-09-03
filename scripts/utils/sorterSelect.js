@@ -90,7 +90,7 @@ export function displaySelectedItem(sorted, media, photographer){
         const firstFocusable = focusablePhotographerElts[0];
         const lastFocusable = focusablePhotographerElts[focusablePhotographerEltsLength - 1]
         firstFocusable.focus();
-        console.log('focusablePhotographerElts:', focusablePhotographerElts);
+       
         photographerBody.addEventListener('keydown', (e) => {
             if(e.key === "Tab" || e.keyCode === 9){
                 if(e.shiftKey){

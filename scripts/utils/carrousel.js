@@ -25,6 +25,8 @@ function displayCarrousel(media, photographer){
     const closeBtn = document.createElement('i')
     closeBtn.classList.add('fa-window-close')
     closeBtn.classList.add('fas')
+    closeBtn.classList.add('tab')
+    closeBtn.setAttribute('tabindex', "1")
     // carrousel__items
     const carrouselItems = document.createElement('div')
     carrouselItems.classList.add('carrousel__items')
@@ -39,12 +41,14 @@ function displayCarrousel(media, photographer){
     leftArrow.setAttribute('tabindex', "1")
     leftArrow.classList.add('fa-chevron-circle-left')
     leftArrow.classList.add('fas')
+    leftArrow.classList.add('tab')
     leftArrow.classList.add('arrow')
 
     const rightArrow = document.createElement('i')
     rightArrow.setAttribute('tabindex', "1")
     rightArrow.classList.add('fa-chevron-circle-right')
     rightArrow.classList.add('fas')
+    rightArrow.classList.add('tab')
     rightArrow.classList.add('arrow')
 
     carrouselLeftArrow.appendChild(leftArrow)
@@ -186,11 +190,14 @@ function carrouselClickFunction(){
 
 function carrouselKeydownFunction(){
     // evenements keydown sur carrousel
+    const carrosselElts = document.querySelectorAll('.tab');
+   
     const arrows = document.querySelectorAll('.arrow');
     let step = 0;
 
     document.addEventListener('keydown', (e) => {
          // piéger focus dans carrousel
+         console.log('carrosselElts: ', carrosselElts)
         if(e.key === "Tab" || e.keyCode === 9){
            console.log('ici tab')
             if(e.shiftKey){
@@ -209,7 +216,9 @@ function carrouselKeydownFunction(){
         // fermer carrousel avec touche echap
         if(e.key === "Escape" || e.keyCode === 27){
             closeCarrousel();
-        }       
+        }  
+        
+        
         
     })
 

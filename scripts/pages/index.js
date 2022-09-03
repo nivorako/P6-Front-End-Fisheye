@@ -85,11 +85,15 @@ async function init() {
                 submitForm();
             })
 
-            // fermer modal avec clic btnclose
+            // fermer modal avec clic btnclose et keydown enter
             const btnClose = document.querySelector('.modal__close')
-            btnClose.addEventListener('click', () => {
-                
+            btnClose.addEventListener('click', () => {   
                 closeModal();
+            })
+            btnClose.addEventListener('keydown', (e) => {
+                if(e.key === "Enter" || e.keyCode === 13){
+                    closeModal()
+                }
             })
 
             // fermer modal avec echap
