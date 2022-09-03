@@ -190,9 +190,9 @@ function carrouselClickFunction(){
 
 function carrouselKeydownFunction(){
     // evenements keydown sur carrousel
-    const carrosselElts = document.querySelectorAll('.tab');
-   
     const arrows = document.querySelectorAll('.arrow');
+    const carrosselElts = document.querySelectorAll('.tab');
+    const carroselBtnClose = document.querySelector('.fa-window-close');
     let step = 0;
 
     document.addEventListener('keydown', (e) => {
@@ -201,14 +201,14 @@ function carrouselKeydownFunction(){
         if(e.key === "Tab" || e.keyCode === 9){
            console.log('ici tab')
             if(e.shiftKey){
-                if(document.activeElement === arrows[0]){
+                if(document.activeElement === carrosselElts[0]){
                     e.preventDefault();
-                    arrows[1].focus();
+                    carrosselElts[carrosselElts.length -1].focus();
                     
                 }
-            }else if(document.activeElement === arrows[1]){
+            }else if(document.activeElement === carrosselElts[carrosselElts.length -1]){
                     e.preventDefault();
-                    arrows[0].focus();
+                    carrosselElts[0].focus();
             }
             
         }
@@ -217,8 +217,13 @@ function carrouselKeydownFunction(){
         if(e.key === "Escape" || e.keyCode === 27){
             closeCarrousel();
         }  
-        
-        
+        //fermer carrousel avec enter sur icone
+        carroselBtnClose.addEventListener('keydown', (e) => {
+            if(e.key === "Enter" || e.keyCode === 13){
+                e.preventDefault()
+                closeCarrousel();
+            }
+        })
         
     })
 
