@@ -27,6 +27,8 @@ function displayCarrousel(media, photographer){
     closeBtn.classList.add('fas')
     closeBtn.classList.add('tab')
     closeBtn.setAttribute('tabindex', "1")
+    closeBtn.setAttribute('role', "button")
+    closeBtn.setAttribute("aria-label", "fermeture carrousel")
     // carrousel__items
     const carrouselItems = document.createElement('div')
     carrouselItems.classList.add('carrousel__items')
@@ -39,6 +41,8 @@ function displayCarrousel(media, photographer){
 
     const leftArrow = document.createElement('i')
     leftArrow.setAttribute('tabindex', "1")
+    leftArrow.setAttribute('aria-label', "défilement à gauche")
+    leftArrow.setAttribute('role', "button")
     leftArrow.classList.add('fa-chevron-circle-left')
     leftArrow.classList.add('fas')
     leftArrow.classList.add('tab')
@@ -46,6 +50,8 @@ function displayCarrousel(media, photographer){
 
     const rightArrow = document.createElement('i')
     rightArrow.setAttribute('tabindex', "1")
+    rightArrow.setAttribute('role', "button")
+    rightArrow.setAttribute('aria-label', "défilement à droite")
     rightArrow.classList.add('fa-chevron-circle-right')
     rightArrow.classList.add('fas')
     rightArrow.classList.add('tab')
@@ -62,6 +68,11 @@ function displayCarrousel(media, photographer){
         //carrousel__item
         const carrouselItem = document.createElement('div')
         carrouselItem.classList.add('carrousel__item')
+        //carrousel__title
+        const carrouselTitle = document.createElement('h1')
+        carrouselTitle.classList.add('carrousel__title')
+        carrouselTitle.innerHTML = `${media[i].title}`
+
         // carrousel__img
         const carrouselImg= document.createElement('img')
         carrouselImg.classList.add('carrousel__img')
@@ -72,10 +83,12 @@ function displayCarrousel(media, photographer){
         if(media[i].hasOwnProperty('video')){
             carrouselVideo.setAttribute("src", `./assets/Sample Photos/${name}/${media[i].video}`)
             carrouselItem.appendChild(carrouselVideo) 
+            carrouselItem.appendChild(carrouselTitle)
             carrouselItems.appendChild(carrouselItem) 
         }else{
             carrouselImg.setAttribute("src", `./assets/Sample Photos/${name}/${media[i].image}`)
             carrouselItem.appendChild(carrouselImg) 
+            carrouselItem.appendChild(carrouselTitle)
             carrouselItems.appendChild(carrouselItem) 
         } 
     }
@@ -190,6 +203,10 @@ function carrouselClickFunction(){
 
 function carrouselKeydownFunction(){
     // evenements keydown sur carrousel
+    const images = document.querySelectorAll('.carrousel__item');
+    const arrayImages = Array.from(images);
+    const length = arrayImages.length;
+
     const arrows = document.querySelectorAll('.arrow');
     const carrosselElts = document.querySelectorAll('.tab');
     const carroselBtnClose = document.querySelector('.fa-window-close');
@@ -230,9 +247,9 @@ function carrouselKeydownFunction(){
     arrows[0].addEventListener('keydown', (e) => {
         if(e.key === "ArrowLeft" || e.keyCode === 37){
             e.preventDefault();
-            const images = document.querySelectorAll('.carrousel__item');
-            const arrayImages = Array.from(images);
-            const length = arrayImages.length;
+            // const images = document.querySelectorAll('.carrousel__item');
+            // const arrayImages = Array.from(images);
+            // const length = arrayImages.length;
             console.log(' avant keydownon left, step: ', step)
             console.log('at left, length: ', length)
             for(let i=0; i<length; i++){       
@@ -252,10 +269,10 @@ function carrouselKeydownFunction(){
     arrows[1].addEventListener('keydown', (e) => {
         if(e.key === "ArrowRight" || e.keyCode === 39){
             e.preventDefault();
-            const images = document.querySelectorAll('.carrousel__item');
-            // ???? arrayImages != images ????
-            const arrayImages = Array.from(images);
-            const length = arrayImages.length;
+            // const images = document.querySelectorAll('.carrousel__item');
+            // // ???? arrayImages != images ????
+            // const arrayImages = Array.from(images);
+            // const length = arrayImages.length;
             console.log('avant keydown on right, step; ', step    )
             console.log('images: ', images)
             console.log('at right, array images length: ', length)

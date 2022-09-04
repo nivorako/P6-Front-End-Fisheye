@@ -37,8 +37,7 @@ function closeClicOutsideModal(){
     const modal = document.querySelector('.modal')
     if(modal.style.display === "block"){
         document.addEventListener('click', (e) => {
-            if(!e.target.classList == 'modal'){
-            //if(!e.target.closest('.modal')){
+            if(!e.target.closest ('.modal')){   
                 closeModal()
             }
            
@@ -78,6 +77,7 @@ async function init() {
             displayModal(foundPhotographer); 
             
             closeClicOutsideModal()
+           
             // submit modal
             const formSubmit = document.querySelector('.modal__form')
             formSubmit.addEventListener('submit', (e) => {

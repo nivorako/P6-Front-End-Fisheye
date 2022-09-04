@@ -120,9 +120,9 @@ export function sorter(media, photographer) {
         })
     }
 
-    const name =  () => {
+    function name () {
         const sort = document.querySelector('.sorter__selectedText').textContent;
-        return sort;
+        console.log('sort: ', sort)
     }
 
     const sorter = /*html*/`
@@ -136,17 +136,17 @@ export function sorter(media, photographer) {
         Trier par
         </h2>
         <div class="sorter__container" id="sorterContainer" >
-            <div class="sorter__selected btn" tabindex="3" role="button" aria-label="trier par ${name} ">
-                <p class="sorter__selectedText" >date</p>
+            <div class="sorter__selected btn" tabindex="3" role="button" aria-label="trier par date ouvre une liste a choix">
+                <h3 class="sorter__selectedText" >date</h3>
                 <i class="fas fa-angle-down"></i>
             </div>
             
             <ul class="sorter__items" aria-hidden="true" >
-                <li id="itemBtn" class="sorter__item  btn" tabindex="3" role="button" expanded="false" controls="choix-tri">
-                    <p class="sorter__sort" id="choix-tri" aria-labelledby="itemBtn">likes</p>
+                <li class="sorter__item  btn" tabindex="3" >
+                    <p class="sorter__sort" aria-label="popularité">likes</p>
                 </li>
-                <li id="itemBtn" class="sorter__item  btn" tabindex="3" role="button" expanded="false" controls="choix-tri" >
-                    <p class="sorter__sort" id="choix-tri" aria-labelledby="itemBtn">titre</p>
+                <li class="sorter__item  btn" tabindex="3" >
+                    <p class="sorter__sort" aria-label="titre">titre</p>
                 </li>
             </ul>
         </div>
@@ -154,6 +154,7 @@ export function sorter(media, photographer) {
     `;
    
     sorterWrapper.innerHTML = sorter
+    name(   )
     sorterOnKeydown()
     sorterOnClick()
     return sorterWrapper

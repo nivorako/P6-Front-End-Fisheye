@@ -18,7 +18,7 @@ export function displayModal(photographer){
     const modalElement = /*html*/`
         <header class="modal__header">
             <div class="modal__function">
-                <h2 id="modalTitle">Contactez-moi</h2>
+                <h1 id="modalTitle">Contactez-moi</h1>
                 <p class="modal__name">${name}</p>
             </div>
             <img src="assets/icons/close.svg" class="modal__close" tabindex="0" role="button" aria-label="fermer le modal"/>
