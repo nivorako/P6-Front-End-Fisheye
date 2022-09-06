@@ -8,8 +8,12 @@
     --f16: 16px
 }
 
-body{
+#photographerBody{
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 li, ul{
@@ -114,6 +118,12 @@ li, ul{
     height: 350px;
 }
 
+.photographerMedia__imgContainer{
+    position: relative;
+    
+}
+
+
 .photographerMedia__video{
     border-radius: 10px;
     object-fit: cover;
@@ -185,16 +195,14 @@ li, ul{
     transform: rotate(180deg);
 }
 .modal {
-    position: fixed;
-    left: 30%;
-    top: 20px;
     border-radius: 5px;
     background-color: #DB8876;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: calc(100vw - 60%);
+    width: 650px;
+    margin-top: 35px;
     padding: 35px;
     display: none;
     max-height: 90vh;
@@ -415,6 +423,12 @@ li, ul{
     .sorter__container{
         flex-direction: column;
         align-items: center;
+    }
+}
+
+@media all and (max-width: 650px) {
+    .modal{
+        width: 100%;
     }
 }
 

@@ -58,6 +58,7 @@ export function getPhotographerMedia( media, photographer){
             alt="une image qui représente le ${title}" 
             tabindex="4" 
         />
+        </div>
         <div class="photographerMedia__comment" >
             <h3 tabindex="4">${title}</h3>
             <div class="photographerMedia__details" role="button" aria-labelledby="bouton-likes">
@@ -84,6 +85,7 @@ export function getPhotographerMedia( media, photographer){
             alt=" ${videoTitle()}"
             class="photographerMedia__video"
             tabindex="4"
+            controls
         >
             <source src="./assets/Sample Photos/${name}/${video}"  >  
         </video>
