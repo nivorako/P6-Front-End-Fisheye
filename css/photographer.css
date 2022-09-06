@@ -265,9 +265,7 @@ li, ul{
     font-size: 64px;
 }
 
-.error{
-    
-}
+
 
 .carrousel{
     position: fixed;
@@ -364,6 +362,11 @@ li, ul{
     border-radius: 5px;
     background-color: var(--secondary);
 
+}
+
+.firstNameError,
+.lastNameError{
+    color: red;
 }
 
 .hidden{
