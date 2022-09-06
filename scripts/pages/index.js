@@ -31,20 +31,6 @@ function displayPhotographerData(photographers) {
     });
 };
 
-// fermer modal si on click en dehors
-function closeClicOutsideModal(){
-    //const body = document.getElementById('photographerBody')
-    const modal = document.querySelector('.modal')
-    if(modal.style.display === "block"){
-        document.addEventListener('click', (e) => {
-            if(!e.target.closest ('.modal')){   
-                closeModal()
-            }
-           
-        }, true)
-    }
-}
-
 async function init() {
 
     // Récupère les datas des photographes
@@ -76,7 +62,16 @@ async function init() {
             // display & create modal
             displayModal(foundPhotographer); 
             
-            closeClicOutsideModal()
+            // fermer modal si on click en dehors
+            const modal = document.querySelector('.modal')
+            if(modal.style.display === "block"){
+                document.addEventListener('click', (e) => {
+                    if(!e.target.closest ('.modal')){   
+                        closeModal()
+                    }
+                
+                }, true)
+            }
            
             // submit modal
             const formSubmit = document.querySelector('.modal__form')
@@ -132,24 +127,24 @@ async function init() {
                     }   
                 }
 
-                // const inputElt = document.querySelectorAll('.input');
-                // const inputEltLength = inputElt.length;
-                // const firstInputElt = inputElt[0];
-                // const lastInputElt = inputElt[inputEltLength - 1];
+                const inputElt = document.querySelectorAll('.input');
+                const inputEltLength = inputElt.length;
+                const firstInputElt = inputElt[0];
+                const lastInputElt = inputElt[inputEltLength - 1];
                 
-                // if(e.key === "Tab" || e.keyCode === 9){ 
-                //     if(e.shiftKey){
-                //         if(document.activeElement === firstInputElt){
-                //             e.preventDefault();
-                //             lastInputElt.focus();
-                //         }
-                //     }else{
-                //          if(document.activeElement === lastInputElt){
-                //              e.preventDefault();
-                //              firstInputElt.focus();
-                //          }  
-                //     }   
-                // }
+                if(e.key === "Tab" || e.keyCode === 9){ 
+                    if(e.shiftKey){
+                        if(document.activeElement === firstInputElt){
+                            e.preventDefault();
+                            lastInputElt.focus();
+                        }
+                    }else{
+                         if(document.activeElement === lastInputElt){
+                             e.preventDefault();
+                             firstInputElt.focus();
+                         }  
+                    }   
+                }
 
 
                 // si document.activeElement === (submit) et e.key === enter alors submit

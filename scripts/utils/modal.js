@@ -25,9 +25,9 @@ export function displayModal(photographer){
             
         </header>
         <form class="modal__form">
-                <label for="lastName" id="prenom">Prénom</label>
-                <input  class="input" type="text" name="lastname" id="lastName" tabindex="0" aria-labelledby="prenom"/>
-                <label for="firstName" >Nom</label>
+                <label for="lastName" id="nom">Nom</label>
+                <input  class="input" type="text" name="lastname" id="lastName" tabindex="0" aria-labelledby="nom"/>
+                <label for="firstName" >Prénom</label>
                 <input  class="input" type="text" name="firstName" id="firstName" tabindex="0">
                 <label for="email">email</label>
                 <input  class="input" type="email" name="email" id="email" tabindex="0">
@@ -36,7 +36,7 @@ export function displayModal(photographer){
                     <textarea  type="text" name="message" id="message" class="modal__message input" tabindex="0"></textarea>
                 </div>
             
-            <button class="btn input" tabindex="0" type="submit">Envoyer</button>
+            <button class="btn modal__submit" tabindex="0" type="submit">Envoyer</button>
         </form>
     ` ;
 

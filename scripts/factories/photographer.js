@@ -63,7 +63,7 @@ export function getPhotographerMedia( media, photographer){
             <div class="photographerMedia__details" role="button" aria-labelledby="bouton-likes">
                 <span class="photographerLikes">${likes}</span>
                 <i 
-                   id="bouton-likes"
+                    
                     class="fa fa-heart faLikeIncrement" 
                     data-increment="false" 
                     tabindex="4" 
