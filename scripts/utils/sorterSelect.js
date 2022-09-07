@@ -76,11 +76,6 @@ export function displaySelectedItem(sorted, media, photographer){
         carrouselClickEvent(photos, media, photographer);
         carrouselKeydownEnter(photos, media, photographer);
 
-        // on donne un attribut aria-hidden false à bouton-PhotoLikes
-        const btnPhotoLikes = document.getElementById('bouton-PhotoLikes');
-        btnPhotoLikes.setAttribute('aria-hidden', false);
-        console.log('btnPhotiLikes: ', btnPhotoLikes)
-
         likes(media, photographer);
 
         // TRAPP FOCUS PHOTOGRAPHER PAGE

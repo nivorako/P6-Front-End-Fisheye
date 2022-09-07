@@ -21,28 +21,32 @@ function displayCarrousel(media, photographer){
     // carrousel__close
     const carrouselClose = document.createElement('div')
     carrouselClose.classList.add('carrousel__close')
+    carrouselClose.setAttribute('role', "button")
+    carrouselClose.setAttribute("aria-label", "fermeture carrousel")
+    
     // carrousel__closeBtn
     const closeBtn = document.createElement('i')
     closeBtn.classList.add('fa-window-close')
     closeBtn.classList.add('fas')
     closeBtn.classList.add('tab')
     closeBtn.setAttribute('tabindex', "1")
-    closeBtn.setAttribute('role', "button")
-    closeBtn.setAttribute("aria-label", "fermeture carrousel")
+   
     // carrousel__items
     const carrouselItems = document.createElement('div')
     carrouselItems.classList.add('carrousel__items')
     // les arrows
     const carrouselLeftArrow = document.createElement('div')
     carrouselLeftArrow.classList.add('carrousel__arrow')
+    carrouselLeftArrow.setAttribute('aria-label', "défilement à gauche")
+    carrouselLeftArrow.setAttribute('role', "button")
 
     const carrouselRightArrow = document.createElement('div')
     carrouselRightArrow.classList.add('carrousel__arrow')
+    carrouselRightArrow.setAttribute('role', "button")
+    carrouselRightArrow.setAttribute('aria-label', "défilement à droite")
 
     const leftArrow = document.createElement('i')
     leftArrow.setAttribute('tabindex', "1")
-    leftArrow.setAttribute('aria-label', "défilement à gauche")
-    leftArrow.setAttribute('role', "button")
     leftArrow.classList.add('fa-chevron-circle-left')
     leftArrow.classList.add('fas')
     leftArrow.classList.add('tab')
@@ -50,8 +54,6 @@ function displayCarrousel(media, photographer){
 
     const rightArrow = document.createElement('i')
     rightArrow.setAttribute('tabindex', "1")
-    rightArrow.setAttribute('role', "button")
-    rightArrow.setAttribute('aria-label', "défilement à droite")
     rightArrow.classList.add('fa-chevron-circle-right')
     rightArrow.classList.add('fas')
     rightArrow.classList.add('tab')
@@ -99,8 +101,8 @@ function displayCarrousel(media, photographer){
     carrouselContainer.appendChild(carrouselItems)
     carrouselContainer.appendChild(carrouselClose)
    
-    carrouselContainer.appendChild(leftArrow)
-    carrouselContainer.appendChild(rightArrow)
+    carrouselContainer.appendChild(carrouselLeftArrow)
+    carrouselContainer.appendChild(carrouselRightArrow)
 
 
     carrousel.appendChild(carrouselContainer);
@@ -207,7 +209,6 @@ function carrouselKeydownFunction(){
     const arrayImages = Array.from(images);
     const length = arrayImages.length;
 
-    console.log("arrayImages: ", arrayImages)
     const arrows = document.querySelectorAll('.arrow');
     const carrosselElts = document.querySelectorAll('.tab');
     const carroselBtnClose = document.querySelector('.fa-window-close');

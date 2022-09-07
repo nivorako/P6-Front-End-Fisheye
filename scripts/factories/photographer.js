@@ -61,17 +61,17 @@ export function getPhotographerMedia( media, photographer){
         </div>
         <div class="photographerMedia__comment" aria-labelledby=${title}>
             <h3 tabindex="4" id=${title} >${title}</h3>
-            <div class="photographerMedia__details" role="button" aria-describedby="bouton-PhotoLikes">
+            <div class="photographerMedia__details">
                 <span class="photographerLikes">${likes}</span>
-                <i 
-                    id="bouton-PhotoLikes"
-                    class="fa fa-heart faLikeIncrement" 
-                    data-increment="false" 
-                    tabindex="4" 
-                    role="button"
-                    aria-label="bouton likes incrémente ou décrémente les likes"
-                >
-                </i>
+                <span role="button" aria-label="bouton likes incrémente ou décrémente les likes"> 
+                    <i 
+                        class="fa fa-heart faLikeIncrement" 
+                        data-increment="false" 
+                        tabindex="4"     
+                    >
+                    </i>
+                </span>  
+                  
             </div>
         
        </div>

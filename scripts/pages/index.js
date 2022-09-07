@@ -108,10 +108,12 @@ async function init() {
                 const focusElets = '[tabindex]:not([tabindex="-1"]';
                 const modalFocusElts = modal.querySelectorAll(focusElets);
                 
-
+                console.log("modal focus elt: ", modalFocusElts)
                 const modalFocusEltsLength = modalFocusElts.length;
                 const firstmodalFocusElt = modalFocusElts[0];
                 const lastmodalFocusElt = modalFocusElts[modalFocusEltsLength - 1];
+                console.log('first: ', firstmodalFocusElt)
+                console.log('last: ', lastmodalFocusElt)
 
                 if(e.key === "Tab" || e.keyCode === 9){ 
                     if(e.shiftKey){
@@ -123,25 +125,6 @@ async function init() {
                          if(document.activeElement === lastmodalFocusElt){
                              e.preventDefault();
                              firstmodalFocusElt.focus();
-                         }  
-                    }   
-                }
-
-                const inputElt = document.querySelectorAll('.input');
-                const inputEltLength = inputElt.length;
-                const firstInputElt = inputElt[0];
-                const lastInputElt = inputElt[inputEltLength - 1];
-                
-                if(e.key === "Tab" || e.keyCode === 9){ 
-                    if(e.shiftKey){
-                        if(document.activeElement === firstInputElt){
-                            e.preventDefault();
-                            lastInputElt.focus();
-                        }
-                    }else{
-                         if(document.activeElement === lastInputElt){
-                             e.preventDefault();
-                             firstInputElt.focus();
                          }  
                     }   
                 }

@@ -23,6 +23,10 @@ export function likes(media, photographer){
                     photographerLikes[i].textContent++;
                     likesElt.textContent++;
                     likeIncrements[i].setAttribute('data-increment', 'true');
+                }else{
+                    photographerLikes[i].textContent--;
+                    likesElt.textContent--;
+                    likeIncrements[i].setAttribute('data-increment', 'false');
                 }
             })
             // accessibilité: incrémenter une seule fois likes si enter sur icone
@@ -32,6 +36,10 @@ export function likes(media, photographer){
                         photographerLikes[i].textContent++;
                         likesElt.textContent++;
                         likeIncrements[i].setAttribute('data-increment', 'true');
+                    }else{
+                        photographerLikes[i].textContent--;
+                        likesElt.textContent--;
+                        likeIncrements[i].setAttribute('data-increment', 'false');
                     }
                 }
             })
