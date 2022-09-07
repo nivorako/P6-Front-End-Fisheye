@@ -12,7 +12,8 @@ export function sorter(media, photographer) {
         sorterSelected.addEventListener('keydown', (e) => {
             if (e.key === "Enter" || e.keyCode === 13) {
                 sorterItems.classList.toggle('active');
-                btnSelected.classList.toggle('active')
+                btnSelected.classList.toggle('active');
+                sorterItems.setAttribute('aria-hidden', "false");
                 // si btnSelected active ==> sorter item active (ouvert)
                 if (btnSelected.classList.contains('active') || sorterItems.classList.contains('active')) {
                     document.addEventListener(
@@ -79,10 +80,11 @@ export function sorter(media, photographer) {
 
         // chaque fois qu on clicke sur sorter selected, on ferme ou on ouvre sorter__item
         sorterSelected.addEventListener('click', () => {
-
+        
             sorterItems.classList.toggle('active');
             btnSelected.classList.toggle('active');
-            
+            sorterItems.setAttribute('aria-hidden', "false");
+
             if(sorterItems.classList.contains('active')){
                 sorterItems.setAttribute('aria-hidden', 'false');
             }else{
@@ -142,11 +144,11 @@ export function sorter(media, photographer) {
             </div>
             
             <ul class="sorter__items" aria-hidden="true" >
-                <li class="sorter__item  btn" tabindex="3" >
-                    <p class="sorter__sort" aria-label="popularité">likes</p>
+                <li class="sorter__item  btn" tabindex="3" aria-label="popularité" role="button">
+                    <p class="sorter__sort" >likes</p>
                 </li>
-                <li class="sorter__item  btn" tabindex="3" >
-                    <p class="sorter__sort" aria-label="titre">titre</p>
+                <li class="sorter__item  btn" tabindex="3" aria-label="titre" role="button" >
+                    <p class="sorter__sort">titre</p>
                 </li>
             </ul>
         </div>

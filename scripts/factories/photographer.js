@@ -59,15 +59,17 @@ export function getPhotographerMedia( media, photographer){
             tabindex="4" 
         />
         </div>
-        <div class="photographerMedia__comment" >
-            <h3 tabindex="4">${title}</h3>
-            <div class="photographerMedia__details" role="button" aria-labelledby="bouton-likes">
+        <div class="photographerMedia__comment" aria-labelledby=${title}>
+            <h3 tabindex="4" id=${title} >${title}</h3>
+            <div class="photographerMedia__details" role="button" aria-describedby="bouton-PhotoLikes">
                 <span class="photographerLikes">${likes}</span>
                 <i 
-                    
+                    id="bouton-PhotoLikes"
                     class="fa fa-heart faLikeIncrement" 
                     data-increment="false" 
                     tabindex="4" 
+                    role="button"
+                    aria-label="bouton likes incrémente ou décrémente les likes"
                 >
                 </i>
             </div>
@@ -90,11 +92,12 @@ export function getPhotographerMedia( media, photographer){
             <source src="./assets/Sample Photos/${name}/${video}"  >  
         </video>
         
-        <div class="photographerMedia__comment" > 
-            <h3 tabindex="4">${videoTitle()}</h3>
-            <div class="photographerMedia__details">
+        <div class="photographerMedia__comment" aria-labelledby=${videoTitle()}> 
+            <h3 tabindex="4" id=${videoTitle()}>${videoTitle()}</h3>
+            <div class="photographerMedia__details" role="button" aria-labelledby="bouton-videoLikes">
                 <span class="photographerLikes">${likes}</span>
                 <i 
+                    id="bouton-videoLikes" 
                     role="button"
                     aria-pressed="false"
                     aria-label="le nombre de likes est ${likes}, clickez pour en rajouter"

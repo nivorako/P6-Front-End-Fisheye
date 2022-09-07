@@ -207,13 +207,14 @@ function carrouselKeydownFunction(){
     const arrayImages = Array.from(images);
     const length = arrayImages.length;
 
+    console.log("arrayImages: ", arrayImages)
     const arrows = document.querySelectorAll('.arrow');
     const carrosselElts = document.querySelectorAll('.tab');
     const carroselBtnClose = document.querySelector('.fa-window-close');
     let step = 0;
 
+    // piéger focus dans carrousel
     document.addEventListener('keydown', (e) => {
-         // piéger focus dans carrousel
          console.log('carrosselElts: ', carrosselElts)
         if(e.key === "Tab" || e.keyCode === 9){
            console.log('ici tab')
@@ -241,53 +242,50 @@ function carrouselKeydownFunction(){
                 closeCarrousel();
             }
         })
+
+        arrows[1].addEventListener('keydown', (e) => {
+            if(e.key === "ArrowRight" || e.keyCode === 39){
+                e.preventDefault();
+        
+                console.log(' avant keydownon left, step: ', step)
+                console.log('at left, length: ', length)
+                for(let i=0; i<length; i++){       
+                    arrayImages[i].classList.remove("active");
+                }
+                step++; 
+                if(step === length){
+                    step = 0;
+                }
+                console.log(' après keydownon left, step: ', step)
+                arrayImages[step].classList.add('active');  
+                //arrows[0].focus();
+            }
+                
+        })
+
+        arrows[0].addEventListener('keydown', (e) => {
+            if(e.key === "ArrowLeft" || e.keyCode === 37){
+                e.preventDefault();
+        
+                console.log('avant keydown on right, step; ', step    )
+                console.log('images: ', images)
+                console.log('at right, array images length: ', length)
+                console.log("images.length: ", images.length)
+                for(let i=0; i<length; i++){  
+                    arrayImages[i].classList.remove("active");
+                }
+                if(step === 0){
+                    step = length-1;
+                }
+                step--;
+                console.log('apres keydown on right, step; ', step    )
+                arrayImages[step].classList.add('active')
+                //arrows[1].focus()
+            }
+               
+        })
         
     })
 
-    arrows[0].addEventListener('keydown', (e) => {
-        if(e.key === "ArrowLeft" || e.keyCode === 37){
-            e.preventDefault();
-            // const images = document.querySelectorAll('.carrousel__item');
-            // const arrayImages = Array.from(images);
-            // const length = arrayImages.length;
-            console.log(' avant keydownon left, step: ', step)
-            console.log('at left, length: ', length)
-            for(let i=0; i<length; i++){       
-                arrayImages[i].classList.remove("active");
-            }
-            step++; 
-            if(step === length){
-                step = 0;
-            }
-            console.log(' après keydownon left, step: ', step)
-            arrayImages[step].classList.add('active');  
-            //arrows[0].focus();
-        }
-            
-    })
-
-    arrows[1].addEventListener('keydown', (e) => {
-        if(e.key === "ArrowRight" || e.keyCode === 39){
-            e.preventDefault();
-            // const images = document.querySelectorAll('.carrousel__item');
-            // // ???? arrayImages != images ????
-            // const arrayImages = Array.from(images);
-            // const length = arrayImages.length;
-            console.log('avant keydown on right, step; ', step    )
-            console.log('images: ', images)
-            console.log('at right, array images length: ', length)
-            console.log("images.length: ", images.length)
-            for(let i=0; i<length; i++){  
-                arrayImages[i].classList.remove("active");
-            }
-            if(step === 0){
-                step = length-1;
-            }
-            step--;
-            console.log('apres keydown on right, step; ', step    )
-            arrayImages[step].classList.add('active')
-            //arrows[1].focus()
-        }
-           
-    })
+    
 }
