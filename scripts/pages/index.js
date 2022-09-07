@@ -129,9 +129,8 @@ async function init() {
                     }   
                 }
 
-
                 // si document.activeElement === (submit) et e.key === enter alors submit
-                if((document.activeElement === lastInputElt) && (e.key === "Enter" || e.keyCode === 13)){
+                if((document.activeElement === lastmodalFocusElt) && (e.key === "Enter" || e.keyCode === 13)){
                     e.preventDefault();
                     submitForm();
                 }

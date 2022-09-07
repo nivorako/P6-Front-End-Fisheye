@@ -372,6 +372,7 @@ li, ul{
 
 }
 
+.emailError,
 .firstNameError,
 .lastNameError{
     color: red;

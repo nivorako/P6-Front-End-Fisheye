@@ -33,6 +33,7 @@ export function displayModal(photographer){
                 <span class="firstNameError hidden">mettez au moins deux caractères</span>
                 <label for="email">email</label>
                 <input  class="input" type="email" name="email" id="email" tabindex="0">
+                <span class="emailError hidden">mettez un email valide</span>
                 <div class="modal__comment">
                     <label for="message">Votre message</label>
                     <textarea  type="text" name="message" id="message" class="modal__message input" tabindex="0"></textarea>
