@@ -82,6 +82,7 @@ function displayCarrousel(media, photographer){
         const carrouselVideo= document.createElement('video')
         carrouselVideo.classList.add('carrousel__video')
         
+        // eslint-disable-next-line no-prototype-builtins
         if(media[i].hasOwnProperty('video')){
             carrouselVideo.setAttribute("src", `./assets/Sample Photos/${name}/${media[i].video}`)
             carrouselItem.appendChild(carrouselVideo) 
@@ -106,6 +107,7 @@ function displayCarrousel(media, photographer){
 
 
     carrousel.appendChild(carrouselContainer);
+   
 }
 
 function closeCarrousel(){
@@ -120,7 +122,7 @@ function closeCarrousel(){
     const carrousel = document.querySelector('.carrousel')
     carrousel.setAttribute('aria-hidden', 'true')
 
-    const carrouselContainer = document.querySelector('.carrousel__container')
+    // const carrouselContainer = document.querySelector('.carrousel__container')
     
     //carrousel.removeChild(carrouselContainer)
     carrousel.style.display = "none"
@@ -164,20 +166,22 @@ function carrouselClickFunction(){
     const leftArrow = document.querySelector('.fa-chevron-circle-left');
     const rightArrow = document.querySelector('.fa-chevron-circle-right');
     const closeBtn = document.querySelector('.carrousel__close');
-    const images = document.querySelectorAll('.carrousel__item');
-
-    const nbrImg = images.length;
-   
+    let images = document.querySelectorAll('.carrousel__item');
+    let nbrImg;
     let step = 0;
     images[0].classList.add("active");
 
     function removeActiveImage(){
+        images = document.querySelectorAll('.carrousel__item');
+        nbrImg = images.length;
         for(let i=0; i<nbrImg; i++){
             images[i].classList.remove("active");
         }
     }        
 
     leftArrow.addEventListener('click', () => {
+        images = document.querySelectorAll('.carrousel__item');
+        nbrImg = images.length;
         console.log('avant clic, step = ', step)
         step++;
         if(step >= nbrImg ){
@@ -189,6 +193,8 @@ function carrouselClickFunction(){
     })
 
     rightArrow.addEventListener('click', () => {
+        images = document.querySelectorAll('.carrousel__item');
+        nbrImg = images.length;
         console.log('avant clic, step = ', step)
         if(step == 0){
             step = nbrImg;

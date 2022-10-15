@@ -29,7 +29,7 @@ function displayPhotographerData(photographers) {
         const userCardDOM = photographerModel.getUserCardDOM();
         photographersSection.appendChild(userCardDOM);
     });
-};
+}
 
 async function init() {
 
@@ -44,7 +44,7 @@ async function init() {
 
     // page photographer
     if(photographerId){
-        const mediaWrapper = document.querySelector('.photographerMedia');
+        //const mediaWrapper = document.querySelector('.photographerMedia');
 
         const foundPhotographers =photographers.filter(x => x.id=== parseInt(photographerId, 10));
         const foundPhotographer = foundPhotographers[0]
@@ -186,5 +186,5 @@ async function init() {
             }
         })
     }
-};
+}
 init();

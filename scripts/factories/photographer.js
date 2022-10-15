@@ -41,7 +41,7 @@ export function photographerName(photographer){
 export function getPhotographerMedia( media, photographer){
     const wrapper = document.createElement('div');
     const name = photographerName(photographer);
-    const { title, likes , image, video, date } = media;
+    const { title, likes , image, video } = media;
     
     const videoTitle = () => {
         const title = String(video).split('.')[0].split("_").join(' ');
@@ -87,9 +87,8 @@ export function getPhotographerMedia( media, photographer){
             alt=" ${videoTitle()}"
             class="photographerMedia__video"
             tabindex="4"
-            controls
         >
-            <source src="./assets/Sample Photos/${name}/${video}"  >  
+            <source src="./assets/Sample Photos/${name}/${video}"  > 
         </video>
         
         <div class="photographerMedia__comment" aria-labelledby=${videoTitle()}> 
@@ -111,8 +110,11 @@ export function getPhotographerMedia( media, photographer){
         </div>
        
     `
+    
+    // eslint-disable-next-line no-prototype-builtins
     if(media.hasOwnProperty('video')){
         wrapper.classList.add('photographerMedia__work')
+        wrapper.classList.add('photographerMedia__work--video')
         wrapper.innerHTML = photographerVideo;
     }else{
         wrapper.classList.add('photographerMedia__work')

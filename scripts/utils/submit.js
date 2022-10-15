@@ -2,24 +2,14 @@ import { closeModal } from "./modal.js";
 
 export function submitForm(){
             
-    // const lastName = document.getElementById('lastName');
-    // const firstName = document.getElementById('firstName');
-    // const email = document.getElementById('email');
-
-    console.log('lastname: ', lastName.value);
-    console.log('firstName: ', firstName.value);
-    console.log('email: ', email.value);
-
     if(validateFirstName() && validateLastName() && validateEmail()){
         closeModal();
-    }else{
-        
     }
 }
 
 function validateFirstName(){
     //const REGEX pour nom prenom
-    const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ \-]+$/
+    const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ -]+$/
     
     const firstNameError = document.querySelector('.firstNameError')
     const firstName = document.getElementById('firstName');
@@ -37,7 +27,7 @@ function validateFirstName(){
 
 function validateLastName(){
     //const REGEX pour nom prenom
-    const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ \-]+$/
+    const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ -]+$/
 
     const lastNameError = document.querySelector('.lastNameError')
     const lastName = document.getElementById('lastName')
@@ -56,7 +46,8 @@ function validateLastName(){
 function validateEmail() {
     const email = document.getElementById('email');
     const emailError = document.querySelector('.emailError')
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+   
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let emailValue = email.value;
     if(emailValue.trim().match(re)){
         if(!emailError.classList.contains('hidden')){

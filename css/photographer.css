@@ -104,6 +104,21 @@ li, ul{
     margin-bottom: 30px;
 }
 
+.photographerMedia__work--video{
+    position: relative;
+}
+
+.photographerMedia__work--video::after{
+    content: "\f04b";
+    position: absolute;
+    top: 150px;
+    left: 150px;
+    font-family: "Font Awesome 5 Free";
+    font-size: 50px;
+    font-weight: 900;
+    color: #901c1c;
+}
+
 .photographerMedia__comment{
     text-decoration: none;
     color: #901C1C;
