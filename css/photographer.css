@@ -1,6 +1,8 @@
 /* body{
     position: relative;
 } */
+
+
 *{
     box-sizing: border-box;
     --primary: #901c1c;
@@ -29,6 +31,11 @@ li, ul{
     color: #901C1C;
 }
 
+#main-photographer{
+    width: 90%;
+    margin: auto;
+}
+
 .photographerHeader {
     display: flex;
     justify-content: space-between;
@@ -36,7 +43,7 @@ li, ul{
     background-color: #FAFAFA;
     padding: 50px;
     height: 300px;
-    margin: 0 100px;
+    width: 100%;
 }
 
 .photographerHeader__btn{
@@ -54,6 +61,7 @@ li, ul{
 .photographerHeader__id h1{
     font-size: 34px;
     color: var(--secondary);
+    white-space: nowrap;
 }
 
 .photographerHeader__id p{
@@ -111,8 +119,8 @@ li, ul{
 .photographerMedia__work--video::after{
     content: "\f04b";
     position: absolute;
-    top: 150px;
-    left: 150px;
+    top: 40%;
+    left: 40%;
     font-family: "Font Awesome 5 Free";
     font-size: 50px;
     font-weight: 900;
@@ -171,7 +179,7 @@ li, ul{
     width: 300px;
     position: absolute;
     margin-top: 10px;
-    margin-left: 100px;
+    /* margin-left: 100px; */
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -421,21 +429,28 @@ li, ul{
         bottom: -50px;
         left: calc(50% - 95px);
     }
+
+    .photographerMedia{
+        margin: 150px 0;
+    }
+
+    .photographerMedia__work{
+        width: 100%;
+    }
 }
 
 @media all and (max-width: 900px){
     .photographerHeader{
         margin:0;
     }
+
     .photographerHeader__img img{
         
         height: 150px;
         width: 150px;
 
     }
-    .sorter{
-        margin-left: 0;
-    }
+    
     .sorter__container{
         flex-direction: column;
         align-items: center;

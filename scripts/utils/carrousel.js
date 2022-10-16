@@ -224,7 +224,6 @@ function carrouselKeydownFunction(){
     document.addEventListener('keydown', (e) => {
          console.log('carrosselElts: ', carrosselElts)
         if(e.key === "Tab" || e.keyCode === 9){
-           console.log('ici tab')
             if(e.shiftKey){
                 if(document.activeElement === carrosselElts[0]){
                     e.preventDefault();
@@ -254,8 +253,6 @@ function carrouselKeydownFunction(){
             if(e.key === "ArrowRight" || e.keyCode === 39){
                 e.preventDefault();
         
-                console.log(' avant keydownon left, step: ', step)
-                console.log('at left, length: ', length)
                 for(let i=0; i<length; i++){       
                     arrayImages[i].classList.remove("active");
                 }
@@ -263,7 +260,7 @@ function carrouselKeydownFunction(){
                 if(step === length){
                     step = 0;
                 }
-                console.log(' après keydownon left, step: ', step)
+               
                 arrayImages[step].classList.add('active');  
                 //arrows[0].focus();
             }
@@ -274,10 +271,6 @@ function carrouselKeydownFunction(){
             if(e.key === "ArrowLeft" || e.keyCode === 37){
                 e.preventDefault();
         
-                console.log('avant keydown on right, step; ', step    )
-                console.log('images: ', images)
-                console.log('at right, array images length: ', length)
-                console.log("images.length: ", images.length)
                 for(let i=0; i<length; i++){  
                     arrayImages[i].classList.remove("active");
                 }
@@ -285,7 +278,7 @@ function carrouselKeydownFunction(){
                     step = length-1;
                 }
                 step--;
-                console.log('apres keydown on right, step; ', step    )
+                
                 arrayImages[step].classList.add('active')
                 //arrows[1].focus()
             }

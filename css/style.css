@@ -33,12 +33,16 @@ h1 {
 
 .header__logo {
     height: 50px;
-    margin-left: 100px;
+    
+}
+
+.main{
+    width: 90%;
+    margin: auto;
 }
 
 .photographersSection {
-    width: 90%;
-    margin: auto;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
