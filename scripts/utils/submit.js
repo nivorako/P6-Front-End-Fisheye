@@ -16,11 +16,13 @@ function validateFirstName(){
     if (firstName.value.trim().length >= 2 && firstName.value.trim().match(regex)){
         if(!firstNameError.classList.contains('hidden')){
             firstNameError.classList.add('hidden')
+            firstNameError.setAttribute('aria-invalid', 'false')
         }
         return true
     }else{
         console.log("firstName not ok!!")
         firstNameError.classList.remove('hidden')
+        firstNameError.setAttribute('aria-invalid', 'true')
         return false
     }
 }

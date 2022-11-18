@@ -2,7 +2,7 @@ import { getPhotographerMedia } from "../factories/photographer.js";
 import { carrouselClickEvent, carrouselKeydownEnter } from "./carrousel.js";
 import { likes } from "../factories/likes.js";
 
-    // fonction pour afficher les elts séléctés
+    // fonction pour afficher les elts séléctionnés
 export function displaySelectedItem(sorted, media, photographer){
     const mediaWrapper = document.querySelector('.photographerMedia')
     // on charge les elts selectionnés dans mediaWrapper

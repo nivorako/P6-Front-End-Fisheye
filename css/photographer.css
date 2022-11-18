@@ -117,7 +117,7 @@ li, ul{
 }
 
 .photographerMedia__work--video::after{
-    content: "\f04b";
+    content: "\f04b"; 
     position: absolute;
     top: 40%;
     left: 40%;
