@@ -28,14 +28,14 @@ export function displayModal(photographer){
         </header>
         <form class="modal__form">
                 <label for="firstName" id="nom">Nom</label>
-                <input  class="input" id="firstName" type="text" name="firstname" tabindex="0" aria-errormessage="firstNameError" aria-invalid="false" placeholder="Votre nom ici"/>
-                <span id="firstNameError" class="firstNameError hidden" aria-live="assertive">mettez un nom valide et deux caractères minimum</span>
+                <input  class="input" id="firstName" type="text" name="firstname" tabindex="0" aria-errormessage="firstNameError" aria-invalid="false" placeholder="Votre nom ici" required/>
+                <span id="firstNameError" class="firstNameError hidden" aria-live="polite" role="alert">mettez un nom valide et deux caractères minimum</span>
                 <label for="lastName" >Prénom</label>
-                <input  class="input" type="text" name="lastName" id="lastName" tabindex="0" aria-errormessage="lastNameError" aria-invalid="false" placeholder="Votre prénom ici">
-                <span  class="lastNameError hidden" id="lastNameError" aria-live="assertive">mettez un prénom valide et deux caractères minimum</span>
+                <input  class="input" type="text" name="lastName" id="lastName" tabindex="0" aria-errormessage="lastNameError" aria-invalid="false" placeholder="Votre prénom ici" required>
+                <span  class="lastNameError hidden" id="lastNameError" aria-live="polite" role="alert">mettez un prénom valide et deux caractères minimum</span>
                 <label for="email">email</label>
-                <input  class="input" type="email" name="email" id="email" tabindex="0" aria-errormessage="emailError" aria-invalid="false" placeholder="Votre e-mail ici">
-                <span class="emailError hidden" id="emailError" aria-live="assertive">mettez un email valide</span>
+                <input  class="input" type="email" name="email" id="email" tabindex="0" aria-errormessage="emailError" aria-invalid="false" placeholder="Votre e-mail ici" required>
+                <span class="emailError hidden" id="emailError" aria-live="polite" role="alert">mettez un email valide</span>
                 <div class="modal__comment">
                     <label for="message">Votre message</label>
                     <textarea  type="text" name="message" id="message" class="modal__message input" tabindex="0"></textarea>
@@ -53,6 +53,7 @@ export function displayModal(photographer){
     firstInput.focus(); 
     
 }
+
 
 
 export function closeModal(){

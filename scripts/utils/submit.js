@@ -23,6 +23,7 @@ function validateFirstName(){
         console.log("firstName not ok!!")
         firstNameError.classList.remove('hidden')
         firstName.setAttribute('aria-invalid', 'true')
+        
         return false
     }
 }
