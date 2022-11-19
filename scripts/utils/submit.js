@@ -16,13 +16,13 @@ function validateFirstName(){
     if (firstName.value.trim().length >= 2 && firstName.value.trim().match(regex)){
         if(!firstNameError.classList.contains('hidden')){
             firstNameError.classList.add('hidden')
-            firstNameError.setAttribute('aria-invalid', 'false')
+            firstName.setAttribute('aria-invalid', 'false')
         }
         return true
     }else{
         console.log("firstName not ok!!")
         firstNameError.classList.remove('hidden')
-        firstNameError.setAttribute('aria-invalid', 'true')
+        firstName.setAttribute('aria-invalid', 'true')
         return false
     }
 }
@@ -36,11 +36,13 @@ function validateLastName(){
     if (lastName.value.trim().length >= 2 && lastName.value.trim().match(regex)){
         if(!lastNameError.classList.contains('hidden')){
             lastNameError.classList.add('hidden')
+            lastName.setAttribute('aria-invalid', 'false')
         }
         return true
     }else{
         console.log("lastName not ok!!")
         lastNameError.classList.remove('hidden')
+        lastName.setAttribute('aria-invalid', 'true')
         return false
     }
 }
@@ -54,11 +56,12 @@ function validateEmail() {
     if(emailValue.trim().match(re)){
         if(!emailError.classList.contains('hidden')){
             emailError.classList.add('hidden')
+            email.setAttribute('aria-invalid', 'false')
         }
         return true
     }else{
         emailError.classList.remove('hidden')
-        console.log('email non valide')
+        email.setAttribute('aria-invalid', 'true')
         return false
     }    
 }
