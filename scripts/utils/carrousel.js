@@ -163,26 +163,29 @@ export function carrouselClickEvent(photos, media, photographer){
 
 // gestion des bouttons gauche droite et close au clic
 function carrouselClickFunction(){
+     const images =  document.querySelectorAll('.carrousel__item');
+    // const nbrImg = images.length;
     const leftArrow = document.querySelector('.fa-chevron-circle-left');
     const rightArrow = document.querySelector('.fa-chevron-circle-right');
     const closeBtn = document.querySelector('.carrousel__close');
-    let images = document.querySelectorAll('.carrousel__item');
-    let nbrImg;
+    
+    //console.log("nbrImg: ", nbrImg)
     let step = 0;
     images[0].classList.add("active");
 
     function removeActiveImage(){
-        images = document.querySelectorAll('.carrousel__item');
-        nbrImg = images.length;
+        const images = document.querySelectorAll('.carrousel__item');
+        const nbrImg = images.length;
         for(let i=0; i<nbrImg; i++){
             images[i].classList.remove("active");
         }
     }        
 
     leftArrow.addEventListener('click', () => {
-        images = document.querySelectorAll('.carrousel__item');
-        nbrImg = images.length;
+        const images =  document.querySelectorAll('.carrousel__item');
+        const nbrImg = images.length;
         console.log('avant clic, step = ', step)
+        console.log("nbrImg: ", nbrImg)
         step++;
         if(step >= nbrImg ){
             step = 0;
@@ -193,9 +196,10 @@ function carrouselClickFunction(){
     })
 
     rightArrow.addEventListener('click', () => {
-        images = document.querySelectorAll('.carrousel__item');
-        nbrImg = images.length;
+        const images =  document.querySelectorAll('.carrousel__item');
+        const nbrImg = images.length;
         console.log('avant clic, step = ', step)
+        console.log("nbrImg: ", nbrImg)
         if(step == 0){
             step = nbrImg;
         }
@@ -212,17 +216,15 @@ function carrouselClickFunction(){
 function carrouselKeydownFunction(){
     // evenements keydown sur carrousel
     const images = document.querySelectorAll('.carrousel__item');
-    const arrayImages = Array.from(images);
-    const length = arrayImages.length;
-
+    const length = images.length;
     const arrows = document.querySelectorAll('.arrow');
     const carrosselElts = document.querySelectorAll('.tab');
     const carroselBtnClose = document.querySelector('.fa-window-close');
     let step = 0;
-
+    console.log("length: ", length)
     // piéger focus dans carrousel
     document.addEventListener('keydown', (e) => {
-         console.log('carrosselElts: ', carrosselElts)
+         
         if(e.key === "Tab" || e.keyCode === 9){
             if(e.shiftKey){
                 if(document.activeElement === carrosselElts[0]){
@@ -250,36 +252,41 @@ function carrouselKeydownFunction(){
         })
 
         arrows[1].addEventListener('keydown', (e) => {
+            const images = document.querySelectorAll('.carrousel__item');
+            const length = images.length;
             if(e.key === "ArrowRight" || e.keyCode === 39){
                 e.preventDefault();
-        
+                console.log("step in arrowRight before: ", step)
                 for(let i=0; i<length; i++){       
-                    arrayImages[i].classList.remove("active");
+                    images[i].classList.remove("active");
                 }
                 step++; 
                 if(step === length){
                     step = 0;
                 }
-               
-                arrayImages[step].classList.add('active');  
+                console.log("step in arrowRight after: ", step)
+             
+                images[step].classList.add('active');  
                 //arrows[0].focus();
             }
                 
         })
 
         arrows[0].addEventListener('keydown', (e) => {
+            const images = document.querySelectorAll('.carrousel__item');
+            const length = images.length;
             if(e.key === "ArrowLeft" || e.keyCode === 37){
                 e.preventDefault();
-        
+                console.log("step in arrowLeft before: ", step)
                 for(let i=0; i<length; i++){  
-                    arrayImages[i].classList.remove("active");
+                   images[i].classList.remove("active");
                 }
                 if(step === 0){
                     step = length-1;
                 }
                 step--;
-                
-                arrayImages[step].classList.add('active')
+                console.log("step in arrowLeft before: ", step)
+                images[step].classList.add('active')
                 //arrows[1].focus()
             }
                
