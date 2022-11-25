@@ -1,3 +1,5 @@
+import { validateFirstName, validateLastName, validateEmail, fieldsValidation } from "./submit.js"
+
 
 export function displayModal(photographer){
     const { name } = photographer
@@ -50,8 +52,13 @@ export function displayModal(photographer){
     //afficher modal et lui mettre focus (dans le 1er input)
     modal.style.display = "block"
     const firstInput = modal.querySelector('.modal__function')
+    const firstName = document.getElementById('firstName')
+    const lastName = document.getElementById('lastName')
+    const email = document.getElementById('email')
     firstInput.focus(); 
-    
+    fieldsValidation(firstName,validateFirstName, 'focusout' )
+    fieldsValidation(lastName, validateLastName, 'focusout')
+    fieldsValidation(email, validateEmail, 'focusout')
 }
 
 

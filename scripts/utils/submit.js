@@ -7,7 +7,7 @@ export function submitForm(){
     }
 }
 
-function validateFirstName(){
+export function validateFirstName(){
     //const REGEX pour nom prenom
     const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ -]+$/
     
@@ -28,7 +28,7 @@ function validateFirstName(){
     }
 }
 
-function validateLastName(){
+export function validateLastName(){
     //const REGEX pour nom prenom
     const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ -]+$/
 
@@ -48,7 +48,7 @@ function validateLastName(){
     }
 }
 
-function validateEmail() {
+export function validateEmail() {
     const email = document.getElementById('email');
     const emailError = document.querySelector('.emailError')
    
@@ -65,4 +65,8 @@ function validateEmail() {
         email.setAttribute('aria-invalid', 'true')
         return false
     }    
+}
+
+export function fieldsValidation(elt, method, event){
+    elt.addEventListener(event, method)
 }
