@@ -53,10 +53,10 @@ export function displayModal(photographer){
     const firstName = document.getElementById('firstName')
     const lastName = document.getElementById('lastName')
     const email = document.getElementById('email')
-    firstInput.focus(); 
-    // fieldsValidation(firstName,validateFirstName, 'focusout' )
-    // fieldsValidation(lastName, validateLastName, 'focusout')
-    // fieldsValidation(email, validateEmail, 'focusout')
+    firstInput.focus()
+    fieldsValidation(firstName, validateFirstName, 'focusout')
+    fieldsValidation(lastName, validateLastName, 'focusout')
+    fieldsValidation(email, validateEmail, 'focusout')
 }
 
 
