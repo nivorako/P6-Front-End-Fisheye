@@ -50,7 +50,7 @@ export function likes(media, photographer){
 
     const likes = /*html */`
         <div class="likes__container"> 
-            <p class="likes__likes" tabindex="5" aria-description="nombre de loke total">
+            <p class="likes__likes" tabindex="5" aria-description="nombre de like total">
                 ${nbrLikes} 
                 <i class="fa fa-heart"></i>
             </p>  
