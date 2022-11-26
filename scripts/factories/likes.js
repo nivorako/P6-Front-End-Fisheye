@@ -1,3 +1,4 @@
+
 export function likes(media, photographer){
 
     //definir total nbre likes pour photographer
@@ -20,6 +21,7 @@ export function likes(media, photographer){
             // on ne peut cliquer qu une seule fois : data-increment="true"
             likeIncrements[i].addEventListener("click", () => {
                 if(likeIncrements[i].getAttribute("data-increment") === 'false'){
+                    
                     photographerLikes[i].textContent++;
                     likesElt.textContent++;
                     likeIncrements[i].setAttribute('data-increment', 'true');
@@ -48,11 +50,11 @@ export function likes(media, photographer){
 
     const likes = /*html */`
         <div class="likes__container"> 
-            <p class="likes__likes">
+            <p class="likes__likes" tabindex="5" aria-description="nombre de loke total">
                 ${nbrLikes} 
                 <i class="fa fa-heart"></i>
             </p>  
-            <p class="likes__price">${photographer.price} / jour</p>
+            <p class="likes__price" tabindex="5" aria-description="le salaire du photographe">${photographer.price} / jour</p>
            
         </div>
     `;

@@ -23,7 +23,7 @@ export function validateFirstName(){
         console.log("firstName not ok!!")
         firstNameError.classList.remove('hidden')
         firstName.setAttribute('aria-invalid', 'true')
-        
+        firstName.focus()
         return false
     }
 }
@@ -44,6 +44,7 @@ export function validateLastName(){
         console.log("lastName not ok!!")
         lastNameError.classList.remove('hidden')
         lastName.setAttribute('aria-invalid', 'true')
+        lastName.focus()
         return false
     }
 }
@@ -63,6 +64,7 @@ export function validateEmail() {
     }else{
         emailError.classList.remove('hidden')
         email.setAttribute('aria-invalid', 'true')
+        email.focus()
         return false
     }    
 }

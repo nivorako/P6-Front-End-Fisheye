@@ -17,8 +17,6 @@ export function displayModal(photographer){
     // fabirquer et charger modalElement dans class="modal"
     const modal= document.getElementById('modal')
     modal.setAttribute('aria-hidden', 'false')
-    modal.setAttribute('role', 'dialog')
-    modal.setAttribute('aria-describedby',"modalTitle")
     const modalElement = /*html*/`
         <header class="modal__header">
             <div class="modal__function">
@@ -56,9 +54,9 @@ export function displayModal(photographer){
     const lastName = document.getElementById('lastName')
     const email = document.getElementById('email')
     firstInput.focus(); 
-    fieldsValidation(firstName,validateFirstName, 'focusout' )
-    fieldsValidation(lastName, validateLastName, 'focusout')
-    fieldsValidation(email, validateEmail, 'focusout')
+    // fieldsValidation(firstName,validateFirstName, 'focusout' )
+    // fieldsValidation(lastName, validateLastName, 'focusout')
+    // fieldsValidation(email, validateEmail, 'focusout')
 }
 
 

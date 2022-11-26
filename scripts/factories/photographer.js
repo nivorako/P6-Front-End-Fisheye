@@ -61,13 +61,18 @@ export function getPhotographerMedia( media, photographer){
         </div>
         <div class="photographerMedia__comment" aria-labelledby=${title}>
             <h3 tabindex="4" id=${title} >${title}</h3>
-            <div class="photographerMedia__details">
-                <span class="photographerLikes">${likes}</span>
+            <div class="photographerMedia__details" role="button" aria-labelledby="bouton-PhotoLikes">
+                <span class="photographerLikes" tabindex="4" aria-label="le nombre de likes est ${likes}">${likes}</span>
                 <span role="button" aria-label="bouton likes incrémente ou décrémente les likes"> 
                     <i 
+                        id="bouton-PhotoLikes" 
+                        role="button"
+                        aria-pressed="false"
+                       
                         class="fa fa-heart faLikeIncrement" 
                         data-increment="false" 
-                        tabindex="4"     
+                        tabindex="4" 
+                        aria*-hidden="false"    
                     >
                     </i>
                 </span>  
@@ -81,7 +86,7 @@ export function getPhotographerMedia( media, photographer){
         
         <video 
             role="button"
-            aria-label="acceder au carrossel"
+            aria-label="acceder au carrossel de ${name}"
             type="video/mp4"
             title=""
             alt=" ${videoTitle()}"
@@ -94,12 +99,11 @@ export function getPhotographerMedia( media, photographer){
         <div class="photographerMedia__comment" aria-labelledby=${videoTitle()}> 
             <h3 tabindex="4" id=${videoTitle()}>${videoTitle()}</h3>
             <div class="photographerMedia__details" role="button" aria-labelledby="bouton-videoLikes">
-                <span class="photographerLikes">${likes}</span>
+                <span class="photographerLikes" tabindex="4"  aria-label="le nombre de likes est ${likes}">${likes}</span>
                 <i 
                     id="bouton-videoLikes" 
                     role="button"
                     aria-pressed="false"
-                    aria-label="le nombre de likes est ${likes}, clickez pour en rajouter"
                     class="fa fa-heart faLikeIncrement" 
                     data-increment="false" 
                     tabindex="4" 

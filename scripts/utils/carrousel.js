@@ -18,6 +18,7 @@ function displayCarrousel(media, photographer){
     // carrousel__container
     const carrouselContainer = document.createElement('div')
     carrouselContainer.classList.add("carrousel__container")
+    
     // carrousel__close
     const carrouselClose = document.createElement('div')
     carrouselClose.classList.add('carrousel__close')
@@ -32,8 +33,10 @@ function displayCarrousel(media, photographer){
     closeBtn.setAttribute('tabindex', "1")
    
     // carrousel__items
-    const carrouselItems = document.createElement('div')
-    carrouselItems.classList.add('carrousel__items')
+    const carrouselItems = document.createElement('ul')
+    carrouselItems.classList.add('carrousel__items') 
+    carrouselItems.setAttribute('role', 'tablist')
+   
     // les arrows
     const carrouselLeftArrow = document.createElement('div')
     carrouselLeftArrow.classList.add('carrousel__arrow')
@@ -42,15 +45,16 @@ function displayCarrousel(media, photographer){
 
     const carrouselRightArrow = document.createElement('div')
     carrouselRightArrow.classList.add('carrousel__arrow')
-    carrouselRightArrow.setAttribute('role', "button")
     carrouselRightArrow.setAttribute('aria-label', "défilement à droite")
-
+    carrouselRightArrow.setAttribute('role', "button")
+    
     const leftArrow = document.createElement('i')
     leftArrow.setAttribute('tabindex', "1")
     leftArrow.classList.add('fa-chevron-circle-left')
     leftArrow.classList.add('fas')
     leftArrow.classList.add('tab')
     leftArrow.classList.add('arrow')
+   
 
     const rightArrow = document.createElement('i')
     rightArrow.setAttribute('tabindex', "1")
@@ -58,6 +62,8 @@ function displayCarrousel(media, photographer){
     rightArrow.classList.add('fas')
     rightArrow.classList.add('tab')
     rightArrow.classList.add('arrow')
+   
+
 
     carrouselLeftArrow.appendChild(leftArrow)
     carrouselRightArrow.appendChild(rightArrow)
@@ -68,8 +74,12 @@ function displayCarrousel(media, photographer){
     for(let i=0; i<l; i++){
 
         //carrousel__item
-        const carrouselItem = document.createElement('div')
+        const carrouselItem = document.createElement('li')
         carrouselItem.classList.add('carrousel__item')
+        carrouselItem.setAttribute('role', "tab")
+        carrouselItem.setAttribute('tabindex', '-1')
+        carrouselItem.setAttribute('aria-selected', 'false')
+    
         //carrousel__title
         const carrouselTitle = document.createElement('h1')
         carrouselTitle.classList.add('carrousel__title')
@@ -85,11 +95,13 @@ function displayCarrousel(media, photographer){
         // eslint-disable-next-line no-prototype-builtins
         if(media[i].hasOwnProperty('video')){
             carrouselVideo.setAttribute("src", `./assets/Sample Photos/${name}/${media[i].video}`)
+            carrouselVideo.setAttribute('alt', `${media[i].video}`)
             carrouselItem.appendChild(carrouselVideo) 
             carrouselItem.appendChild(carrouselTitle)
             carrouselItems.appendChild(carrouselItem) 
         }else{
             carrouselImg.setAttribute("src", `./assets/Sample Photos/${name}/${media[i].image}`)
+            carrouselVideo.setAttribute('alt', `${media[i].image}`)
             carrouselItem.appendChild(carrouselImg) 
             carrouselItem.appendChild(carrouselTitle)
             carrouselItems.appendChild(carrouselItem) 
@@ -126,6 +138,7 @@ function closeCarrousel(){
     
     //carrousel.removeChild(carrouselContainer)
     carrousel.style.display = "none"
+    carrousel.innerHTML = ""
 }
 
 // ouvre carrousel avec enter + gestion bouton clic et keydown
@@ -193,10 +206,12 @@ function carrouselClickFunction(){
         console.log('après clic, step = ', step)
         removeActiveImage()
         images[step].classList.add('active')
+        images[step].setAttribute('tabindex', '0')
+        images[step].setAttribute('aria-selected', 'true')
     })
 
     rightArrow.addEventListener('click', () => {
-        const images =  document.querySelectorAll('.carrousel__item');
+        const images =  document.querySelectorAll('.carrousel__item')
         const nbrImg = images.length;
         console.log('avant clic, step = ', step)
         console.log("nbrImg: ", nbrImg)
@@ -206,7 +221,9 @@ function carrouselClickFunction(){
         step--;
         console.log('après clic, step = ', step)
         removeActiveImage();
-        images[step].classList.add('active');
+        images[step].classList.add('active')
+        images[step].setAttribute('tabindex', '0')
+        images[step].setAttribute('aria-selected', 'true')
     })
     closeBtn.addEventListener('click', () => {
         closeCarrousel();
@@ -254,7 +271,9 @@ function carrouselKeydownFunction(){
         arrows[1].addEventListener('keydown', (e) => {
             const images = document.querySelectorAll('.carrousel__item');
             const length = images.length;
-            if(e.key === "ArrowRight" || e.keyCode === 39){
+            console.log('coucouc')
+            //if(e.key === "ArrowRight" || e.keyCode === 39){
+            if (e.keyCode === 39 || (e.ctrlKey && e.keyCode === 39)) {		
                 e.preventDefault();
                 console.log("step in arrowRight before: ", step)
                 for(let i=0; i<length; i++){       
@@ -266,7 +285,9 @@ function carrouselKeydownFunction(){
                 }
                 console.log("step in arrowRight after: ", step)
              
-                images[step].classList.add('active');  
+                images[step].classList.add('active')
+                images[step].setAttribute('tabindex', '0')
+                images[step].setAttribute('aria-selected', 'true')  
                 //arrows[0].focus();
             }
                 
@@ -275,7 +296,8 @@ function carrouselKeydownFunction(){
         arrows[0].addEventListener('keydown', (e) => {
             const images = document.querySelectorAll('.carrousel__item');
             const length = images.length;
-            if(e.key === "ArrowLeft" || e.keyCode === 37){
+            //if(e.key === "ArrowLeft" || e.keyCode === 37){
+            if (e.keyCode === 37 || (e.ctrlKey && e.keyCode === 37)) {		
                 e.preventDefault();
                 console.log("step in arrowLeft before: ", step)
                 for(let i=0; i<length; i++){  
@@ -287,6 +309,8 @@ function carrouselKeydownFunction(){
                 step--;
                 console.log("step in arrowLeft before: ", step)
                 images[step].classList.add('active')
+                images[step].setAttribute('tabindex', '0')
+                images[step].setAttribute('aria-selected', 'true')
                 //arrows[1].focus()
             }
                

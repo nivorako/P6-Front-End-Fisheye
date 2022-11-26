@@ -108,12 +108,9 @@ async function init() {
                 const focusElets = '[tabindex]:not([tabindex="-1"]';
                 const modalFocusElts = modal.querySelectorAll(focusElets);
                 
-                console.log("modal focus elt: ", modalFocusElts)
                 const modalFocusEltsLength = modalFocusElts.length;
                 const firstmodalFocusElt = modalFocusElts[0];
                 const lastmodalFocusElt = modalFocusElts[modalFocusEltsLength - 1];
-                console.log('first: ', firstmodalFocusElt)
-                console.log('last: ', lastmodalFocusElt)
 
                 if(e.key === "Tab" || e.keyCode === 9){ 
                     if(e.shiftKey){
