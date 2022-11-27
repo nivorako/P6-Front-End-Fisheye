@@ -1,5 +1,5 @@
 {
-  "name": "Front-End-Fisheye",
+  "name": "front-end-fisheye",
   "version": "1.0.0",
   "description": "## Démarrer le projet",
   "main": "index.js",
@@ -11,15 +11,18 @@
     "url": "git+https://github.com/nivorako/Front-End-Fisheye.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "niv",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nivorako/Front-End-Fisheye/issues"
   },
   "homepage": "https://github.com/nivorako/Front-End-Fisheye#readme",
   "devDependencies": {
-    "eslint": "^8.5.0",
+    "eslint": "^8.28.0",
     "jsdoc": "^3.6.7",
     "prettier": "^2.5.1"
+  },
+  "directories": {
+    "doc": "docs"
   }
 }

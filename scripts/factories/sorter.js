@@ -1,39 +1,39 @@
 
-import { displaySelectedItem } from '../utils/sorterSelect.js';
+import { displaySelectedItem } from "../utils/sorterSelect.js"
 
 export function sorter(media, photographer) {
-    const sorterWrapper = document.querySelector('.sorter');
+    const sorterWrapper = document.querySelector(".sorter")
 
     function sorterOnKeydown() {
-        const sorterItems = document.querySelector('.sorter__items');
-        const sorterSelected = document.querySelector('.sorter__selected');
-        const btnSelected = document.querySelector('.fa-angle-down');
+        const sorterItems = document.querySelector(".sorter__items")
+        const sorterSelected = document.querySelector(".sorter__selected")
+        const btnSelected = document.querySelector(".fa-angle-down")
 
-        sorterSelected.addEventListener('keydown', (e) => {
+        sorterSelected.addEventListener("keydown", (e) => {
             if (e.key === "Enter" || e.keyCode === 13) {
-                sorterItems.classList.toggle('active');
-                btnSelected.classList.toggle('active');
-                sorterItems.setAttribute('aria-hidden', "false");
+                sorterItems.classList.toggle("active")
+                btnSelected.classList.toggle("active")
+                sorterItems.setAttribute("aria-hidden", "false")
                 // si btnSelected active ==> sorter item active (ouvert)
-                if (btnSelected.classList.contains('active') || sorterItems.classList.contains('active')) {
+                if (btnSelected.classList.contains("active") || sorterItems.classList.contains("active")) {
                     document.addEventListener(
-                        'click',
+                        "click",
                         (e) => {
                             // si le clic se produit hors de sorter__container
                             if (!e.target.closest(".sorter__container")) {
-                                sorterItems.classList.remove('active')
-                                btnSelected.classList.remove('active')
+                                sorterItems.classList.remove("active")
+                                btnSelected.classList.remove("active")
                             }
                         }
                     )   
-                     // piege le focus dans sorter__container
-                    const container = document.querySelector('.sorter__container');
-                    const focusablePhotographerEltsString = 'div, li ';
-                    const focusablePhotographerElts = container.querySelectorAll(focusablePhotographerEltsString);
-                    const focusableLength = focusablePhotographerElts.length;
-                    const firstFocusable = focusablePhotographerElts[0];
-                    const lastFocusable = focusablePhotographerElts[focusableLength - 1];
-                    container.addEventListener('keydown', (e) => {
+                    // piege le focus dans sorter__container
+                    const container = document.querySelector(".sorter__container")
+                    const focusablePhotographerEltsString = "div, li" 
+                    const focusablePhotographerElts = container.querySelectorAll(focusablePhotographerEltsString)
+                    const focusableLength = focusablePhotographerElts.length
+                    const firstFocusable = focusablePhotographerElts[0]
+                    const lastFocusable = focusablePhotographerElts[focusableLength - 1]
+                    container.addEventListener("keydown", (e) => {
                         if (e.key === "Tab" || e.keyCode === 9) {
                             if (e.shiftKey) {
                                
@@ -55,51 +55,51 @@ export function sorter(media, photographer) {
         })
 
         //faire fonctionner le enter dans chaque item
-        const sorterItem = sorterItems.querySelectorAll('.sorter__item');
+        const sorterItem = sorterItems.querySelectorAll(".sorter__item")
         sorterItem.forEach(item => item.addEventListener("keydown", (e) => {
             if (e.key === "Enter" || e.keyCode === 13){
-                    e.preventDefault();
+                e.preventDefault()
             
-                    let x;
-                    let selectedItem = item.querySelector('.sorter__sort').innerHTML;
-                    x = sorterSelected.querySelector('.sorter__selectedText').innerHTML;
-                    sorterSelected.querySelector('.sorter__selectedText').innerHTML = selectedItem;
-                    item.querySelector('.sorter__sort').innerHTML = x;
+                let x
+                let selectedItem = item.querySelector(".sorter__sort").innerHTML
+                x = sorterSelected.querySelector(".sorter__selectedText").innerHTML
+                sorterSelected.querySelector(".sorter__selectedText").innerHTML = selectedItem
+                item.querySelector(".sorter__sort").innerHTML = x
 
-                    displaySelectedItem(selectedItem, media, photographer);
+                displaySelectedItem(selectedItem, media, photographer)
             }
         }))
 
     }
 
     function sorterOnClick() {
-        const sorterItems = document.querySelector('.sorter__items');
-        const sorterSelected = document.querySelector('.sorter__selected');
-        const btnSelected = document.querySelector('.fa-angle-down');
-        const sorterItem = sorterItems.querySelectorAll('.sorter__item');
+        const sorterItems = document.querySelector(".sorter__items")
+        const sorterSelected = document.querySelector(".sorter__selected")
+        const btnSelected = document.querySelector(".fa-angle-down")
+        const sorterItem = sorterItems.querySelectorAll(".sorter__item")
 
         // chaque fois qu on clicke sur sorter selected, on ferme ou on ouvre sorter__item
-        sorterSelected.addEventListener('click', () => {
+        sorterSelected.addEventListener("click", () => {
         
-            sorterItems.classList.toggle('active');
-            btnSelected.classList.toggle('active');
-            sorterItems.setAttribute('aria-hidden', "false");
+            sorterItems.classList.toggle("active")
+            btnSelected.classList.toggle("active")
+            sorterItems.setAttribute("aria-hidden", "false")
 
-            if(sorterItems.classList.contains('active')){
-                sorterItems.setAttribute('aria-hidden', 'false');
+            if(sorterItems.classList.contains("active")){
+                sorterItems.setAttribute("aria-hidden", "false")
             }else{
-                sorterItems.setAttribute('aria-hidden', 'true');
+                sorterItems.setAttribute("aria-hidden", "true")
             }
 
             // si btnSelected active ==> sorter item active 
-            if (sorterItems.classList.contains('active')) {
+            if (sorterItems.classList.contains("active")) {
                 document.addEventListener(
-                    'click',
+                    "click",
                     (e) => {
                         // si le clic se produit hors de sorter__container
                         if (!e.target.closest(".sorter__container")) {
-                            sorterItems.classList.remove('active');
-                            btnSelected.classList.remove('active');
+                            sorterItems.classList.remove("active")
+                            btnSelected.classList.remove("active")
                         }
                     }
                 )
@@ -109,22 +109,22 @@ export function sorter(media, photographer) {
 
         // le item selectionné s'affiche dans sorter__sort ET on affiche les selected item 
         sorterItem.forEach(item => {
-            item.addEventListener('click', () => {
-                let x;
-                let selectedItem = item.querySelector('.sorter__sort').innerHTML;
-                x = sorterSelected.querySelector('.sorter__selectedText').innerHTML;
-                sorterSelected.querySelector('.sorter__selectedText').innerHTML = selectedItem;
-                item.querySelector('.sorter__sort').innerHTML = x;
+            item.addEventListener("click", () => {
+                let x
+                let selectedItem = item.querySelector(".sorter__sort").innerHTML
+                x = sorterSelected.querySelector(".sorter__selectedText").innerHTML
+                sorterSelected.querySelector(".sorter__selectedText").innerHTML = selectedItem
+                item.querySelector(".sorter__sort").innerHTML = x
 
-                displaySelectedItem(selectedItem, media, photographer);
+                displaySelectedItem(selectedItem, media, photographer)
 
             })
         })
     }
 
     function name () {
-        const sort = document.querySelector('.sorter__selectedText').textContent;
-        console.log('sort: ', sort)
+        const sort = document.querySelector(".sorter__selectedText").textContent
+        console.log("sort: ", sort)
     }
 
     const sorter = /*html*/`
@@ -153,7 +153,7 @@ export function sorter(media, photographer) {
             </ul>
         </div>
         
-    `;
+    `
    
     sorterWrapper.innerHTML = sorter
     name(   )
