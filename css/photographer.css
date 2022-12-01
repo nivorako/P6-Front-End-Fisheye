@@ -393,6 +393,7 @@ li, ul{
 .fa-chevron-right:hover{
     color: var(--secondary);
     transform: scale(1.1);
+    cursor: pointer;
 }
 
 .likes__container{
