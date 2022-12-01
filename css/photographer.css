@@ -10,6 +10,10 @@
     --f16: 16px
 }
 
+.fa .fas{
+    font-family: Font awesome 5 Free;
+}
+
 #photographerBody{
     position: relative;
     display: flex;
@@ -20,6 +24,7 @@
 
 li, ul{
     padding: 0;
+    list-style-type: none;
 }
 
 .faLikeIncrement:hover{
@@ -324,8 +329,13 @@ li, ul{
     top: 100px;
     left: calc(90vw - 48px);
     font-size: 48px;
-    opacity: 0.4;
     transition: all .5s ease;
+}
+
+.fa-times{
+    color: var(--primary);
+    font-size: 50px; 
+   
 }
 
 .carrousel__items{
@@ -360,28 +370,28 @@ li, ul{
     opacity: 1;
 }
 
-.fa-chevron-circle-left{
+.fa-chevron-left{
     position: absolute;
     top: 50%;
     left: 10vw;
     font-size: 48px;
-    opacity: 0.4;
     transition: all 0.5s ease;
+    color: var(--primary);
 }
 
-.fa-chevron-circle-right{
+.fa-chevron-right{
     position: absolute;
     top: 50%;
     left: calc(90vw - 48px);
     font-size: 48px;
-    opacity: 0.4;
     transition: all 0.5s ease;
+    color: var(--primary);
 }
 
 .carrousel__close:hover,
-.fa-chevron-circle-left:hover,
-.fa-chevron-circle-right:hover{
-    opacity: 1;
+.fa-chevron-left:hover,
+.fa-chevron-right:hover{
+    opacity: .8;
     transform: scale(1.1);
 }
 

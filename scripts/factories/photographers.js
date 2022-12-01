@@ -1,55 +1,51 @@
-// 
+//
 
 export function photographersFactory(data) {
-    const { name, portrait, city, country, tagline, price, id } = data;
-    const picture = `assets/photographers/${portrait}`;
+    const { name, portrait, city, country, tagline, price, id } = data
+    const picture = `assets/photographers/${portrait}`
 
     function getUserCardDOM() {
+        const link = document.createElement("a")
+        link.setAttribute("href", `photographer.html?${id}`)
+        link.classList.add("photographersSection__link")
 
-        const link = document.createElement('a');
-        link.setAttribute("href", `photographer.html?${id}`);
-        link.classList.add('photographersSection__link')
-
-        const img = document.createElement( 'img' );
+        const img = document.createElement("img")
         img.setAttribute("src", picture)
-        img.setAttribute('alt', `photographie de ${name}`)
-        img.setAttribute('role', 'button');
-        img.setAttribute('aria-label', `ouvre la page pour ${name}`);
+        img.setAttribute("alt", `photographie de ${name}`)
+        img.setAttribute("role", "button")
+        img.setAttribute("aria-label", `ouvre la page pour ${name}`)
 
-        const cityElt = document.createElement('p');
-        cityElt.innerHTML = `${country}: ${city}`;
-        cityElt.classList.add('photographersSection__locality')
+        const cityElt = document.createElement("p")
+        cityElt.innerHTML = `${country}: ${city}`
+        cityElt.classList.add("photographersSection__locality")
 
-        const tag = document.createElement('p');
-        tag.innerHTML = tagline;
-        tag.classList.add('photographersSection__tag');
+        const tag = document.createElement("p")
+        tag.innerHTML = tagline
+        tag.classList.add("photographersSection__tag")
 
-        const priceElt = document.createElement('span');
+        const priceElt = document.createElement("span")
         priceElt.innerHTML = `${price}€/jour`
-        priceElt.classList.add('photographersSection__price')
-        
-        const h2 = document.createElement( 'h2' );
-        h2.innerHTML = name;
+        priceElt.classList.add("photographersSection__price")
 
-        const label = document.createElement('div');
-        label.classList.add('photographersSection__label');
+        const h2 = document.createElement("h2")
+        h2.innerHTML = name
 
-        const article = document.createElement( 'article' );
+        const label = document.createElement("div")
+        label.classList.add("photographersSection__label")
 
-        link.appendChild(img);
-        link.appendChild(h2);
+        const article = document.createElement("article")
 
-        label.appendChild(cityElt);
-        label.appendChild(tag);
-        label.appendChild(priceElt);
-        
-        
-        article.appendChild(link);
+        link.appendChild(img)
+        link.appendChild(h2)
+
+        label.appendChild(cityElt)
+        label.appendChild(tag)
+        label.appendChild(priceElt)
+
+        article.appendChild(link)
         article.appendChild(label)
-        return (article);
+        return article
     }
 
-    return {  getUserCardDOM }
+    return { getUserCardDOM }
 }
-
-

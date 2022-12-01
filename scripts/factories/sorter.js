@@ -141,6 +141,7 @@ export function sorter(media, photographer) {
             <div class="sorter__selected btn" tabindex="3" role="button" aria-label="trier par date ouvre une liste a choix">
                 <h3 class="sorter__selectedText" >date</h3>
                 <i class="fas fa-angle-down"></i>
+                
             </div>
             
             <ul class="sorter__items" aria-hidden="true" >

@@ -1,10 +1,8 @@
+export function getPhotographer(photographer) {
+    const { name, portrait, city, country, tagline } = photographer
+    const header = document.querySelector(".photographerHeader")
 
-export function getPhotographer(photographer){
-
-    const { name, portrait, city, country, tagline } = photographer;
-    const header = document.querySelector('.photographerHeader');
- 
-    const photograph = /*html*/`
+    const photograph = /*html*/ `
         <div class="photographerHeader__id"> 
             <h1 tabindex="2">${name}</h1>
             <p tabindex="2"> ${city}: ${country} </p>
@@ -23,32 +21,32 @@ export function getPhotographer(photographer){
         <div class="photographerHeader__img" >
             <img src="assets/photographers/${portrait}" alt="photographie de ${name}" tabindex="2"/>
         </div>
-    `;
+    `
 
-    header.innerHTML = photograph;
+    header.innerHTML = photograph
 
-    return header;
-    }
+    return header
+}
 
-export function photographerName(photographer){
+export function photographerName(photographer) {
     let name = ""
     let avatar = photographer.name.split(" ")[0]
-    if(avatar.split("-").length === 1) name = avatar
+    if (avatar.split("-").length === 1) name = avatar
     else name = avatar.split("-")[0] + " " + avatar.split("-")[1]
     return name
 }
-    
-export function getPhotographerMedia( media, photographer){
-    const wrapper = document.createElement('div');
-    const name = photographerName(photographer);
-    const { title, likes , image, video } = media;
-    
+
+export function getPhotographerMedia(media, photographer) {
+    const wrapper = document.createElement("div")
+    const name = photographerName(photographer)
+    const { title, likes, image, video } = media
+
     const videoTitle = () => {
-        const title = String(video).split('.')[0].split("_").join(' ');
-        return title;
+        const title = String(video).split(".")[0].split("_").join(" ")
+        return title
     }
 
-    const photographerPhoto = /*html*/`
+    const photographerPhoto = /*html*/ `
        
         <img 
             role="bouton"
@@ -80,9 +78,9 @@ export function getPhotographerMedia( media, photographer){
             </div>
         
        </div>
-    `;
-   
-    const photographerVideo = /*html*/`
+    `
+
+    const photographerVideo = /*html*/ `
         
         <video 
             role="button"
@@ -117,17 +115,16 @@ export function getPhotographerMedia( media, photographer){
         </div>
        
     `
-    
+
     // eslint-disable-next-line no-prototype-builtins
-    if(media.hasOwnProperty('video')){
-        wrapper.classList.add('photographerMedia__work')
-        wrapper.classList.add('photographerMedia__work--video')
-        wrapper.innerHTML = photographerVideo;
-    }else{
-        wrapper.classList.add('photographerMedia__work')
-        wrapper.innerHTML = photographerPhoto;
+    if (media.hasOwnProperty("video")) {
+        wrapper.classList.add("photographerMedia__work")
+        wrapper.classList.add("photographerMedia__work--video")
+        wrapper.innerHTML = photographerVideo
+    } else {
+        wrapper.classList.add("photographerMedia__work")
+        wrapper.innerHTML = photographerPhoto
     }
 
-    
     return wrapper
 }
