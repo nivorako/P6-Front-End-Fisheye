@@ -60,7 +60,7 @@ export function likes(media, photographer) {
                 ${nbrLikes} 
                 <i class="fa fa-heart"></i>
             </p>  
-            <p class="likes__price" tabindex="5" aria-description="le salaire du photographe">${photographer.price} / jour</p>
+            <p class="likes__price" tabindex="5" aria-description="le salaire du photographe">${photographer.price} &euro;/ jour</p>
            
         </div>
     `

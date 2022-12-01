@@ -119,13 +119,13 @@ export function displaySelectedItem(sorted, media, photographer) {
 }
 
 function select(data, orderBy) {
-    if (orderBy === "likes") {
+    if (orderBy === "Popularité") {
         data.sort((a, b) => {
             return b.likes - a.likes
         })
 
         return data
-    } else if (orderBy === "date") {
+    } else if (orderBy === "Date") {
         data.sort((a, b) => {
             const dateA = a.date.split("-")
             const dateB = b.date.split("-")
@@ -135,7 +135,7 @@ function select(data, orderBy) {
             )
         })
         return data
-    } else if (orderBy === "titre") {
+    } else if (orderBy === "Titre") {
         data.sort((a, b) => {
             return (a.title || a.video).localeCompare(b.title || a.video)
         })
