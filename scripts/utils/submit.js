@@ -1,7 +1,13 @@
 import { closeModal } from "./modal.js"
 
 export function submitForm() {
+    const firstName = document.getElementById("firstName")
+    const lastName = document.getElementById("lastName")
+    const email = document.getElementById("email")
     if (validateFirstName() && validateLastName() && validateEmail()) {
+        console.log("firstName:", firstName.value)
+        console.log("lastName: ", lastName.value)
+        console.log("email: ", email.value)
         closeModal()
     }
 }
