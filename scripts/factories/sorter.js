@@ -139,17 +139,17 @@ export function sorter(media, photographer) {
         </h2>
         <div class="sorter__container" id="sorterContainer" >
             <div class="sorter__selected btn" tabindex="3" role="button" aria-label="trier par date ouvre une liste a choix">
-                <h3 class="sorter__selectedText" >date</h3>
+                <h3 class="sorter__selectedText" >Date</h3>
                 <i class="fas fa-angle-down"></i>
                 
             </div>
             
             <ul class="sorter__items" aria-hidden="true" >
                 <li class="sorter__item  btn" tabindex="3" aria-label="popularité" role="button">
-                    <p class="sorter__sort" >likes</p>
+                    <p class="sorter__sort" >Popularité</p>
                 </li>
                 <li class="sorter__item  btn" tabindex="3" aria-label="titre" role="button" >
-                    <p class="sorter__sort">titre</p>
+                    <p class="sorter__sort">Titre</p>
                 </li>
             </ul>
         </div>

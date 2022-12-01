@@ -335,7 +335,7 @@ li, ul{
 .fa-times{
     color: var(--primary);
     font-size: 50px; 
-   
+    transition: all 0.5s ease;
 }
 
 .carrousel__items{
@@ -388,10 +388,10 @@ li, ul{
     color: var(--primary);
 }
 
-.carrousel__close:hover,
+.fa-times:hover,
 .fa-chevron-left:hover,
 .fa-chevron-right:hover{
-    opacity: .8;
+    color: var(--secondary);
     transform: scale(1.1);
 }
 
