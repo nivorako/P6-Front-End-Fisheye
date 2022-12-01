@@ -90,6 +90,8 @@ function displayCarrousel(media, photographer) {
                 `./assets/Sample Photos/${name}/${media[i].video}`
             )
             carrouselVideo.setAttribute("alt", `${media[i].video}`)
+            // carrouselVideo.setAttribute("controls", "")
+            carrouselVideo.setAttribute("autoplay", "")
             carrouselItem.appendChild(carrouselVideo)
             carrouselItem.appendChild(carrouselTitle)
             carrouselItems.appendChild(carrouselItem)
